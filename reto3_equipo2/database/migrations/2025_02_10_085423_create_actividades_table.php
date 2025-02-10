@@ -17,20 +17,21 @@ return new class extends Migration
             $table->string('descripcion');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
-            $table->string('idioma');
-            $table->string('horario');
-            $table->integer('plazas_totales');
-            $table->integer('plazas_disponibles');
-            $table->integer('plazas_min');
-            $table->integer('edad_min')->nullable();
-            $table->integer('edad_max')->nullable();
             $table->integer('dia_1');
             $table->integer('dia_2')->nullable();
-            $table->bigInteger('id_admin')->unsigned();
-            $table->timestamps();
-            $table->foreign('id_admin')
+            $table->string('horario');
+            $table->string('idioma');
+            $table->integer('plazas_totales');
+            $table->integer('plazas_disponibles');
+            $table->integer('plazas_minimas');
+            $table->integer('edad_minima')->nullable();
+            $table->integer('edad_maxima')->nullable();
+            $table->string('imagen')->nullable();
+            $table->bigInteger('id_administrador')->unsigned();
+            $table->foreign('id_administrador')
                 ->references('id')
                 ->on('administradores');
+            $table->timestamps();
         });
     }
 

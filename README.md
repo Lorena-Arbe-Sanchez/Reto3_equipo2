@@ -1,6 +1,4 @@
-# RETO 2
-
----
+# Centros cívicos
 
 ## Introducción
 
