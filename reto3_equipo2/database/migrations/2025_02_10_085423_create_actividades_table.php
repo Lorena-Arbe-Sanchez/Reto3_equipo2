@@ -26,7 +26,6 @@ return new class extends Migration
             $table->integer('edad_max')->nullable();
             $table->integer('dia_1');
             $table->integer('dia_2')->nullable();
-            $table->string('imagen')->nullable();
             $table->timestamps();
         });
     }

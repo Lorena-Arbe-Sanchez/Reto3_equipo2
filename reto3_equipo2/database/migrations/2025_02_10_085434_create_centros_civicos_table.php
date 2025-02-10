@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('correo');
             $table->string('direccion');
             $table->string('codigo_postal');
+            $table->string('imagen')->nullable();
             $table->timestamps();
         });
     }
