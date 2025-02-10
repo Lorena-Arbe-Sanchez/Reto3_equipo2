@@ -20,8 +20,8 @@ return new class extends Migration
             $table->foreign('id_centro')
                 ->references('id')
                 ->on('centros_civicos');
-            $table->primary(['id_actividad', 'id_centro']);
             $table->timestamps();
+            $table->primary(['id_actividad', 'id_centro']);
         });
     }
 

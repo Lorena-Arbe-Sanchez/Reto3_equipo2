@@ -20,8 +20,8 @@ return new class extends Migration
             $table->foreign('id_ciudadano')
                 ->references('id')
                 ->on('ciudadanos');
-            $table->primary(['id_actividad', 'id_ciudadano']);
             $table->timestamps();
+            $table->primary(['id_actividad', 'id_ciudadano']);
         });
     }
 
