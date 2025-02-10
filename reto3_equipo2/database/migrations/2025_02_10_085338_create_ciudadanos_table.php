@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('ciudadanos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('apellidos');
-            $table->string('dni');
-            $table->string('direccion');
-            $table->string('codigo_postal');
-            $table->string('codigo_tmc');
+            $table->string('nombre', 255)->nullable(false);
+            $table->string('apellidos', 255)->nullable(false);
+            $table->string('dni', 9)->nullable(false);
+            $table->string('direccion', 255)->nullable(false);
+            $table->string('codigo_postal', 5)->nullable(false);
+            $table->string('codigo_tmc', 10)->unique()->nullable(false);
             $table->timestamps();
         });
     }
