@@ -26,7 +26,11 @@ return new class extends Migration
             $table->integer('edad_max')->nullable();
             $table->integer('dia_1');
             $table->integer('dia_2')->nullable();
+            $table->bigInteger('id_admin')->unsigned();
             $table->timestamps();
+            $table->foreign('id_admin')
+                ->references('id')
+                ->on('administradores');
         });
     }
 
