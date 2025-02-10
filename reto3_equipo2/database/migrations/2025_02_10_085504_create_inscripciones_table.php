@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('inscripciones', function (Blueprint $table) {
-            $table->bigInteger('id_ciudadano')->unsigned();
             $table->bigInteger('id_actividad')->unsigned();
-            $table->timestamps();
-            $table->primary(['id_ciudadano', 'id_actividad']);
-            $table->foreign('id_ciudadano')
-                ->references('id')
-                ->on('ciudadanos');
+            $table->bigInteger('id_ciudadano')->unsigned();
             $table->foreign('id_actividad')
                 ->references('id')
                 ->on('actividades');
+            $table->foreign('id_ciudadano')
+                ->references('id')
+                ->on('ciudadanos');
+            $table->primary(['id_actividad', 'id_ciudadano']);
+            $table->timestamps();
         });
     }
 

@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('actividad_centro', function (Blueprint $table) {
             $table->bigInteger('id_actividad')->unsigned();
             $table->bigInteger('id_centro')->unsigned();
-            $table->timestamps();
-            $table->primary(['id_actividad', 'id_centro']);
             $table->foreign('id_actividad')
                 ->references('id')
                 ->on('actividades');
             $table->foreign('id_centro')
                 ->references('id')
                 ->on('centros_civicos');
+            $table->primary(['id_actividad', 'id_centro']);
+            $table->timestamps();
         });
     }
 
