@@ -69,16 +69,19 @@
                     </div>
                 @endforeach
             </div>
-<<<<<<< HEAD
-=======
 
+            <!--
             <div class="row mt-4">
                 <div class="col d-flex justify-content-end">
                     <a href="" class="btn btn-primary text-white">Ver todas</a>
                 </div>
             </div>
->>>>>>> feature/Aritz
+            -->
         </div>
     </div>
 
-@endsection
+    @endsection
+
+    </div>
+    </body>
+    </html>

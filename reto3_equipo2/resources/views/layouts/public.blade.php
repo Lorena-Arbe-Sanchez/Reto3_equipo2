@@ -8,7 +8,8 @@
     <title>Change.org</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('style/style.css') }}">
 </head>
 
@@ -17,7 +18,7 @@
 <div class="container-fluid">
 
 <nav class="navbar navbar-expand-lg navbar-light border-bottom">
-    <a class="navbar-brand">Ayuntamiento de Vitoria-Gasteiz</a>
+    <a class="navbar-brand pb-3" href="{{ url('/') }}">Ayuntamiento de Vitoria-Gasteiz</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -39,6 +40,7 @@
     </div>
 </nav>
 
+<!-- Bootstrap JS (para funcionalidades JS de Bootstrap) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 @yield('content')
