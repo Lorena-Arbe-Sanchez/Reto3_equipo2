@@ -5,14 +5,29 @@ use App\Http\Controllers\ActividadController;
 use Illuminate\Support\Facades\Route;
 
 //De momento usaremos estos para ir a las diferentes rutas hasta que estén los controladores programados
+//Login admin
+Route::get('/login', function () {
+    return view('login');
+});
+
 //Lista de centros cívicos
 Route::get('/', function () {
     return view('CentroCivico/listCentros');
-});
+})->name('centro.list');
 
-//Lista de actividades
+//Listar actividades
 Route::get('/actividades', function () {
     return view('Actividad/listActividades');
+});
+
+//Crear actividades
+Route::get('/crearActividad', function () {
+    return view('Actividad/createActividad');
+});
+
+//Editar actividades
+Route::get('/editarActividad', function () {
+    return view('Actividad/editActividad');
 });
 
 

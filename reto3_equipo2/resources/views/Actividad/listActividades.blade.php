@@ -10,11 +10,11 @@
             </div>
 
             <!--Filtros-->
-            <div class="row">
-                <div class="col">
+            <div class="row mt-3">
+                <div class="col d-flex justify-content-evenly">
                     <form>
-                        <div class="form-group">
-                            <label for="centro_civico">Centro Civico</label>
+                        <div class="form-group d-flex flex-direction-row align-items-center gap-2">
+                            <label for="centro_civico">Centros</label>
                             <select class="form-control" id="centro_civico">
                                 <option value="c_1">Centro 1</option>
                                 <option value="c_2">Centro 2</option>
@@ -25,13 +25,13 @@
                         </div>
                     </form>
                     <form>
-                        <div class="form-group">
+                        <div class="form-group d-flex flex-direction-row align-items-center gap-2">
                             <label for="edad">Edad</label>
                             <input type="text" class="form-control" id="edad">
                         </div>
                     </form>
                     <form>
-                        <div class="form-group">
+                        <div class="form-group d-flex flex-direction-row align-items-center gap-2">
                             <label for="idioma">Idioma</label>
                             <select class="form-control" id="idioma">
                                 <option value="todos">Todos</option>
@@ -41,7 +41,7 @@
                         </div>
                     </form>
                     <form>
-                        <div class="form-group">
+                        <div class="form-group d-flex flex-direction-row align-items-center gap-2">
                             <label for="horario">Horario</label>
                             <input class="form-control" id="horario">
                         </div>
@@ -81,14 +81,7 @@
                     <a href="#" class="btn text-white my-2">Apuntarse</a>
                 </div>
             </div>
-
-            <div class="row mt-4">
-                <div class="col d-flex justify-content-end">
-                    <a href="" class="btn text-white">Ver todas</a>
-                </div>
-            </div>
         </div>
-
     </div>
 
 @endsection
