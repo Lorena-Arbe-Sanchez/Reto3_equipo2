@@ -12,11 +12,16 @@ Route::get('/login', function () {
 });
 
 
+Route::controller(ActividadController::class)->group(function() {
+    Route::get('/showActividades', 'showActividades')->name('actividad.showActividades');
+    Route::get('/create', 'create')->name('actividad.create');
+    Route::post('/save', 'save')->name('actividad.save');
+    Route::get('/edit', 'create')->name('actividad.edit');
 
-//Listar actividades
-Route::get('/actividades', function () {
-    return view('Actividad/listActividades');
 });
+
+
+
 
 //Crear actividades
 Route::get('/crearActividad', function () {
@@ -48,7 +53,3 @@ Route::controller(ActividadController::class)->group(function () {
     Route::get('/actividades', 'list');
 });
 */
-
-Route::controller(ActividadController::class)->group(function() {
-    Route::get('/showActividades', 'showActividades')->name('actividad.showActividades');
-});

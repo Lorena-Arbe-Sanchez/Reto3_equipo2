@@ -16,8 +16,8 @@
                             <img class="card-img-top" src="" alt="">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $centro->nombre }}</h5>
-                                <p class="card-text">{{ $centro->direccion }}</p>  <!-- Muestra la dirección -->
-                                <a href="#" class="btn text-white">Ver actividades</a>
+                                <p class="card-text">{{ $centro->direccion }}</p>
+                                <a href="{{route("actividad.showActividades")}}" class="btn text-white">Ver actividades</a>
                             </div>
                         </div>
                     </div>
