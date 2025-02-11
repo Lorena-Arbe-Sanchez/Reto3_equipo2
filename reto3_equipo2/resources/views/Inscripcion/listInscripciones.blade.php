@@ -27,35 +27,24 @@
                 </div>
             </div>
 
-            <!--Lista de actividades-->
+            <!--Lista de inscripciones-->
             <div class="row mt-2 w-75 mx-auto border rounded px-2 pb-2">
-                <div class="col-12 mt-2 border rounded d-flex flex-direction-row justify-content-around align-items-center">
-                    <p class="my-2">Ciudadano 1</p>
-                    <p class="my-2">Actividad 1</p>
-                </div>
-
-                <div class="col-12 mt-2 border rounded d-flex flex-direction-row justify-content-around align-items-center">
-                    <p class="my-2">Ciudadano 1</p>
-                    <p class="my-2">Actividad 1</p>
-                </div>
-
-                <div class="col-12 mt-2 border rounded d-flex flex-direction-row justify-content-around align-items-center">
-                    <p class="my-2">Ciudadano 1</p>
-                    <p class="my-2">Actividad 1</p>
-                </div>
-
-                <div class="col-12 mt-2 border rounded d-flex flex-direction-row justify-content-around align-items-center">
-                    <p class="my-2">Ciudadano 1</p>
-                    <p class="my-2">Actividad 1</p>
-                </div>
-
-                <div class="col-12 mt-2 border rounded d-flex flex-direction-row justify-content-around align-items-center">
-                    <p class="my-2">Ciudadano 1</p>
-                    <p class="my-2">Actividad 1</p>
-                </div>
+                @if($inscripciones->isEmpty())
+                    <p>No hay inscripciones.</p>
+                @else
+                    @foreach($inscripciones as $inscripcion)
+                        <div class="col-12 mt-2 border rounded d-flex justify-content-around align-items-center">
+                            <p class="my-2">{{ $inscripcion->id_actividad->titulo }}</p>
+                            <p class="my-2">{{ $inscripcion->id_ciudadano }}</p>
+                        </div>
+                    @endforeach
+                @endif
             </div>
 
-
+            <!--Paginación-->
+            <div class="d-flex justify-content-center mt-3">
+                {{ $inscripciones->links() }}
+            </div>
         </div>
     </div>
 

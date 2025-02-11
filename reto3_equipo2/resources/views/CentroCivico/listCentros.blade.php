@@ -17,7 +17,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $centro->nombre }}</h5>
                                 <p class="card-text">{{ $centro->direccion }}</p>  <!-- Muestra la dirección -->
-                                <a href="#" class="btn btn-primary text-white">Ver actividades</a>
+                                <a href="#" class="btn text-white">Ver actividades</a>
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
 
             <div class="row mt-4">
                 <div class="col d-flex justify-content-end">
-                    <a href="#" class="btn btn-primary text-white">Ver todas</a>
+                    <a href="#" class="btn text-white">Ver todas</a>
                 </div>
             </div>
         </div>

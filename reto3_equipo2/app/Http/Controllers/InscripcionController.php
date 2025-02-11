@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Inscripcion;
 
 class InscripcionController extends Controller
 {
-    //
+    public function show()
+    {
+        $inscripciones = Inscripcion::paginate(3);
+        return view('Inscripcion.listInscripciones', compact('inscripciones'));
+    }
 }
