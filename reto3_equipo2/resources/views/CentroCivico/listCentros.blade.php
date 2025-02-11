@@ -1,7 +1,6 @@
 @extends('layouts.public')
 @section('content')
 
-    <!--CAMBIAR STYLES Y PONERLOS EN UN SCSS-->
     <div class="row mx-3 mt-4">
         <div class="col">
             <div class="row">
