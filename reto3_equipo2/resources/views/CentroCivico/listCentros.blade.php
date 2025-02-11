@@ -10,69 +10,32 @@
             </div>
 
             <div class="row mt-2">
-                <div class="col-4 mt-2">
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre campus</h5>
-                            <a href="#" class="btn text-white">Ver actividades</a>
+                @foreach ($centroCivicos as $centro)
+                    <div class="col-md-4 mt-2">
+                        <div class="card">
+                            <img class="card-img-top" src="" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $centro->nombre }}</h5>
+                                <p class="card-text">{{ $centro->direccion }}</p>  <!-- Muestra la dirección -->
+                                <a href="#" class="btn btn-primary text-white">Ver actividades</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
 
-                <div class="col-4 mt-2">
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre campus</h5>
-                            <a href="#" class="btn text-white">Ver actividades</a>
-                        </div>
+                @if (count($centroCivicos) == 0)
+                    <div class="col">
+                        <p>No se encontraron centros cívicos.</p>
                     </div>
-                </div>
-
-                <div class="col-4 mt-2">
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre campus</h5>
-                            <a href="#" class="btn text-white">Ver actividades</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-4 mt-2">
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre campus</h5>
-                            <a href="#" class="btn text-white">Ver actividades</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-4 mt-2">
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre campus</h5>
-                            <a href="#" class="btn text-white">Ver actividades</a>
-                        </div>
-                    </div>
-                </div>
+                @endif
             </div>
 
             <div class="row mt-4">
                 <div class="col d-flex justify-content-end">
-                    <a href="" class="btn text-white">Ver todas</a>
+                    <a href="#" class="btn btn-primary text-white">Ver todas</a>
                 </div>
             </div>
         </div>
-
     </div>
 
 @endsection
-<!-- Bootstrap JS (Opcional si necesitas funcionalidades JS de Bootstrap) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</div>
-</body>
-</html>

@@ -20,7 +20,8 @@ return new class extends Migration
             $table->date('fecha_fin')->nullable(false);
             $table->char('dia_1', 1)->nullable(false);
             $table->char('dia_2', 1)->nullable(true);
-            $table->string('horario', 255)->nullable(false);
+            $table->string('hora_inicio', 5)->nullable(false);
+            $table->string('hora_fin', 5)->nullable(false);
             $table->string('idioma', 15)->nullable(false);
             $table->integer('plazas_totales')->nullable(false);
             $table->integer('plazas_disponibles')->nullable(false);

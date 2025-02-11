@@ -4,6 +4,9 @@ use App\Http\Controllers\CentroCivicoController;
 use App\Http\Controllers\ActividadController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', [CentroCivicoController::class, 'show'])->name('centros.listCentros');
+/*
+ * =======
 //De momento usaremos estos para ir a las diferentes rutas hasta que estén los controladores programados
 //Login admin
 Route::get('/login', function () {

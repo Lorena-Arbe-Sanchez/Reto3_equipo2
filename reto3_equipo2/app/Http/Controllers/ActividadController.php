@@ -9,12 +9,12 @@ use Illuminate\Http\Request;
 class ActividadController extends Controller
 {
     public function showAllActividad(){
-        return response()->json(Actividad::all());
+        //return view('ventana',Actividad::all());
     }
 
     public function showActividadbyCentroCivico($id){
 
-        $actividad = ActividadCentro::where('id_centro',$id)->get();
+        $actividades = ActividadCentro::where('id_centro',$id)->get();
 
     }
 
