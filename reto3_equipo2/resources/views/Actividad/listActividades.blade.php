@@ -43,7 +43,7 @@
                     <form>
                         <div class="form-group d-flex flex-direction-row align-items-center gap-2">
                             <label for="horario">Horario</label>
-                            <input class="form-control" id="horario">
+                            <input type="text" class="form-control" id="horario">
                         </div>
                     </form>
                 </div>

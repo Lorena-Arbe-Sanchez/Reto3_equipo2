@@ -5,8 +5,7 @@ use App\Http\Controllers\ActividadController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [CentroCivicoController::class, 'show'])->name('centros.listCentros');
-/*
- * =======
+
 //De momento usaremos estos para ir a las diferentes rutas hasta que estén los controladores programados
 //Login admin
 Route::get('/login', function () {
@@ -31,6 +30,11 @@ Route::get('/crearActividad', function () {
 //Editar actividades
 Route::get('/editarActividad', function () {
     return view('Actividad/editActividad');
+});
+
+//Listar inscripciones
+Route::get('/listInscripciones', function () {
+    return view('Inscripcion/listInscripciones');
 });
 
 
