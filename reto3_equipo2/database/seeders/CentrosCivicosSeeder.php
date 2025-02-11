@@ -21,7 +21,7 @@ class CentrosCivicosSeeder extends Seeder
                 'correo' => 'cc.lakua.coo@vitoria-gasteiz.org',
                 'direccion' => 'Plaza de la Cooperativa, 8',
                 'codigo_postal' => '01013',
-                // Usar el helper 'asset()' para generar la URL absoluta de las imágenes.
+                // Hay que poner la ruta "centros_civicos/" ya que es la situada en la carpeta 'public', obtenida con el comando "php artisan storage:link".
                 'imagen' => 'centros_civicos/abetxuko.png',
                 'created_at' => now(),
                 'updated_at' => now(),

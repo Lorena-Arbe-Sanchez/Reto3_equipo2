@@ -10,26 +10,33 @@
             </div>
 
             <!--Filtros-->
-            <div class="row mt-3">
-                <div class="col d-flex justify-content-evenly">
+
+            <div class="row">
+                <div class="col-md-3"> <!-- Columna para Centro Civico -->
                     <form>
                         <div class="form-group d-flex flex-direction-row align-items-center gap-2">
                             <label for="centro_civico">Centros</label>
                             <select class="form-control" id="centro_civico">
-                                <option value="c_1">Centro 1</option>
-                                <option value="c_2">Centro 2</option>
-                                <option value="c_3">Centro 3</option>
-                                <option value="c_4">Centro 4</option>
-                                <option value="c_5">Centro 5</option>
+                                <option value="">Todas</option>
+
+                                @foreach ($centroCivicos as $centro)
+                                    <option value="{{ $centro->id }}">{{ $centro->nombre }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </form>
+                </div>
+
+                <div class="col-md-3"> <!-- Columna para Edad -->
                     <form>
                         <div class="form-group d-flex flex-direction-row align-items-center gap-2">
                             <label for="edad">Edad</label>
                             <input type="text" class="form-control" id="edad">
                         </div>
                     </form>
+                </div>
+
+                <div class="col-md-3"> <!-- Columna para Idioma -->
                     <form>
                         <div class="form-group d-flex flex-direction-row align-items-center gap-2">
                             <label for="idioma">Idioma</label>
@@ -40,10 +47,13 @@
                             </select>
                         </div>
                     </form>
+                </div>
+
+                <div class="col-md-3"> <!-- Columna para Horario -->
                     <form>
                         <div class="form-group d-flex flex-direction-row align-items-center gap-2">
                             <label for="horario">Horario</label>
-                            <input class="form-control" id="horario">
+                            <input type="text" class="form-control" id="horario">
                         </div>
                     </form>
                 </div>
@@ -51,36 +61,22 @@
 
             <!--Lista de actividades-->
             <div class="row mt-2">
-                <div class="col-12 mt-2 border rounded d-flex flex-direction-row justify-content-between align-items-center">
-                    <p class="mt-2">Ciudadano 1</p>
-                    <p class="mt-2">Actividad 1</p>
-                    <a href="#" class="btn text-white my-2">Apuntarse</a>
-                </div>
+                @foreach ($actividades as $actividad)
+                    <div class="col-12 mt-2 border rounded d-flex flex-direction-row justify-content-between align-items-center">
+                        <p class="mt-2">{{ $actividad->titulo }}</p>
+                        <p class="mt-2">{{ $actividad->descripcion }}</p>
+                        <a href="#" class="btn btn-primary text-white my-2">Apuntarse</a>
+                    </div>
+                @endforeach
+            </div>
 
-                <div class="col-12 mt-2 border rounded d-flex flex-direction-row justify-content-between align-items-center">
-                    <p class="mt-2">Ciudadano 1</p>
-                    <p class="mt-2">Actividad 1</p>
-                    <a href="#" class="btn text-white my-2">Apuntarse</a>
-                </div>
-
-                <div class="col-12 mt-2 border rounded d-flex flex-direction-row justify-content-between align-items-center">
-                    <p class="mt-2">Ciudadano 1</p>
-                    <p class="mt-2">Actividad 1</p>
-                    <a href="#" class="btn text-white my-2">Apuntarse</a>
-                </div>
-
-                <div class="col-12 mt-2 border rounded d-flex flex-direction-row justify-content-between align-items-center">
-                    <p class="mt-2">Ciudadano 1</p>
-                    <p class="mt-2">Actividad 1</p>
-                    <a href="#" class="btn text-white my-2">Apuntarse</a>
-                </div>
-
-                <div class="col-12 mt-2 border rounded d-flex flex-direction-row justify-content-between align-items-center">
-                    <p class="mt-2">Ciudadano 1</p>
-                    <p class="mt-2">Actividad 1</p>
-                    <a href="#" class="btn text-white my-2">Apuntarse</a>
+            <!--
+            <div class="row mt-4">
+                <div class="col d-flex justify-content-end">
+                    <a href="" class="btn btn-primary text-white">Ver todas</a>
                 </div>
             </div>
+            -->
         </div>
     </div>
 
