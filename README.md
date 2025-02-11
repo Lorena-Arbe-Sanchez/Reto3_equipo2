@@ -15,7 +15,17 @@ Como referencia, desean una solución similar (pero no idéntica) a la disponibl
 
 ## Funcionalidades principales
 
-- 
+### Para ciudadanos:
+- Consulta de actividades disponibles con filtros por:
+    - Ubicación
+    - Edad
+    - Idioma
+    - Horario
+- Inscripción en actividades.
+
+### Para administradores:
+- Creación, modificación y eliminación de actividades.
+- Gestión de inscripciones y consulta de participantes.
 
 ---
 

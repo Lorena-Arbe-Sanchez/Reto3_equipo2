@@ -16,10 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('id_centro');
             $table->foreign('id_actividad')
                 ->references('id')
-                ->on('actividades');
+                ->on('actividades')
+                ->onDelete('cascade');
             $table->foreign('id_centro')
                 ->references('id')
-                ->on('centros_civicos');
+                ->on('centros_civicos')
+                ->onDelete('cascade');
             $table->timestamps();
             $table->primary(['id_actividad', 'id_centro']);
         });

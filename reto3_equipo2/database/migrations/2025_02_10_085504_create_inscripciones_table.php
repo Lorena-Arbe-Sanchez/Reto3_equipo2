@@ -16,10 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('id_ciudadano');
             $table->foreign('id_actividad')
                 ->references('id')
-                ->on('actividades');
+                ->on('actividades')
+                ->onDelete('cascade');
             $table->foreign('id_ciudadano')
                 ->references('id')
-                ->on('ciudadanos');
+                ->on('ciudadanos')
+                ->onDelete('cascade');
             $table->timestamps();
             $table->primary(['id_actividad', 'id_ciudadano']);
         });
