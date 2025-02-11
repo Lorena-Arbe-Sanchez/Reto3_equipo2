@@ -69,15 +69,6 @@
                     </div>
                 @endforeach
             </div>
-            <div class="row mt-4">
-                <div class="col d-flex justify-content-end">
-                    <a href="" class="btn btn-primary text-white">Ver todas</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
     <div class="modal fade" id="apuntarseModal" tabindex="-1" aria-labelledby="apuntarseModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

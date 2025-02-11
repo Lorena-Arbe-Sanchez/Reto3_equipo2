@@ -97,7 +97,6 @@
       <path value="$PROJECT_DIR$/reto3_equipo2/vendor/sebastian/complexity" />
       <path value="$PROJECT_DIR$/reto3_equipo2/vendor/sebastian/comparator" />
       <path value="$PROJECT_DIR$/reto3_equipo2/vendor/sebastian/code-unit-reverse-lookup" />
-      <path value="$PROJECT_DIR$/reto3_equipo2/vendor/sebastian/code-unit" />
       <path value="$PROJECT_DIR$/reto3_equipo2/vendor/sebastian/global-state" />
       <path value="$PROJECT_DIR$/reto3_equipo2/vendor/sebastian/exporter" />
       <path value="$PROJECT_DIR$/reto3_equipo2/vendor/sebastian/environment" />
@@ -128,6 +127,7 @@
       <path value="$PROJECT_DIR$/reto3_equipo2/vendor/mockery/mockery" />
       <path value="$PROJECT_DIR$/reto3_equipo2/vendor/hamcrest/hamcrest-php" />
       <path value="$PROJECT_DIR$/reto3_equipo2/vendor/carbonphp/carbon-doctrine-types" />
+      <path value="$PROJECT_DIR$/reto3_equipo2/vendor/sebastian/code-unit" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
