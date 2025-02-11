@@ -19,7 +19,7 @@
             <h1>Iniciar Sesión</h1>
         </div>
 
-        <form action="{{route('centro.list')}}" method="POST">
+        <form action="{{ route('centros.listCentros') }}" method="GET">
             @csrf
 
             <div class="mb-3 row">
