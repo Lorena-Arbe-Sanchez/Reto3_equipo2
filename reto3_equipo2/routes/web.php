@@ -6,16 +6,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [CentroCivicoController::class, 'show'])->name('centros.listCentros');
 
-//De momento usaremos estos para ir a las diferentes rutas hasta que estén los controladores programados
 //Login admin
 Route::get('/login', function () {
     return view('login');
 });
 
-//Lista de centros cívicos
-Route::get('/', function () {
-    return view('CentroCivico/listCentros');
-})->name('centro.list');
+
 
 //Listar actividades
 Route::get('/actividades', function () {
@@ -52,3 +48,7 @@ Route::controller(ActividadController::class)->group(function () {
     Route::get('/actividades', 'list');
 });
 */
+
+Route::controller(ActividadController::class)->group(function() {
+    Route::get('/showActividades', 'showActividades')->name('actividad.showActividades');
+});

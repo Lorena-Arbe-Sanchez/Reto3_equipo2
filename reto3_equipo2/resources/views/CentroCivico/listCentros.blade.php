@@ -13,7 +13,7 @@
                 @foreach ($centroCivicos as $centro)
                     <div class="col-md-4 mt-2">
                         <div class="card">
-                            <img class="card-img-top" src="" alt="">
+                            <img class="card-img-top" src="{{ asset($centro->image) }}" alt="{{ $centro->nombre }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $centro->nombre }}</h5>
                                 <p class="card-text">{{ $centro->direccion }}</p>  <!-- Muestra la dirección -->
@@ -32,7 +32,7 @@
 
             <div class="row mt-4">
                 <div class="col d-flex justify-content-end">
-                    <a href="#" class="btn btn-primary text-white">Ver todas</a>
+                    <a href="{{ route("actividad.showActividades") }}" class="btn btn-primary text-white">Ver todas</a>
                 </div>
             </div>
         </div>
