@@ -29,6 +29,7 @@ return new class extends Migration
 
         // Agregar CK para que el DNI solo permita su patrón.
         DB::statement("ALTER TABLE administradores ADD CONSTRAINT ADMIN_DNI_CK CHECK (dni REGEXP '^[0-9]{8}[A-Z]$')");
+        DB::statement("ALTER TABLE administradores ADD CONSTRAINT ADMIN_COD_CK CHECK (codigo_postal REGEXP '^[0-9]{5}$')");
     }
 
     /**
@@ -41,8 +42,9 @@ return new class extends Migration
             $table->dropIndex('index_login');
         });
 
-        // Eliminar la CK explícitamente.
+        // Eliminar las CK explícitamente.
         DB::statement('ALTER TABLE administradores DROP CONSTRAINT IF EXISTS ADMIN_DNI_CK');
+        DB::statement('ALTER TABLE administradores DROP CONSTRAINT IF EXISTS ADMIN_COD_CK');
 
         Schema::dropIfExists('administradores');
     }
