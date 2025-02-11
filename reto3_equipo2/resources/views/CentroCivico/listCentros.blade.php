@@ -10,24 +10,24 @@
             </div>
 
             <div class="row mt-2">
-                @foreach ($centroCivicos as $centro)
+                @forelse ($centroCivicos as $centro)
                     <div class="col-md-4 mt-2">
-                        <div class="card">
-                            <img class="card-img-top" src="" alt="">
+                        <div class="card d-flex flex-column h-100">
+                            <img class="card-img-top"
+                                 src="{{ $centro->imagen ? asset('storage/' . $centro->imagen) : asset('img/centros_civicos/centro_default.png') }}"
+                                 alt="Imagen centro cívico">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $centro->nombre }}</h5>
-                                <p class="card-text">{{ $centro->direccion }}</p>  <!-- Muestra la dirección -->
+                                <p class="card-text">{{ $centro->direccion }}</p>
                                 <a href="#" class="btn btn-primary text-white">Ver actividades</a>
                             </div>
                         </div>
                     </div>
-                @endforeach
-
-                @if (count($centroCivicos) == 0)
+                @empty
                     <div class="col">
                         <p>No se encontraron centros cívicos.</p>
                     </div>
-                @endif
+                @endforelse
             </div>
 
             <div class="row mt-4">
