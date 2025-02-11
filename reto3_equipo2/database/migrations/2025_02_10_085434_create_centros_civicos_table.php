@@ -23,8 +23,10 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Agregar CK para que el teléfono solo permita números.
+        // Agregar CK necesarias.
         DB::statement("ALTER TABLE centros_civicos ADD CONSTRAINT CENT_TELE_CK CHECK (telefono REGEXP '^[0-9]{9}$')");
+        DB::statement("ALTER TABLE centros_civicos ADD CONSTRAINT CENT_COD_CK CHECK (codigo_postal REGEXP '^[0-9]{5}$')");
+        DB::statement("ALTER TABLE centros_civicos ADD CONSTRAINT CENT_COR_CK CHECK (correo REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$')");
     }
 
     /**
@@ -32,8 +34,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Eliminar la CK explícitamente.
+        // Eliminar las CK explícitamente.
         DB::statement('ALTER TABLE centros_civicos DROP CONSTRAINT IF EXISTS CENT_TELE_CK');
+        DB::statement('ALTER TABLE centros_civicos DROP CONSTRAINT IF EXISTS CENT_COD_CK');
+        DB::statement('ALTER TABLE centros_civicos DROP CONSTRAINT IF EXISTS CENT_COR_CK');
 
         Schema::dropIfExists('centros_civicos');
     }

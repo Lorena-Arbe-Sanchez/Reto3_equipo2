@@ -23,14 +23,16 @@ return new class extends Migration
             // No hay que guardar el "codigo_tmc" ya que es igual que el DNI.
             //$table->string('codigo_tmc', 10)->unique()->nullable(false);
 
-            // Para identificarse con el juego de barcos (cada dígito numérico asociado a una letra en el reverso de la TMC).
-            $table->string('juego_barcos', 16)->unique()->nullable(false);
+            // Para identificarse con el juego de barcos (cada dígito numérico {16} asociado a una letra en el reverso de la TMC).
+            $table->string('juego_barcos', 32)->unique()->nullable(false);
 
             $table->timestamps();
         });
 
         // Agregar CK para que el DNI solo permita su patrón.
         DB::statement("ALTER TABLE ciudadanos ADD CONSTRAINT CIUDA_DNI_CK CHECK (dni REGEXP '^[0-9]{8}[A-Z]$')");
+        DB::statement("ALTER TABLE ciudadanos ADD CONSTRAINT CIUDA_COD_CK CHECK (codigo_postal REGEXP '^[0-9]{5}$')");
+        DB::statement("ALTER TABLE ciudadanos ADD CONSTRAINT CIUDA_JUE_CK CHECK (juego_barcos REGEXP '^[A-Z0-9]{32}$')");
     }
 
     /**
@@ -38,8 +40,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Eliminar la CK explícitamente.
+        // Eliminar las CK explícitamente.
         DB::statement('ALTER TABLE ciudadanos DROP CONSTRAINT IF EXISTS CIUDA_DNI_CK');
+        DB::statement('ALTER TABLE ciudadanos DROP CONSTRAINT IF EXISTS CIUDA_COD_CK');
+        DB::statement('ALTER TABLE ciudadanos DROP CONSTRAINT IF EXISTS CIUDA_JUE_CK');
 
         Schema::dropIfExists('ciudadanos');
     }
