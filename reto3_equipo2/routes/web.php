@@ -1,16 +1,14 @@
 <?php
 
+use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\CentroCivicoController;
 use App\Http\Controllers\ActividadController;
+use App\Http\Controllers\InscripcionController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [CentroCivicoController::class, 'show'])->name('centros.listCentros');
-
-//Login admin
-Route::get('/login', function () {
-    return view('login');
+Route::controller(CentroCivicoController::class)->group(function () {
+    Route::get('/', 'show')->name('centros.listCentros');
 });
-
 
 Route::controller(ActividadController::class)->group(function() {
     Route::get('/showActividades', 'showActividades')->name('actividad.showActividades');
@@ -20,36 +18,13 @@ Route::controller(ActividadController::class)->group(function() {
     Route::delete("/delete/actividad/{id}", 'delete')->name('actividad.delete');
 });
 
-
-
-
-//Crear actividades
-Route::get('/crearActividad', function () {
-    return view('Actividad/createActividad');
+Route::controller(AdministradorController::class)->group(function() {
+    Route::get('/showCrearAdmin', 'showCrearAdmin')->name('administrador.showCrearAdmin');
+    Route::post('/crearAdministrador', 'crearAdministrador')->name('administrador.crearAdministrador');
+    Route::get('/showLogin', 'showLogin')->name('administrador.showLogin');
+    Route::post('/login', 'login')->name('administrador.login');
 });
 
-//Editar actividades
-Route::get('/editarActividad', function () {
-    return view('Actividad/editActividad');
+Route::controller(InscripcionController::class)->group(function() {
+    Route::get('/showInscripciones', 'show')->name('inscripcion.show');
 });
-
-//Listar inscripciones
-Route::get('/listInscripciones', function () {
-    return view('Inscripcion/listInscripciones');
-});
-
-
-//Cuando estén los controladores hechos usaremos los de abajo
-/*
-//Centros cívicos
-Route::controller(CentroCivicoController::class)->group(function () {
-    Route::get('/', 'list');
-});
-*/
-
-/*
-//Actividades
-Route::controller(ActividadController::class)->group(function () {
-    Route::get('/actividades', 'list');
-});
-*/
