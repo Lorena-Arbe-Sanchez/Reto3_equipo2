@@ -30,7 +30,6 @@ class ActividadController extends Controller
                 'hora_fin' => 'required',
                 'idioma' => 'required',
                 'plazas_totales' => 'required',
-                'plazas_disponibles' => 'required',
                 'plazas_minimas' => 'required',
                 'edad_minima' => 'required',
                 'edad_maxima' => 'required',
@@ -54,7 +53,7 @@ class ActividadController extends Controller
             $actividad->hora_fin = $request->input('hora_fin');
             $actividad->idioma = $request->input('idioma');
             $actividad->plazas_totales = $request->input('plazas_totales');
-            $actividad->plazas_disponibles = $request->input('plazas_disponibles');
+            $actividad->plazas_disponibles = $request->input('plazas_totales');
             $actividad->plazas_minimas = $request->input('plazas_minimas');
             $actividad->edad_minima = $request->input('edad_minima');
             $actividad->edad_maxima = $request->input('edad_maxima');
@@ -67,6 +66,7 @@ class ActividadController extends Controller
             return redirect()->back()->withErrors(['error' => $exception->getMessage()])->withInput();
         }
 
+        return view('actividad.createActividad');
 
     }
 

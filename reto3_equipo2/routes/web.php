@@ -17,7 +17,6 @@ Route::controller(ActividadController::class)->group(function() {
     Route::get('/create', 'create')->name('actividad.create');
     Route::post('/save', 'save')->name('actividad.save');
     Route::get('/edit', 'create')->name('actividad.edit');
-
 });
 
 
