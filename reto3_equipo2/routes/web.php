@@ -22,6 +22,7 @@ Route::controller(AdministradorController::class)->group(function() {
     Route::post('/crearAdministrador', 'crearAdministrador')->name('administrador.crearAdministrador');
     Route::get('/showLogin', 'showLogin')->name('administrador.showLogin');
     Route::post('/login', 'login')->name('administrador.login');
+    Route::post('/logout', 'logout')->name('administrador.logout');
 });
 
 Route::controller(InscripcionController::class)->group(function() {

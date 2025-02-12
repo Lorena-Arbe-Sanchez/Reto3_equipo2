@@ -5,7 +5,7 @@
         <div class="col">
             <div class="row">
                 <div class="col">
-                    <h3>Elige tu centro cívico:</h3>
+                    <h3>Elige tu centro cívico: </h3>
                 </div>
             </div>
 
