@@ -18,6 +18,7 @@ class ActividadController extends Controller
 
 
         try {
+
             // Validar campos requeridos
             $validator = Validator::make($request->all(), [
                 'titulo' => 'required',
@@ -69,6 +70,8 @@ class ActividadController extends Controller
         return view('actividad.createActividad');
 
     }
+
+
 
     public function edit(){
         return view('actividad.editActividad');
