@@ -22,37 +22,3 @@ Route::controller(AdministradorController::class)->group(function() {
     Route::get('/showLogin', 'showLogin')->name('administrador.showLogin');
     Route::post('/login', 'login')->name('administrador.login');
 });
-
-
-
-
-//Crear actividades
-Route::get('/crearActividad', function () {
-    return view('Actividad/createActividad');
-});
-
-//Editar actividades
-Route::get('/editarActividad', function () {
-    return view('Actividad/editActividad');
-});
-
-//Listar inscripciones
-Route::get('/listInscripciones', function () {
-    return view('Inscripcion/listInscripciones');
-});
-
-
-//Cuando estén los controladores hechos usaremos los de abajo
-/*
-//Centros cívicos
-Route::controller(CentroCivicoController::class)->group(function () {
-    Route::get('/', 'list');
-});
-*/
-
-/*
-//Actividades
-Route::controller(ActividadController::class)->group(function () {
-    Route::get('/actividades', 'list');
-});
-*/
