@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\CentroCivicoController;
 use App\Http\Controllers\ActividadController;
+use App\Http\Controllers\InscripcionController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(CentroCivicoController::class)->group(function () {
@@ -21,4 +22,8 @@ Route::controller(AdministradorController::class)->group(function() {
     Route::post('/crearAdministrador', 'crearAdministrador')->name('administrador.crearAdministrador');
     Route::get('/showLogin', 'showLogin')->name('administrador.showLogin');
     Route::post('/login', 'login')->name('administrador.login');
+});
+
+Route::controller(InscripcionController::class)->group(function() {
+    Route::get('/showInscripciones', 'show')->name('inscripcion.show');
 });
