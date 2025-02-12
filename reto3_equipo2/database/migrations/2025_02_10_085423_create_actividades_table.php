@@ -45,8 +45,13 @@ return new class extends Migration
 
         // Agregar CK para las columnas que lo necesiten.
         DB::statement("ALTER TABLE actividades ADD CONSTRAINT ACTIV_FECHA_CK CHECK (fecha_inicio <= fecha_fin)");
-        DB::statement("ALTER TABLE actividades ADD CONSTRAINT ACTIV_PLAZ_CK CHECK (plazas_minimas <= plazas_totales AND plazas_disponibles <= plazas_totales)");
-        DB::statement("ALTER TABLE actividades ADD CONSTRAINT ACTIV_EDAD_CK CHECK (edad_minima IS NULL OR edad_maxima IS NULL OR edad_minima <= edad_maxima)");
+        DB::statement("ALTER TABLE actividades ADD CONSTRAINT ACTIV_PLAZ_CK
+            CHECK (plazas_minimas <= plazas_totales AND plazas_disponibles <= plazas_totales)");
+        DB::statement("ALTER TABLE actividades ADD CONSTRAINT ACTIV_EDAD_CK
+            CHECK (edad_minima IS NULL OR edad_maxima IS NULL OR edad_minima <= edad_maxima)");
+        DB::statement("ALTER TABLE actividades ADD CONSTRAINT ACTIV_DIAS_CK
+            CHECK (dia_1 IN ('L', 'M', 'X', 'J', 'V', 'S', 'D')
+            AND (dia_2 IS NULL OR dia_2 IN ('L', 'M', 'X', 'J', 'V', 'S', 'D')))");
     }
 
     /**
@@ -58,6 +63,7 @@ return new class extends Migration
         DB::statement('ALTER TABLE actividades DROP CONSTRAINT IF EXISTS ACTIV_FECHA_CK');
         DB::statement('ALTER TABLE actividades DROP CONSTRAINT IF EXISTS ACTIV_PLAZ_CK');
         DB::statement('ALTER TABLE actividades DROP CONSTRAINT IF EXISTS ACTIV_EDAD_CK');
+        DB::statement('ALTER TABLE actividades DROP CONSTRAINT IF EXISTS ACTIV_DIAS_CK');
 
         Schema::dropIfExists('actividades');
     }

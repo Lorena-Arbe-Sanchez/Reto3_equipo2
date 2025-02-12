@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CiudadanosSeeder::class,
             AdministradoresSeeder::class,
-            ActividadesSeeder::class,
             CentrosCivicosSeeder::class,
+            ActividadesSeeder::class,
             InscripcionesSeeder::class,
         ]);
     }

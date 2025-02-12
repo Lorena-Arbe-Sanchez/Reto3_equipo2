@@ -89,8 +89,8 @@
         </div>
     </div>
 
-@endsection
+    @endsection
 
-</div>
-</body>
-</html>
+    </div>
+    </body>
+    </html>

@@ -107,4 +107,8 @@
         </div>
     </div>
 
-@endsection
+    @endsection
+
+    </div>
+    </body>
+    </html>
