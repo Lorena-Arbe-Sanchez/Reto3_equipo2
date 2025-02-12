@@ -14,6 +14,11 @@ class Inscripcion extends Model
 
     public function actividad()
     {
-        return $this->belongsTo(Actividad::class, 'id_actividad');
+        return $this->belongsTo(Actividad::class, 'id_actividad', 'id');
+    }
+
+    public function ciudadano()
+    {
+        return $this->belongsTo(Ciudadano::class, 'id_ciudadano', 'id');
     }
 }
