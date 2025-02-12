@@ -24,6 +24,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
+            @if(Auth::check())
+                <li class="nav-item mx-2">
+                    <form action="{{ route('administrador.logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                    </form>
+                </li>
+            @endif
             <li class="nav-item">
                 <a class="btn btn-success" href="{{ url('/showLogin') }}">Conectarse</a>
             </li>
