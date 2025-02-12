@@ -17,15 +17,24 @@
     <div class="login-form card p-4 shadow-lg w-50">
         <div class="text-center mb-4">
             <h1>Iniciar Sesión</h1>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
 
-        <form action="{{ route('centros.listCentros') }}" method="GET">
+        <form action="{{ route('administrador.login') }}" method="POST">
             @csrf
 
             <div class="mb-3 row">
                 <div class="col-12">
-                    <label for="username" class="form-label">Usuario</label>
-                    <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}" required>
+                    <label for="usuario" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" id="usuario" name="usuario" value="{{ old('usuario') }}" required>
                 </div>
             </div>
 

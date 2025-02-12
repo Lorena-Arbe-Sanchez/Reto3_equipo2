@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('direccion', 255)->nullable(false);
             $table->string('codigo_postal', 5)->nullable(false);
             $table->string('usuario', 20)->unique()->nullable(false);
-            $table->string('password', 20)->nullable(false);
+            $table->string('password')->nullable(false);
             $table->timestamps();
 
             // Crear un índice compuesto (para las consultas frecuentes) para las columnas 'usuario' y 'password'.

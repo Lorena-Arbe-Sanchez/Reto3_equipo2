@@ -1,23 +1,26 @@
 <?php
 
+use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\CentroCivicoController;
 use App\Http\Controllers\ActividadController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [CentroCivicoController::class, 'show'])->name('centros.listCentros');
-
-//Login admin
-Route::get('/login', function () {
-    return view('login');
+Route::controller(CentroCivicoController::class)->group(function () {
+    Route::get('/', 'show')->name('centros.listCentros');
 });
-
 
 Route::controller(ActividadController::class)->group(function() {
     Route::get('/showActividades', 'showActividades')->name('actividad.showActividades');
     Route::get('/create', 'create')->name('actividad.create');
     Route::post('/save', 'save')->name('actividad.save');
     Route::get('/edit', 'create')->name('actividad.edit');
+});
 
+Route::controller(AdministradorController::class)->group(function() {
+    Route::get('/showCrearAdmin', 'showCrearAdmin')->name('administrador.showCrearAdmin');
+    Route::post('/crearAdministrador', 'crearAdministrador')->name('administrador.crearAdministrador');
+    Route::get('/showLogin', 'showLogin')->name('administrador.showLogin');
+    Route::post('/login', 'login')->name('administrador.login');
 });
 
 

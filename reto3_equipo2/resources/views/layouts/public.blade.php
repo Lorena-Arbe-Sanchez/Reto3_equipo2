@@ -25,7 +25,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-                <a class="btn btn-success" href="{{ url('/login') }}">Conectarse</a>
+                <a class="btn btn-success" href="{{ url('/showLogin') }}">Conectarse</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">ES</a>
