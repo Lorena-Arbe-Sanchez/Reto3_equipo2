@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
             ActividadesSeeder::class,
             CentrosCivicosSeeder::class,
             InscripcionesSeeder::class,
-            ActividadCentroSeeder::class,
         ]);
     }
 }

@@ -35,6 +35,11 @@ return new class extends Migration
                 ->on('administradores')
                 // Para que cuando un administrador sea eliminado, el valor de 'administrador_id' se actualice a 0.
                 ->onDelete('set null');
+            $table->unsignedBigInteger('centro_civico_id')->nullable(false);
+            $table->foreign('centro_civico_id')
+                ->references('id')
+                ->on('centros_civicos')
+                ->onDelete('cascade');
             $table->timestamps();
         });
 
