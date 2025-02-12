@@ -35,7 +35,7 @@
                     @foreach($inscripciones as $inscripcion)
                         <div class="col-12 mt-2 border rounded d-flex justify-content-around align-items-center">
                             <p class="my-2">{{ $inscripcion->actividad->titulo }}</p>
-                            <p class="my-2">{{ $inscripcion->id_ciudadano }}</p>
+                            <p class="my-2">{{ $inscripcion->ciudadano->nombre }}</p>
                         </div>
                     @endforeach
                 @endif
