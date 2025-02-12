@@ -141,4 +141,7 @@
                         });
                     });
                 </script>
+        </div>
+    </div>
+
 @endsection

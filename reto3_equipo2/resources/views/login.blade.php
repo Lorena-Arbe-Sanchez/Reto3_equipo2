@@ -17,6 +17,8 @@
     <div class="login-form card p-4 shadow-lg w-50">
         <div class="text-center mb-4">
             <h1>Iniciar Sesión</h1>
+
+            <!-- TODO : Quitar si funciona el mensaje lateral entrante. -->
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
