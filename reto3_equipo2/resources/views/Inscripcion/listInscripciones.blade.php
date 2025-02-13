@@ -32,12 +32,25 @@
                 @if($inscripciones->isEmpty())
                     <p class="mt-3">No hay inscripciones.</p>
                 @else
+                    <div class="col-12 mt-2 d-flex justify-content-around align-items-center border-bottom">
+                        <strong class="col-2 my-2">Centro cívico</strong>
+                        <strong class="col-2 my-2">Actividad</strong>
+                        <strong class="col-2 my-2">DNI</strong>
+                        <!--Este vacío es para que los otros tres ocupen el espacio necesario-->
+                        <strong class="col-2 my-2"></strong>
+                    </div>
                     @foreach($inscripciones as $inscripcion)
-                        <div class="col-12 mt-2 border rounded d-flex justify-content-around align-items-center">
-                            <p class="my-2">{{ $inscripcion->actividad->centroCivico->nombre}}</p>
-                            <p class="my-2">{{ $inscripcion->actividad->titulo }}</p>
-                            <p class="my-2">{{ $inscripcion->ciudadano->dni }}</p>
-                            <button class="btn btn-danger btn-destacado text-white my-2">Borrar</button>
+                        <div class="col-12 mt-2 d-flex justify-content-around align-items-center border-bottom">
+                            <p class="col-2 my-2">{{ $inscripcion->actividad->centroCivico->nombre}}</p>
+                            <p class="col-2 my-2">{{ $inscripcion->actividad->titulo }}</p>
+                            <p class="col-2 my-2">{{ $inscripcion->ciudadano->dni }}</p>
+                            <form action="{{ route('inscripcion.delete') }}" method="POST" class="col-2 my-2">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="id_actividad" value="{{ $inscripcion->id_actividad }}">
+                                <input type="hidden" name="id_ciudadano" value="{{ $inscripcion->id_ciudadano }}">
+                                <button type="submit" class="btn btn-danger btn-destacado text-white">Borrar</button>
+                            </form>
                         </div>
                     @endforeach
                 @endif

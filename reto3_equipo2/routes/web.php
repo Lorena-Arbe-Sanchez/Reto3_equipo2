@@ -27,4 +27,5 @@ Route::controller(AdministradorController::class)->group(function() {
 
 Route::controller(InscripcionController::class)->group(function() {
     Route::get('/showInscripciones', 'show')->name('inscripcion.show');
+    Route::delete('/deleteInscripcion', 'delete')->name('inscripcion.delete');
 });

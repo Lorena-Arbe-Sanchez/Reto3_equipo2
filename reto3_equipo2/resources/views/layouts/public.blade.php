@@ -18,7 +18,7 @@
 <div class="container-fluid">
 
 <nav class="navbar navbar-expand-lg navbar-light border-bottom">
-    <a class="navbar-brand py-3" href="{{ url('/') }}">Ayuntamiento de Vitoria-Gasteiz</a>
+    <a class="navbar-brand pb-3" href="{{ url('/') }}">Ayuntamiento de Vitoria-Gasteiz</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -39,7 +39,7 @@
                 <a class="nav-link" href="#">ES</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link">|</a>
+                <p class="nav-link">|</p>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">EU</a>
