@@ -83,12 +83,12 @@
                         </div>
                         <div class="modal-body">
                             <!-- TODO : Descomentar y corregir (obtener '$actividad'). -->
-{{--                            <p>Actividad: <span id="modal-actividad-titulo"> {{$actividad->titulo}}</span></p>--}}
-{{--                            <p>Descripción: <span id="modal-actividad-descripcion">{{$actividad->descripcion}}</span></p>--}}
-{{--                            <p>Idioma: <span id="modal-actividad-idioma">{{$actividad->idioma}}</span></p>--}}
-{{--                            <p>Horario: <span id="modal-actividad-horario"> {{$actividad->hora_inicio}} - {{$actividad->hora_fin}}</span></p>--}}
-{{--                            <p>Plazas Libres: <span id="modal-actividad-plazas">{{$actividad->plazas_disponibles}}/{{$actividad->plazas_totales}}</span></p>--}}
-{{--                            <p>Edades: <span id="modal-actividad-edades">{{$actividad->edad_minima}} - {{$actividad->edad_maxima}}</span></p>--}}
+                            <p>Actividad: <span id="modal-actividad-titulo"> {{$actividad->titulo}}</span></p>
+                            <p>Descripción: <span id="modal-actividad-descripcion">{{$actividad->descripcion}}</span></p>
+                            <p>Idioma: <span id="modal-actividad-idioma">{{$actividad->idioma}}</span></p>
+                            <p>Horario: <span id="modal-actividad-horario"> {{$actividad->hora_inicio}} - {{$actividad->hora_fin}}</span></p>
+                            <p>Plazas Libres: <span id="modal-actividad-plazas">{{$actividad->plazas_disponibles}}/{{$actividad->plazas_totales}}</span></p>
+                            <p>Edades: <span id="modal-actividad-edades">{{$actividad->edad_minima}} - {{$actividad->edad_maxima}}</span></p><
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
