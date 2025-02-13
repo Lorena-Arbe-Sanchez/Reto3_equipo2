@@ -12,76 +12,89 @@
             <!--Lista de actividades-->
             <div class="row mt-2">
                 <div class="col d-flex justify-content-center">
-                    <form class="border rounded p-4 w-75" action="{{route ("actividad.update")}}" method="post">
+                    <form class="border rounded p-4 w-75" action="{{route ("actividad.update", $datos->id)}}" method="POST">
+                        @csrf
+                        @method('PUT')
+
+                        <input type="hidden" name="id" value="{{ $datos->id }}">
+
                         <div class="row justify-content-center gap-3">
                             <div class="col-3 d-flex flex-column">
-                                <label for="titulo" class="form-label">Titulo</label>
-                                <input type="text" id="titulo" class="form-control" value="{{ $datos->titulo }}">
+                                <label for="titulo" class="form-label">Titulo *</label>
+                                <input type="text" id="titulo" name="titulo" class="form-control" value="{{ $datos->titulo }}" required>
                             </div>
 
                             <div class="col-3 d-flex flex-column">
-                                <label for="descripcion" class="form-label">Descripción</label>
-                                <textarea id="descripcion" class="form-control">{{ $datos->descripcion }}</textarea>
+                                <label for="descripcion" class="form-label">Descripción *</label>
+                                <textarea id="descripcion" name="descripcion" class="form-control" required>{{ $datos->descripcion }}</textarea>
                             </div>
 
                             <div class="col-3 d-flex flex-column">
-                                <label for="idioma" class="form-label">Idioma</label>
-                                <input type="text" id="idioma" class="form-control" value="{{ $datos->idioma }}">
+                                <label for="idioma" class="form-label">Idioma *</label>
+                                <input type="text" id="idioma" name="idioma" class="form-control" value="{{ $datos->idioma }}" required>
                             </div>
                         </div>
 
                         <div class="row justify-content-center gap-3 mt-2">
                             <div class="col-3 d-flex flex-column">
-                                <label for="fecha_ini" class="form-label">Fecha inicio</label>
-                                <input type="date" id="fecha_ini" class="form-control" value="{{ $datos->fecha_inicio }}">
+                                <label for="fecha_ini" class="form-label">Fecha inicio *</label>
+                                <input type="date" id="fecha_ini" name="fecha_inicio" class="form-control" value="{{ $datos->fecha_inicio }}" required>
                             </div>
 
                             <div class="col-3 d-flex flex-column">
-                                <label for="fecha_fin" class="form-label">Fecha final</label>
-                                <input type="date" id="fecha_fin" class="form-control" value="{{ $datos->fecha_fin }}">
+                                <label for="fecha_fin" class="form-label">Fecha final *</label>
+                                <input type="date" id="fecha_fin" name="fecha_fin" class="form-control" value="{{ $datos->fecha_fin }}" required>
                             </div>
 
                             <div class="col-3 d-flex flex-column">
-                                <label for="horario" class="form-label">Horario</label>
-                                <input type="text" id="horario" class="form-control" value="{{ $datos->hora_inicio }}">
+                                <label for="hora_inicio" class="form-label">Hora inicio *</label>
+                                <input type="text" id="hora_inicio" name="hora_inicio" class="form-control" value="{{ $datos->hora_inicio }}" required>
                             </div>
                         </div>
 
                         <div class="row justify-content-center gap-3 mt-2">
                             <div class="col-3 d-flex flex-column">
-                                <label for="plazas_totales" class="form-label">Plazas totales</label>
-                                <input type="number" id="plazas_totales" class="form-control" value="{{ $datos->plazas_totales }}">
+                                <label for="hora_fin" class="form-label">Hora fin *</label>
+                                <input type="text" id="hora_fin" name="hora_fin" class="form-control" value="{{ $datos->hora_fin }}" required>
                             </div>
 
                             <div class="col-3 d-flex flex-column">
-                                <label for="plazas_minimas" class="form-label">Plazas mínimas</label>
-                                <input type="number" id="plazas_minimas" class="form-control" value="{{ $datos->plazas_minimas }}">
+                                <label for="plazas_totales" class="form-label">Plazas totales *</label>
+                                <input type="number" id="plazas_totales" name="plazas_totales" class="form-control" value="{{ $datos->plazas_totales }}" required>
+                                <input type="hidden" id="plazas_disponibles" name="plazas_disponibles" class="form-control" value="{{ $datos->plazas_totales }}">
                             </div>
 
+                            <div class="col-3 d-flex flex-column">
+                                <label for="plazas_minimas" class="form-label">Plazas mínimas *</label>
+                                <input type="number" id="plazas_minimas" name="plazas_minimas" class="form-control" value="{{ $datos->plazas_minimas }}" required>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center gap-3 mt-2">
                             <div class="col-3 d-flex flex-column">
                                 <label for="edad_minima" class="form-label">Edad mínima</label>
-                                <input type="number" id="edad_minima" class="form-control" value="{{ $datos->edad_minima }}">
+                                <input type="number" id="edad_minima" name="edad_minima" class="form-control" value="{{ $datos->edad_minima }}">
                             </div>
-                        </div>
 
-                        <div class="row justify-content-center gap-3 mt-2">
                             <div class="col-3 d-flex flex-column">
                                 <label for="edad_maxima" class="form-label">Edad máxima</label>
-                                <input type="number" id="edad_maxima" class="form-control" value="{{ $datos->edad_maxima }}">
+                                <input type="number" id="edad_maxima" name="edad_maxima" class="form-control" value="{{ $datos->edad_maxima }}">
                             </div>
 
                             <div class="col-3 d-flex flex-column">
-                                <label for="dia1" class="form-label">Día 1</label>
-                                <input type="text" id="dia1" class="form-control" value="{{ $datos->dia_1 }}">
+                                <label for="dia_1" class="form-label">Día 1 *</label>
+                                <input type="text" id="dia_1" name="dia_1" class="form-control" value="{{ $datos->dia_1 }}" required>
                             </div>
 
                             <div class="col-3 d-flex flex-column">
-                                <label for="dia2" class="form-label">Día 2</label>
-                                <input type="text" id="dia2" class="form-control" value="{{ $datos->dia_2 }}">
+                                <label for="dia_2" class="form-label">Día 2</label>
+                                <input type="text" id="dia_2" name="dia_2" class="form-control" value="{{ $datos->dia_2 }}">
                             </div>
                         </div>
 
-                        <button class="row justify-content-center" >Aceptar</button>
+                        <div class="row justify-content-center mt-4">
+                            <button class="btn col-3 btn-success" >Aceptar</button>
+                        </div>
                     </form>
                 </div>
             </div>

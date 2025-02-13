@@ -82,10 +82,10 @@
                                 <button type="submit" class="btn btn-danger btn-destacado text-white">Borrar</button>
                             </form>
 
-                            <form action="{{ route('actividad.edit') }}" method="GET" class="col-2 my-2 d-flex justify-content-center">
-                                @csrf
-                                <button type="submit" class="btn btn-primary text-white">Editar</button>
-                            </form>
+                            <a href="{{ route('actividad.edit', ['id' => $actividad->id]) }}"
+                               class="btn btn-primary text-white col-2 my-2 d-flex justify-content-center">
+                                Editar
+                            </a>
                         @endif
                     </div>
                 @empty
