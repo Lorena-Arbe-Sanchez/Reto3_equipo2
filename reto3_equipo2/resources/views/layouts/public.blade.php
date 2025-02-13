@@ -10,15 +10,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('style/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('style/styles.css') }}">
 </head>
 
 <body>
 
 <div class="container-fluid">
 
-<nav class="navbar navbar-expand-lg navbar-light border-bottom">
-    <a class="navbar-brand pb-3" href="{{ url('/') }}">Ayuntamiento de Vitoria-Gasteiz</a>
+<nav class="navbar navbar-expand-lg navbar-light border-bottom mb-5">
+    <a class="navbar-brand" href="{{ url('/') }}">
+        <img class="img-fluid" id="imagenLogo" src="{{ asset('storage/' . 'logos/ayuntamiento_logo.png') }}"
+             alt="Ayuntamiento de Vitoria-Gasteiz">
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>

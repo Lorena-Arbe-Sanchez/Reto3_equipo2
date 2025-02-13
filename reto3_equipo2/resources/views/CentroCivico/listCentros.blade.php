@@ -12,15 +12,15 @@
             <div class="row mt-2">
                 @forelse ($centroCivicos as $centro)
                     <div class="col-md-4 mt-2">
-                        <div class="card d-flex flex-column h-100">
+                        <div class="card d-flex flex-column h-100 text-center">
                             <img class="card-img-top"
                                  src="{{ $centro->imagen ? asset('storage/' . $centro->imagen) : asset('storage/' . 'centros_civicos/arriaga.png') }}"
                                  alt="Imagen {{ $centro->nombre }}">
-                            <div class="card-body">
+                            <div class="card-body d-flex flex-column flex-grow-1">
                                 <h5 class="card-title">{{ $centro->nombre }}</h5>
                                 <p class="card-text">{{ $centro->direccion }}</p>
                                 <a href="{{route('actividad.showActividadesCentro', ['id' => $centro->id]) }}"
-                                   class="btn btn-success">Ver actividades
+                                   class="btn btn-success mt-auto w-auto mx-auto">Ver actividades
                                 </a>
                             </div>
                         </div>

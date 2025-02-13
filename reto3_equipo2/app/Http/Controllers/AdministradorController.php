@@ -44,6 +44,7 @@ class AdministradorController extends Controller
         return redirect()->route('centros.listCentros');
     }
 
+    /*
     public function showCrearAdmin(){
         return view('Administrador/createAdministrador');
     }
@@ -66,4 +67,5 @@ class AdministradorController extends Controller
 
         return redirect()->route('administrador.showLogin')->with('success', 'Administrador creado exitosamente.');
     }
+    */
 }
