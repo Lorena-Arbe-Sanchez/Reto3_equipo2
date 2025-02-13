@@ -28,7 +28,7 @@
                 <li class="nav-item mx-2">
                     <form action="{{ route('administrador.logout') }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                        <button type="submit" class="btn btn-danger btn-destacado text-white">Cerrar sesión</button>
                     </form>
                 </li>
             @endif
