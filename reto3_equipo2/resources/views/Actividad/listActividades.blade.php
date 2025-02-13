@@ -65,6 +65,7 @@
                     <div class="col-12 mt-2 border rounded d-flex flex-direction-row justify-content-between align-items-center">
                         <p class="mt-2">{{ $actividad->titulo }}</p>
                         <p class="mt-2">{{ $actividad->descripcion }}</p>
+                        <!-- TODO : Poner que se le pase toda la '$actividad' para luego sacar los datos en el pop-up. -->
                         <a href="#" class="btn btn-primary text-white my-2" data-bs-toggle="modal" data-bs-target="#apuntarseModal" data-actividad-id="{{ $actividad->id }}" data-actividad-titulo="{{ $actividad->titulo }}">Ver</a>
                     </div>
                 @empty
@@ -78,7 +79,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="apuntarseModalLabel">Confirmar Inscripción</h5>
+                            <h5 class="modal-title" id="apuntarseModalLabel">Datos de la actividad</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">

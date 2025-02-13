@@ -28,7 +28,6 @@ class AdministradorController extends Controller
         $administrador = Administrador::where('usuario', $request->usuario)->first();
 
         if (!$administrador || !Hash::check($request->password, $administrador->password)) {
-            // TODO : Quitar si funciona el mensaje lateral entrante.
             return back()->withErrors(['message' => 'Usuario o contraseña incorrectos.']);
         }
 
