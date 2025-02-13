@@ -14,9 +14,9 @@ Route::controller(ActividadController::class)->group(function() {
     Route::get('/showActividades', 'showActividades')->name('actividad.showActividades');
     Route::get('/create', 'create')->name('actividad.create');
     Route::post('/save', 'save')->name('actividad.save');
-    Route::get('/edit/{id}', 'edit')->name('actividad.edit');
-    Route::get('/update', 'update')->name('actividad.update');
-    Route::delete("/delete/actividad/{id}", 'delete')->name('actividad.delete');
+    Route::get('/editActividad', 'edit')->name('actividad.edit');
+    Route::post('/update', 'update')->name('actividad.update');
+    Route::delete('/deleteActividad', 'delete')->name('actividad.delete');
 });
 
 Route::controller(AdministradorController::class)->group(function() {

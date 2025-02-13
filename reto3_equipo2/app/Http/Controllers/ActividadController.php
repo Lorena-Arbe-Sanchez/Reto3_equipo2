@@ -84,9 +84,22 @@ class ActividadController extends Controller
 
     }
 
-
+    /*
     public function delete($id){
         Actividad::destroy($id);
+    }
+    */
+
+    public function delete(Request $request)
+    {
+        $request->validate([
+            'id' => 'required'
+        ]);
+
+        Actividad::where('id', $request->id)
+            ->delete();
+
+        return redirect()->back()->with('success', 'Actividad eliminada correctamente.');
     }
 
     public function edit($id){

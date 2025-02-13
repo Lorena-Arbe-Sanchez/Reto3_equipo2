@@ -61,11 +61,32 @@
 
             <!--Lista de actividades-->
             <div class="row mt-2">
+                <div class="col-12 mt-2 d-flex justify-content-between align-items-center border-bottom">
+                    <strong class="col-2 my-2">Actividad</strong>
+                    <strong class="col-2 my-2">Descripción</strong>
+                    <!--Este vacío es para que los otros tres ocupen el espacio necesario-->
+                    <strong class="col-2 my-2"></strong>
+                    <strong class="col-2 my-2"></strong>
+                    <strong class="col-2 my-2"></strong>
+                </div>
                 @forelse ($actividades as $actividad)
                     <div class="col-12 mt-2 border rounded d-flex flex-direction-row justify-content-between align-items-center">
-                        <p class="mt-2">{{ $actividad->titulo }}</p>
-                        <p class="mt-2">{{ $actividad->descripcion }}</p>
-                        <a href="#" class="btn btn-primary text-white my-2" data-bs-toggle="modal" data-bs-target="#apuntarseModal" data-actividad-id="{{ $actividad->id }}" data-actividad-titulo="{{ $actividad->titulo }}">Ver</a>
+                        <p class="col-2 my-2">{{ $actividad->titulo }}</p>
+                        <p class="col-2 my-2">{{ $actividad->descripcion }}</p>
+                        <a href="#" class="btn btn-primary text-white col-2 my-2" data-bs-toggle="modal" data-bs-target="#apuntarseModal" data-actividad-id="{{ $actividad->id }}" data-actividad-titulo="{{ $actividad->titulo }}">Ver</a>
+                        @if(Auth::check())
+                            <form action="{{ route('actividad.delete') }}" method="POST" class="col-2 my-2 d-flex justify-content-center">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="id" value="{{ $actividad->id }}">
+                                <button type="submit" class="btn btn-danger btn-destacado text-white">Borrar</button>
+                            </form>
+
+                            <form action="{{ route('actividad.edit') }}" method="GET" class="col-2 my-2 d-flex justify-content-center">
+                                @csrf
+                                <button type="submit" class="btn btn-primary text-white">Editar</button>
+                            </form>
+                        @endif
                     </div>
                 @empty
                     <div class="col">
