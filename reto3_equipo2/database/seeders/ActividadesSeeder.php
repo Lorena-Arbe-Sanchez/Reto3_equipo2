@@ -32,8 +32,8 @@ class ActividadesSeeder extends Seeder
                 'imagen' => 'actividades/yoga.jpg',
                 'administrador_id' => 1,
                 'centro_civico_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => '2024-01-10 10:00:00',
+                'updated_at' => '2024-01-10 10:00:00',
             ],
             [
                 'titulo' => 'Taller de Pintura',
@@ -53,8 +53,8 @@ class ActividadesSeeder extends Seeder
                 'imagen' => 'actividades/pintura.jpg',
                 'administrador_id' => 2,
                 'centro_civico_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => '2024-01-10 10:00:00',
+                'updated_at' => '2024-01-10 10:00:00',
             ],
             [
                 'titulo' => 'Club de Lectura',
@@ -74,8 +74,8 @@ class ActividadesSeeder extends Seeder
                 'imagen' => 'actividades/lectura.jpg',
                 'administrador_id' => 1,
                 'centro_civico_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => '2024-01-10 10:00:00',
+                'updated_at' => '2024-01-10 10:00:00',
             ],
             [
                 'titulo' => 'Danza Moderna',
@@ -95,8 +95,8 @@ class ActividadesSeeder extends Seeder
                 'imagen' => 'actividades/danza.jpg',
                 'administrador_id' => 2,
                 'centro_civico_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => '2024-01-10 10:00:00',
+                'updated_at' => '2024-01-10 10:00:00',
             ],
         ]);
     }

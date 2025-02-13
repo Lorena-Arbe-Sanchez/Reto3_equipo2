@@ -30,6 +30,8 @@ Route::controller(AdministradorController::class)->group(function() {
 });
 
 Route::controller(InscripcionController::class)->middleware('auth')->group(function() {
+    // TODO : Implementar
+    Route::get('/create', 'create')->name('inscripcion.create');
     Route::get('/showInscripciones', 'show')->name('inscripcion.show');
     Route::delete('/deleteInscripcion', 'delete')->name('inscripcion.delete');
 });

@@ -130,10 +130,11 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>¿Quieres inscribirte a la actividad ?</p>
+                            <p>¿Quieres inscribirte en esta actividad?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <!-- TODO : Que cree una fila en 'inscripciones' y que actualice el valor de 'plazas_disponibles'... -->
                             <button type="button" class="btn btn-primary" id="confirmarConfirmacion">Confirmar</button>
                         </div>
                     </div>
@@ -165,6 +166,7 @@
                             modalImagen.src = actividadData.imagen ? `/storage/${actividadData.imagen}` : `/storage/actividades/pintura.png`;
                             modalImagen.alt = `Imagen de ${actividadData.titulo}`;
 
+                            // Evento del botón "Inscribirse" en el primer modal
                             const confirmarApuntarseBtn = document.querySelector('#confirmarApuntarse');
                             confirmarApuntarseBtn.addEventListener('click', () => {
                                 // Mostrar el segundo modal (de la inscripción)
