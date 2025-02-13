@@ -34,9 +34,10 @@
                 @else
                     @foreach($inscripciones as $inscripcion)
                         <div class="col-12 mt-2 border rounded d-flex justify-content-around align-items-center">
+                            <p class="my-2">{{ $inscripcion->actividad->centroCivico->nombre}}</p>
                             <p class="my-2">{{ $inscripcion->actividad->titulo }}</p>
-                            <p class="my-2">{{ $inscripcion->ciudadano->nombre }}</p>
-                            <p class="my-2">{{ $inscripcion->ciudadano->nombre }}</p>
+                            <p class="my-2">{{ $inscripcion->ciudadano->dni }}</p>
+                            <button class="btn btn-danger btn-destacado text-white my-2">Borrar</button>
                         </div>
                     @endforeach
                 @endif
