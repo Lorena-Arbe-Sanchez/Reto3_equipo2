@@ -53,6 +53,11 @@
                 </div>
             </div>
         </form>
+        <div class="row mt-2">
+            <form action="{{ route('centros.listCentros') }}" method="GET">
+                <button type="submit" class="btn btn-success">< Cancelar</button>
+            </form>
+        </div>
     </div>
 </div>
 

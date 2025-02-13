@@ -4,6 +4,12 @@
     <div class="row mx-3 mt-4">
         <div class="col">
             <div class="row">
+                <form action="{{ route('centros.listCentros') }}" method="GET">
+                    <button type="submit" class="btn btn-success">< Volver</button>
+                </form>
+            </div>
+
+            <div class="row">
                 <div class="col">
                     <h3>Apúntate a las actividades:</h3>
                 </div>

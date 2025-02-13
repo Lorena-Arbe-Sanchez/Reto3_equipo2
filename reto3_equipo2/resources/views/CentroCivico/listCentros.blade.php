@@ -36,6 +36,24 @@
                 </div>
             </div>
         </div>
+
+        @if(Auth::check())
+            <div class="row border-top mt-5">
+                <div class="col d-flex justify-content-center mt-3">
+                    <h3>Opciones de administrador</h3>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col d-flex justify-content-center gap-2">
+                    <form action="{{ route('inscripcion.show') }}" method="GET">
+                        <button type="submit" class="btn btn-success">Ver Inscripciones</button>
+                    </form>
+                    <form action="{{ route('actividad.create') }}" method="GET">
+                        <button type="submit" class="btn btn-success">Crear Actividades</button>
+                    </form>
+                </div>
+            </div>
+        @endif
     </div>
 
     @endsection
