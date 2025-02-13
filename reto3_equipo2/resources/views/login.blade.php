@@ -11,11 +11,9 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('style/styles.css') }}">
 </head>
-<body id="login">
+<body>
 
-<!-- TODO : Mirar por qué no cambia el background en modo dark, por qué no aparece el mensaje de error cuando está en el modo dark... -->
-
-<div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
+<div class="login-container container-fluid vh-100 d-flex justify-content-center align-items-center">
 
     <div class="card shadow-lg">
         <div class="card-body p-5">
@@ -33,18 +31,20 @@
                     <label for="password" class="form-label">Contraseña</label>
                     <input type="password" class="form-control" id="password" name="password" autocomplete="current-password" required>
                 </div>
-                <button type="submit" class="btn text-white w-100">Acceder</button>
+                <!-- TODO : Implementar. -->
+                <button type="submit" class="btn btn-success w-100">Acceder</button>
 
             </form>
-            <!-- TODO : ESTILIZAR -->
-            <div class="row mt-2">
-                <form action="{{ route('centros.listCentros') }}" method="GET">
-                    <button type="submit" class="btn btn-success">Cancelar</button>
-                </form>
-            </div>
         </div>
     </div>
 
+</div>
+
+<!-- TODO : Colocar bien -->
+<div class="row mt-2" id="bCancelar">
+    <form action="{{ route('centros.listCentros') }}" method="GET">
+        <button type="submit" class="btn btn-secondary">Cancelar</button>
+    </form>
 </div>
 
 <button id="darkModeToggle" class="btn btn-dark position-fixed top-0 end-0 m-3">
@@ -94,16 +94,30 @@
         }
          */
 
+        // Función para aplicar el modo oscuro
+        function applyDarkMode(isDarkMode) {
+            if (isDarkMode) {
+                body.classList.add("dark-mode");
+                darkModeToggle.querySelector("i").classList.replace("bi-moon-fill", "bi-sun-fill");
+            } else {
+                body.classList.remove("dark-mode");
+                darkModeToggle.querySelector("i").classList.replace("bi-sun-fill", "bi-moon-fill");
+            }
+        }
+
+        // Verificar el estado del modo oscuro al cargar la página
+        const storedDarkMode = localStorage.getItem("darkMode");
+        if (storedDarkMode === "true") {
+            applyDarkMode(true);
+        }
+
         // Dark mode toggle
         darkModeToggle.addEventListener("click", () => {
-            body.classList.toggle("dark-mode")
-            const icon = darkModeToggle.querySelector("i")
-            if (body.classList.contains("dark-mode")) {
-                icon.classList.replace("bi-moon-fill", "bi-sun-fill")
-            } else {
-                icon.classList.replace("bi-sun-fill", "bi-moon-fill")
-            }
-        })
+            body.classList.toggle("dark-mode");
+            const isDarkMode = body.classList.contains("dark-mode");
+            localStorage.setItem("darkMode", isDarkMode); // Guardar el estado en localStorage
+            applyDarkMode(isDarkMode); // Aplicar el modo oscuro
+        });
 
         if (notification) {
             notification.classList.add("show");
@@ -115,8 +129,10 @@
         // TODO : Bloquear el envío del formulario si hay notificaciones de error (para que no se reseteen las casillas y no se borren los datos introducidos)
         if (notification) {
             form.addEventListener("submit", function (event) {
-                event.preventDefault();
-                console.log("Corrige los errores antes de continuar.");
+                if (notification.classList.contains("show")) {
+                    event.preventDefault();
+                    console.log("Corrige los errores antes de continuar.");
+                }
             });
         }
     });
