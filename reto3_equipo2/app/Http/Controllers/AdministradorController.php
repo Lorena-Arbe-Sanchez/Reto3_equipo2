@@ -44,27 +44,4 @@ class AdministradorController extends Controller
         Auth::logout();
         return redirect()->route('centros.listCentros');
     }
-
-    public function showCrearAdmin(){
-        return view('Administrador/createAdministrador');
-    }
-
-    public function crearAdministrador(Request $request){
-        $request->validate([
-            'usuario' => 'required|string|unique:administradores,usuario',
-            'password' => 'required|string',
-        ]);
-
-        $administrador = new Administrador();
-        $administrador->nombre = "nombreEjemplo";
-        $administrador->apellidos = "apellidosEjemplo";
-        $administrador->dni = "12345678Z";
-        $administrador->direccion = "direccionEjemplo";
-        $administrador->codigo_postal = "00100";
-        $administrador->usuario = $request->usuario;
-        $administrador->password = Hash::make($request->password); // Hashear la contraseña
-        $administrador->save();
-
-        return redirect()->route('administrador.showLogin')->with('success', 'Administrador creado exitosamente.');
-    }
 }

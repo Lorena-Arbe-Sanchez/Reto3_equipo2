@@ -12,22 +12,23 @@ Route::controller(CentroCivicoController::class)->group(function () {
 
 Route::controller(ActividadController::class)->group(function() {
     Route::get('/showActividades', 'showActividades')->name('actividad.showActividades');
-    Route::get('/create', 'create')->name('actividad.create');
-    Route::post('/save', 'save')->name('actividad.save');
-    Route::get('/editActividad/{id}', 'edit')->name('actividad.edit');
-    Route::put('/updateActividad/{id}', 'update')->name('actividad.update');
-    Route::delete('/deleteActividad', 'delete')->name('actividad.delete');
+
+    Route::middleware('auth')->group(function () {
+        Route::get('/create', 'create')->name('actividad.create');
+        Route::post('/save', 'save')->name('actividad.save');
+        Route::get('/editActividad/{id}', 'edit')->name('actividad.edit');
+        Route::put('/updateActividad/{id}', 'update')->name('actividad.update');
+        Route::delete('/deleteActividad', 'delete')->name('actividad.delete');
+    });
 });
 
 Route::controller(AdministradorController::class)->group(function() {
-    Route::get('/showCrearAdmin', 'showCrearAdmin')->name('administrador.showCrearAdmin');
-    Route::post('/crearAdministrador', 'crearAdministrador')->name('administrador.crearAdministrador');
-    Route::get('/showLogin', 'showLogin')->name('administrador.showLogin');
+    Route::get('/showLogin', 'showLogin')->name('login');
     Route::post('/login', 'login')->name('administrador.login');
     Route::post('/logout', 'logout')->name('administrador.logout');
 });
 
-Route::controller(InscripcionController::class)->group(function() {
+Route::controller(InscripcionController::class)->middleware('auth')->group(function() {
     Route::get('/showInscripciones', 'show')->name('inscripcion.show');
     Route::delete('/deleteInscripcion', 'delete')->name('inscripcion.delete');
 });
