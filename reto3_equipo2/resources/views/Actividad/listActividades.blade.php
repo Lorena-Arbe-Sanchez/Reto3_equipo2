@@ -77,30 +77,39 @@
                         <strong class="col-7 my-2">Descripción</strong>
                     @endif
                 </div>
-                @forelse ($actividades as $actividad)
-                    <div class="col-12 mt-2 border rounded d-flex flex-direction-row justify-content-between align-items-center">
-                        <p class="col-2 my-2">{{ $actividad->titulo }}</p>
-                        <p class="col-2 my-2">{{ $actividad->descripcion }}</p>
-                        <a href="#" class="btn btn-primary text-white col-2 my-2" data-bs-toggle="modal" data-bs-target="#apuntarseModal" data-actividad-id="{{ $actividad->id }}" data-actividad-titulo="{{ $actividad->titulo }}">Ver</a>
-                        @if(Auth::check())
-                            <form action="{{ route('actividad.delete') }}" method="POST" class="col-2 my-2 d-flex justify-content-center">
-                                @csrf
-                                @method('DELETE')
-                                <input type="hidden" name="id" value="{{ $actividad->id }}">
-                                <button type="submit" class="btn btn-danger btn-destacado text-white">Borrar</button>
-                            </form>
-
-                            <a href="{{ route('actividad.edit', ['id' => $actividad->id]) }}"
-                               class="btn btn-primary text-white col-2 my-2 d-flex justify-content-center">
-                                Editar
+                @if($actividades->isEmpty())
+                    <p class="mt-3">No hay inscripciones.</p>
+                @else
+                    @foreach ($actividades as $actividad)
+                        <div class="col-12 mt-2 border rounded d-flex flex-direction-row justify-content-between align-items-center">
+                            <p class="col-2 my-2">{{ $actividad->titulo }}</p>
+                            <p class="col-2 my-2">{{ $actividad->descripcion }}</p>
+                            <a href="#" class="btn btn-primary text-white col-2 my-2" data-bs-toggle="modal" data-bs-target="#apuntarseModal"
+                               data-actividad-id="{{ $actividad->id }}"
+                               data-actividad-titulo="{{ $actividad->titulo }}"
+                               data-actividad-descripcion="{{ $actividad->descripcion }}"
+                               data-actividad-idioma="{{ $actividad->idioma }}"
+                               data-actividad-horario="{{$actividad->hora_inicio}} - {{$actividad->hora_fin}}"
+                               data-actividad-plazas="{{$actividad->plazas_disponibles}}/{{$actividad->plazas_totales}}"
+                               data-actividad-edades="{{$actividad->edad_minima}} - {{$actividad->edad_maxima}}">
+                                Ver
                             </a>
-                        @endif
-                    </div>
-                @empty
-                    <div class="col">
-                        <p>No se encontraron actividades.</p>
-                    </div>
-                @endforelse
+                            @if(Auth::check())
+                                <form action="{{ route('actividad.delete') }}" method="POST" class="col-2 my-2 d-flex justify-content-center">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="id" value="{{ $actividad->id }}">
+                                    <button type="submit" class="btn btn-danger btn-destacado text-white">Borrar</button>
+                                </form>
+
+                                <a href="{{ route('actividad.edit', ['id' => $actividad->id]) }}"
+                                   class="btn btn-primary text-white col-2 my-2 d-flex justify-content-center">
+                                    Editar
+                                </a>
+                            @endif
+                        </div>
+                    @endforeach
+                @endif
             </div>
 
             <div class="modal fade" id="apuntarseModal" tabindex="-1" aria-labelledby="apuntarseModalLabel" aria-hidden="true">
@@ -111,13 +120,13 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <!-- TODO : Descomentar y corregir (obtener '$actividad'). -->
-                            <p>Actividad: <span id="modal-actividad-titulo"> {{$actividad->titulo}}</span></p>
-                            <p>Descripción: <span id="modal-actividad-descripcion">{{$actividad->descripcion}}</span></p>
-                            <p>Idioma: <span id="modal-actividad-idioma">{{$actividad->idioma}}</span></p>
-                            <p>Horario: <span id="modal-actividad-horario"> {{$actividad->hora_inicio}} - {{$actividad->hora_fin}}</span></p>
-                            <p>Plazas Libres: <span id="modal-actividad-plazas">{{$actividad->plazas_disponibles}}/{{$actividad->plazas_totales}}</span></p>
-                            <p>Edades: <span id="modal-actividad-edades">{{$actividad->edad_minima}} - {{$actividad->edad_maxima}}</span></p><
+                            <!-- TODO : Descomentar y corregir (obtener 'actividad'). -->
+                            <p>Actividad: <span id="modal-actividad-titulo"></span></p>
+                            <p>Descripción: <span id="modal-actividad-descripcion"></span></p>
+                            <p>Idioma: <span id="modal-actividad-idioma"></span></p>
+                            <p>Horario: <span id="modal-actividad-horario"></span></p>
+                            <p>Plazas Libres: <span id="modal-actividad-plazas"></span></p>
+                            <p>Edades: <span id="modal-actividad-edades"></span></p><
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
