@@ -12,6 +12,7 @@ Route::controller(CentroCivicoController::class)->group(function () {
 
 Route::controller(ActividadController::class)->group(function() {
     Route::get('/showActividades', 'showActividades')->name('actividad.showActividades');
+    Route::get('/showActividades/{id}', 'showActividadesCentro')->name('actividad.showActividadesCentro');
 
     Route::middleware('auth')->group(function () {
         Route::get('/create', 'create')->name('actividad.create');

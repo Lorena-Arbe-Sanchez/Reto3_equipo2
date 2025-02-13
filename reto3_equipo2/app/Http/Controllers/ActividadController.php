@@ -84,11 +84,15 @@ class ActividadController extends Controller
 
     }
 
-    /*
-    public function delete($id){
-        Actividad::destroy($id);
+    public function showActividadesCentro($id){
+
+        $actividades = Actividad::where('centro_civico_id', $id)->get();
+
+        $centroCivicos = CentroCivico::all();
+
+        return view('Actividad.listActividades', compact('actividades','centroCivicos'));
+
     }
-    */
 
     public function delete(Request $request)
     {
