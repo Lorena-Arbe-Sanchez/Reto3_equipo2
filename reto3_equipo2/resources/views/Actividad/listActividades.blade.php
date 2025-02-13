@@ -68,12 +68,14 @@
             <!--Lista de actividades-->
             <div class="row mt-2">
                 <div class="col-12 mt-2 d-flex justify-content-between align-items-center border-bottom">
-                    <strong class="col-2 my-2">Actividad</strong>
-                    <strong class="col-2 my-2">Descripción</strong>
-                    <!--Este vacío es para que los otros tres ocupen el espacio necesario-->
-                    <strong class="col-2 my-2"></strong>
-                    <strong class="col-2 my-2"></strong>
-                    <strong class="col-2 my-2"></strong>
+                    @if(Auth::check())
+                        <strong class="col-2 my-2">Actividad</strong>
+                        <strong class="col-10 my-2 mx-5">Descripción</strong>
+                        <!--Este vacío es para que los otros tres ocupen el espacio necesario-->
+                    @else
+                        <strong class="col-2 my-2">Actividad</strong>
+                        <strong class="col-7 my-2">Descripción</strong>
+                    @endif
                 </div>
                 @forelse ($actividades as $actividad)
                     <div class="col-12 mt-2 border rounded d-flex flex-direction-row justify-content-between align-items-center">
