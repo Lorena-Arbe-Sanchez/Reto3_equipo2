@@ -9,11 +9,11 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('style/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('style/styles.css') }}">
 </head>
 <body id="login">
 
-<!-- TODO : Mirar por qué no va el background en dark, no aparece el mensaje de error en el dark, los otros 'TO-DO'... -->
+<!-- TODO : Mirar por qué no cambia el background en modo dark, por qué no aparece el mensaje de error cuando está en el modo dark... -->
 
     <div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
 
@@ -106,7 +106,7 @@
                 }, 3000);
             }
 
-            // TODO : Bloquear el envío del formulario si hay notificaciones de error
+            // TODO : Bloquear el envío del formulario si hay notificaciones de error (para que no se reseteen las casillas y no se borren los datos introducidos)
             if (notification) {
                 form.addEventListener("submit", function (event) {
                     event.preventDefault();

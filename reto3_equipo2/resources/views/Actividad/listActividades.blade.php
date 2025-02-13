@@ -62,11 +62,22 @@
             <!--Lista de actividades-->
             <div class="row mt-2">
                 @forelse ($actividades as $actividad)
-                    <div class="col-12 mt-2 border rounded d-flex flex-direction-row justify-content-between align-items-center">
-                        <p class="mt-2">{{ $actividad->titulo }}</p>
-                        <p class="mt-2">{{ $actividad->descripcion }}</p>
-                        <!-- TODO : Poner que se le pase toda la '$actividad' para luego sacar los datos en el pop-up. -->
-                        <a href="#" class="btn btn-primary text-white my-2" data-bs-toggle="modal" data-bs-target="#apuntarseModal" data-actividad-id="{{ $actividad->id }}" data-actividad-titulo="{{ $actividad->titulo }}">Ver</a>
+                    <div class="col-md-4 mt-2">
+                        <div class="card d-flex flex-column h-100 text-center">
+                            <img class="card-img-top img-fluid" style="height: 200px; object-fit: cover;"
+                                 src="{{ $actividad->imagen ? asset('storage/' . $actividad->imagen) : asset('storage/' . 'actividades/pintura.png') }}"
+                                 alt="Imagen {{ $actividad->titulo }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $actividad->titulo }}</h5>
+                                <p class="card-text">{{ $actividad->descripcion }}</p>
+                                <a href="#" class="btn btn-success my-2" data-bs-toggle="modal"
+                                   data-bs-target="#apuntarseModal" data-actividad="{{ json_encode($actividad) }}">
+                                    Más información</a>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">{{ "Plazas disponibles: ". $actividad->plazas_disponibles ." de ". $actividad->plazas_totales }}</small>
+                            </div>
+                        </div>
                     </div>
                 @empty
                     <div class="col">
@@ -83,13 +94,14 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <!-- TODO : Descomentar y corregir (obtener '$actividad'). -->
-{{--                            <p>Actividad: <span id="modal-actividad-titulo"> {{$actividad->titulo}}</span></p>--}}
-{{--                            <p>Descripción: <span id="modal-actividad-descripcion">{{$actividad->descripcion}}</span></p>--}}
-{{--                            <p>Idioma: <span id="modal-actividad-idioma">{{$actividad->idioma}}</span></p>--}}
-{{--                            <p>Horario: <span id="modal-actividad-horario"> {{$actividad->hora_inicio}} - {{$actividad->hora_fin}}</span></p>--}}
-{{--                            <p>Plazas Libres: <span id="modal-actividad-plazas">{{$actividad->plazas_disponibles}}/{{$actividad->plazas_totales}}</span></p>--}}
-{{--                            <p>Edades: <span id="modal-actividad-edades">{{$actividad->edad_minima}} - {{$actividad->edad_maxima}}</span></p>--}}
+                            <img class="img-thumbnail mb-5" id="modal-actividad-imagen"
+                                 src="" alt="Imagen de la actividad">
+                            <p><b>Actividad: </b><span id="modal-actividad-titulo"></span></p>
+                            <p><b>Descripción: </b><span id="modal-actividad-descripcion"></span></p>
+                            <p><b>Idioma: </b><span id="modal-actividad-idioma"></span></p>
+                            <p><b>Horario: </b><span id="modal-actividad-horario"></span></p>
+                            <p><b>Plazas Libres: </b><span id="modal-actividad-plazas"></span></p>
+                            <p><b>Edades: </b><span id="modal-actividad-edades"></span></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -99,21 +111,20 @@
                 </div>
             </div>
 
-            <!-- Second Modal for Inscription Form -->
+            <!-- Segundo Modal para la inscripción -->
             <div class="modal fade" id="inscripcionFormModal" tabindex="-1" aria-labelledby="inscripcionFormModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="inscripcionFormModalLabel">Formulario de Inscripción</h5>
+                            <h5 class="modal-title" id="inscripcionFormModalLabel">Confirmación de Inscripción</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <!-- Replace this with your actual form HTML -->
-                            <p>Contenido del formulario de inscripción aquí...</p>
+                            <p>¿Quieres inscribirte a la actividad ?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary">Enviar</button>
+                            <button type="button" class="btn btn-primary" id="confirmarConfirmacion">Confirmar</button>
                         </div>
                     </div>
                 </div>
@@ -121,36 +132,45 @@
 
             @endsection
 
-            @section('scripts')
-                <script>
+            <script>
+
+                document.addEventListener('DOMContentLoaded', function() {
                     const apuntarseButtons = document.querySelectorAll('[data-bs-toggle="modal"]');
 
                     apuntarseButtons.forEach(button => {
                         button.addEventListener('click', function(event) {
-                            event.preventDefault(); // Prevent the link from navigating
+                            event.preventDefault();
 
-                            const actividadId = this.dataset.actividadId;
-                            const actividadTitulo = this.dataset.actividadTitulo;
-                            const modalTitle = document.querySelector('#apuntarseModalLabel');
-                            const activityDetails = document.querySelector('#activity-details');
+                            const actividadData = JSON.parse(this.dataset.actividad);
 
-                            modalTitle.textContent = `Confirmar Inscripción: ${actividadTitulo}`;
-                            activityDetails.textContent = `ID de la actividad: ${actividadId}`;
+                            // Actualizar el contenido del modal con los datos de la actividad
+                            document.getElementById('modal-actividad-titulo').textContent = actividadData.titulo;
+                            document.getElementById('modal-actividad-descripcion').textContent = actividadData.descripcion;
+                            document.getElementById('modal-actividad-idioma').textContent = actividadData.idioma;
+                            document.getElementById('modal-actividad-horario').textContent = `${actividadData.hora_inicio} - ${actividadData.hora_fin}`;
+                            document.getElementById('modal-actividad-plazas').textContent = `${actividadData.plazas_disponibles}/${actividadData.plazas_totales}`;
+                            const edadMaxima = actividadData.edad_maxima === null ? "∞" : actividadData.edad_maxima;
+                            document.getElementById('modal-actividad-edades').textContent = `${actividadData.edad_minima} - ${edadMaxima}`;
+
+                            // Actualizar la imagen del modal con la de la actividad seleccionada
+                            const modalImagen = document.getElementById('modal-actividad-imagen');
+                            modalImagen.src = actividadData.imagen ? `/storage/${actividadData.imagen}` : `/storage/actividades/pintura.png`;
+                            modalImagen.alt = `Imagen de ${actividadData.titulo}`;
 
                             const confirmarApuntarseBtn = document.querySelector('#confirmarApuntarse');
-                            confirmarApuntarseBtn.addEventListener('click', function() {
-
-                                // Show the second modal (inscription form)
+                            confirmarApuntarseBtn.addEventListener('click', () => {
+                                // Mostrar el segundo modal (de la inscripción)
                                 var inscripcionModal = new bootstrap.Modal(document.getElementById('inscripcionFormModal'));
                                 inscripcionModal.show();
                             });
                         });
                     });
-                </script>
+                });
+
+            </script>
+
         </div>
     </div>
-
-    @endsection
 
     </div>
     </body>

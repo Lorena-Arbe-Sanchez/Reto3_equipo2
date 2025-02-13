@@ -8,7 +8,7 @@
   position: fixed;
   top: -100px;
   right: 20px;
-  background-color: #ff0047;
+  background-color: #ff6666;
   color: white;
   padding: 16px;
   border-radius: 4px;
@@ -67,4 +67,4 @@
   z-index: 1000;
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=styles.css.map */
