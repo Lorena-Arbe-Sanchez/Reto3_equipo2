@@ -25,22 +25,38 @@ class CiudadanoController extends Controller
             }
 
 
+            $buscar = Ciudadano::where('dni', $request->input('dni'))->first();
 
-            $ciudadano = new Ciudadano();
-            $ciudadano->nombre = $request->input('titulo');
-            $ciudadano->apellidos = $request->input('descripcion');
-            $ciudadano->dni = $request->input('fecha_inicio');
-            $ciudadano->direccion = $request->input('fecha_fin');
-            $ciudadano->codigo_postal = $request->input('fecha_fin');
+            if(!$buscar){
+
+                $ciudadano = new Ciudadano();
+                $ciudadano->nombre = $request->input('titulo');
+                $ciudadano->apellidos = $request->input('descripcion');
+                $ciudadano->dni = $request->input('fecha_inicio');
+                $ciudadano->direccion = $request->input('fecha_fin');
+                $ciudadano->codigo_postal = $request->input('fecha_fin');
+
+                $ciudadano->save();
 
 
-            $ciudadano->save();
+                $registro = new Inscripcion();
+                $registro->id_actividad = $id;
+                $registro->id_ciudadano = $request->input('id');
 
-            $registro = new Inscripcion();
-            $registro->id_actividad = $id;
-            $registro->id_ciudadano = $request->input('id');
+                $registro->save();
 
-            $registro->save();
+            }else{
+
+
+                $registro = new Inscripcion();
+                $registro->id_actividad = $id;
+                $registro->id_ciudadano = $buscar->id;
+
+                $registro->save();
+
+            }
+
+
 
 
         } catch (\Exception $exception) {
