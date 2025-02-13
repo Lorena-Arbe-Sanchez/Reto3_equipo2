@@ -84,11 +84,7 @@ class ActividadController extends Controller
 
     }
 
-    /*
-    public function delete($id){
-        Actividad::destroy($id);
-    }
-    */
+
 
     public function delete(Request $request)
     {
@@ -130,6 +126,13 @@ class ActividadController extends Controller
         $actividad->save();
 
         return redirect()->route('actividad.showActividades')->with('success', 'Actividad actualizada correctamente');
+    }
+
+
+    public function filtrar(){
+
+
+
     }
 
 }
