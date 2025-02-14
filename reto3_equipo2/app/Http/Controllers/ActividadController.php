@@ -128,6 +128,17 @@ class ActividadController extends Controller
     public function update(Request $request, $id){
         $actividad = Actividad::findOrFail($id);
 
+        $imagenPath = $actividad->imagen;
+
+        if ($request->hasFile('imagen')) {
+            $request->validate([
+                'imagen' => 'image|mimes:jpeg,png,jpg,svg|max:2048', // Ajusta los requisitos si es necesario
+            ]);
+
+            $imagenOriginalName = $request->file('imagen')->getClientOriginalName();
+            $imagenPath = $request->file('imagen')->storeAs('actividades', $imagenOriginalName, 'public');
+        }
+
         $actividad->plazas_totales = $request->input('plazas_totales');
 
         $actividad->plazas_disponibles = $request->input('plazas_totales');
@@ -144,6 +155,8 @@ class ActividadController extends Controller
         $actividad->edad_maxima = $request->input('edad_maxima');
         $actividad->dia_1 = $request->input('dia_1');
         $actividad->dia_2 = $request->input('dia_2');
+
+        $actividad->imagen = $imagenPath;
 
         $actividad->save();
 
