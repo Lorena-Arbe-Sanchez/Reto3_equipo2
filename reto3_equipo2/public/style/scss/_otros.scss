@@ -4,12 +4,7 @@
 }
 
 #imagenCerrarSesion {
-    width: 20px;  /* Reducido proporcionalmente */
-    height: 20px; /* Mantener igual que el width */
-    object-fit: contain; /* Asegura que la imagen mantenga sus proporciones */
-}
-
-.contenedor-botones {
-    display: flex;
-    gap: 10px;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
 }

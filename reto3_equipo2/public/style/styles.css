@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
 .btn {
@@ -18,16 +17,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px; /* Reducido ligeramente para mejor proporción */
-  height: 40px; /* Mantener igual que el width para un círculo perfecto */
+  width: 40px;
+  height: 40px;
   padding: 0;
-  transition: all 0.3s ease; /* Añade una transición suave para efectos hover */
-  border: none; /* Elimina el borde por defecto del botón */
+  transition: all 0.3s ease;
+  border: none;
+  margin: 0;
 }
 
 #botonCerrarSesion:hover {
-  transform: scale(1.1); /* Efecto de escala al pasar el mouse */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra suave al hover */
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .notification {
@@ -109,14 +109,9 @@
 }
 
 #imagenCerrarSesion {
-  width: 20px; /* Reducido proporcionalmente */
-  height: 20px; /* Mantener igual que el width */
-  object-fit: contain; /* Asegura que la imagen mantenga sus proporciones */
-}
-
-.contenedor-botones {
-  display: flex;
-  gap: 10px;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
 
 /*# sourceMappingURL=styles.css.map */

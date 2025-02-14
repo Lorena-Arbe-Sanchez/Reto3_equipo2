@@ -5,12 +5,6 @@
         <div class="col">
 
             <div class="row">
-                <form action="{{ route('centros.listCentros') }}" method="GET">
-                    <button type="submit" class="btn btn-success">Volver</button>
-                </form>
-            </div>
-
-            <div class="row">
                 <div class="col mt-4 mb-5">
                     <h3>Apúntate a las actividades:</h3>
                 </div>
@@ -72,22 +66,26 @@
                                 <h5 class="card-title">{{ $actividad->titulo }}</h5>
                                 <p class="card-text">{{ $actividad->descripcion }}</p>
                                 @if(!Auth::check())
-                                <a href="#" class="btn btn-success mt-auto w-100 mx-auto" data-bs-toggle="modal"
-                                   data-bs-target="#apuntarseModal" data-actividad="{{ json_encode($actividad) }}">
-                                    Más información</a>
+                                    <a href="#" class="btn btn-success mt-auto w-100 mx-auto" data-bs-toggle="modal"
+                                       data-bs-target="#apuntarseModal" data-actividad="{{ json_encode($actividad) }}">
+                                        Más información
+                                    </a>
                                 @endif
                                 @if(Auth::check())
-                                    <div class="contenedor-botones">
-                                        <form action="{{ route('actividad.delete') }}" method="POST" class="my-1">
+                                    <div class="d-flex gap-2 mt-auto">
+                                        <form action="{{ route('actividad.delete') }}" method="POST" class="w-50 m-0">
                                             @csrf
                                             @method('DELETE')
                                             <input type="hidden" name="id" value="{{ $actividad->id }}">
-                                            <button type="submit"
-                                                    class="btn btn-danger btn-destacado text-white">Borrar</button>
+                                            <button type="submit" class="btn btn-danger btn-destacado text-white w-100">
+                                                Borrar
+                                            </button>
                                         </form>
 
                                         <a href="{{ route('actividad.edit', ['id' => $actividad->id]) }}"
-                                           class="btn btn-editar text-white">Editar</a>
+                                           class="btn btn-primary btn-editar text-white w-50">
+                                            Editar
+                                        </a>
                                     </div>
                                 @endif
                             </div>

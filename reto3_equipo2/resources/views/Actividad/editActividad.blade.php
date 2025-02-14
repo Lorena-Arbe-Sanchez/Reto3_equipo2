@@ -5,7 +5,7 @@
         <div class="col">
             <div class="row">
                 <form action="{{ route('actividad.showActividades') }}" method="GET">
-                    <button type="submit" class="btn btn-success">< Volver</button>
+                    <button type="submit" class="btn btn-success">Volver</button>
                 </form>
             </div>
             <div class="row">
