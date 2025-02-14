@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Actividad;
 use App\Models\CentroCivico;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ActividadController extends Controller
@@ -43,7 +44,8 @@ class ActividadController extends Controller
 
             $imagenPath = null;
             if ($request->hasFile('imagen')) {
-                $imagenPath = $request->file('imagen')->store('actividades', 'public');
+                $imagenOriginalName = $request->file('imagen')->getClientOriginalName();
+                $imagenPath = $request->file('imagen')->storeAs('actividades', $imagenOriginalName, 'public');
             }
 
             $actividad = new Actividad();
@@ -103,8 +105,17 @@ class ActividadController extends Controller
             'id' => 'required'
         ]);
 
-        Actividad::where('id', $request->id)
-            ->delete();
+        $actividad = Actividad::find($request->id);
+
+        if ($actividad) {
+            $imagenPath = 'public/' . $actividad->imagen;
+
+            if ($actividad->imagen && Storage::exists($imagenPath)) {
+                Storage::delete($imagenPath);
+            }
+
+            $actividad->delete();
+        }
 
         return redirect()->back()->with('success', 'Actividad eliminada correctamente.');
     }
