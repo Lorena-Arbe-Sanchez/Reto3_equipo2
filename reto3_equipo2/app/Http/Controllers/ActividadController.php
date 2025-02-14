@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Actividad;
 use App\Models\CentroCivico;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ActividadController extends Controller
@@ -103,8 +104,16 @@ class ActividadController extends Controller
             'id' => 'required'
         ]);
 
-        Actividad::where('id', $request->id)
-            ->delete();
+        $actividad = Actividad::find($request->id);
+
+        if ($actividad) {
+            if ($actividad->imagen) {
+                Storage::delete('public/' . $actividad->imagen);
+            }
+
+            // Eliminar la actividad de la base de datos
+            $actividad->delete();
+        }
 
         return redirect()->back()->with('success', 'Actividad eliminada correctamente.');
     }
