@@ -139,4 +139,26 @@ class ActividadController extends Controller
         return redirect()->route('actividad.showActividades')->with('success', 'Actividad actualizada correctamente');
     }
 
+
+
+    public function showActividadesFiltros(Request $request)
+    {
+        $edad = $request->input('edad');
+
+        // Lógica para filtrar actividades por edad
+        $actividades = Actividad::query();
+
+        if ($edad) {
+            $actividades->where('edad_minima', '<=', $edad)
+                ->where(function($query) use ($edad) {
+                    $query->where('edad_maxima', '>=', $edad);
+                });
+        }
+
+        $actividades = $actividades->get();
+
+        return view('actividad.showActividades', compact('actividades'));
+    }
+
 }
+

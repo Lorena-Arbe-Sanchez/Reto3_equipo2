@@ -10,6 +10,9 @@ Route::controller(CentroCivicoController::class)->group(function () {
     Route::get('/', 'show')->name('centros.listCentros');
 });
 
+Route::get('/actividades/filtro', [ActividadController::class, 'showActividadesFiltros'])->name('actividad.showActividadesFiltros');
+
+
 Route::controller(ActividadController::class)->group(function() {
     Route::get('/showActividades', 'showActividades')->name('actividad.showActividades');
     Route::get('/showActividades/{id}', 'showActividadesCentro')->name('actividad.showActividadesCentro');
