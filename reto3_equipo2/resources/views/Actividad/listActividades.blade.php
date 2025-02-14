@@ -134,7 +134,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <!-- TODO : Que cree una fila en 'inscripciones' y que actualice el valor de 'plazas_disponibles'... -->
+                            <!-- TODO : Que exija loguearse con el DNI, que pille el id_actividad y el id_ciudadano, que cree una fila en 'inscripciones' y que actualice el valor de 'plazas_disponibles - 1' de la actividad... -->
                             <button type="button" class="btn btn-primary" id="confirmarConfirmacion">Confirmar</button>
                         </div>
                     </div>
