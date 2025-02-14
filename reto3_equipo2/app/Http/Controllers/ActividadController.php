@@ -11,12 +11,14 @@ class ActividadController extends Controller
 {
 
     public function create(){
-        return view('actividad.createActividad');
+        $centroCivicos = CentroCivico::all();
+        return view('actividad.createActividad', compact('centroCivicos'));
     }
     public function save(Request $request){
 
 
         try {
+            $centroCivicos = CentroCivico::all();
 
             // Validar campos requeridos
             $validator = Validator::make($request->all(), [
@@ -33,6 +35,7 @@ class ActividadController extends Controller
                 'plazas_minimas' => 'required',
                 'edad_minima' => 'required',
                 'edad_maxima' => 'required',
+                'centro_civico_id' => 'required',
 
             ]);
 
@@ -57,6 +60,7 @@ class ActividadController extends Controller
             $actividad->plazas_minimas = $request->input('plazas_minimas');
             $actividad->edad_minima = $request->input('edad_minima');
             $actividad->edad_maxima = $request->input('edad_maxima');
+            $actividad->centro_civico_id = $request->input('centro_civico_id');
 
             $actividad->save();
 
@@ -66,7 +70,7 @@ class ActividadController extends Controller
             return redirect()->back()->withErrors(['error' => $exception->getMessage()])->withInput();
         }
 
-        return view('actividad.createActividad');
+        return view('actividad.createActividad', compact('centroCivicos'));
 
     }
 

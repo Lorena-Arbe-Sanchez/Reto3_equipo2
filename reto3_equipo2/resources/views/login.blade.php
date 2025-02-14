@@ -40,13 +40,6 @@
 
 </div>
 
-<!-- TODO : Colocar bien -->
-<div class="row mt-2" id="bCancelar">
-    <form action="{{ route('centros.listCentros') }}" method="GET">
-        <button type="submit" class="btn btn-secondary">Cancelar</button>
-    </form>
-</div>
-
 <button id="darkModeToggle" class="btn btn-dark position-fixed top-0 end-0 m-3">
     <i class="bi bi-moon-fill"></i>
 </button>
