@@ -173,6 +173,12 @@
                                 var inscripcionModal = new bootstrap.Modal(document.getElementById('inscripcionFormModal'));
                                 inscripcionModal.show();
                             });
+
+                            // Evento del botón de confirmar la inscripción en el primer modal
+                            const confirmarConfirmacionBtn = document.querySelector('#confirmarConfirmacion');
+                            confirmarConfirmacionBtn.addEventListener('click', () => {
+                                // TODO : Debería aparecer una casilla para rellenar con el DNI...
+                            });
                         });
                     });
                 });
