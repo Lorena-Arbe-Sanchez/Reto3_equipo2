@@ -15,8 +15,6 @@ class ActividadController extends Controller
         return view('actividad.createActividad', compact('centroCivicos'));
     }
     public function save(Request $request){
-
-
         try {
             $centroCivicos = CentroCivico::all();
 
@@ -27,23 +25,26 @@ class ActividadController extends Controller
                 'fecha_inicio' => 'required',
                 'fecha_fin' => 'required',
                 'dia_1' => 'required',
-                'dia_2' => 'required',
+                'dia_2',
                 'hora_inicio' => 'required',
                 'hora_fin' => 'required',
                 'idioma' => 'required',
                 'plazas_totales' => 'required',
                 'plazas_minimas' => 'required',
-                'edad_minima' => 'required',
-                'edad_maxima' => 'required',
+                'edad_minima',
+                'edad_maxima',
                 'centro_civico_id' => 'required',
-
+                'imagen' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
             ]);
 
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 
-
+            $imagenPath = null;
+            if ($request->hasFile('imagen')) {
+                $imagenPath = $request->file('imagen')->store('actividades', 'public');
+            }
 
             $actividad = new Actividad();
             $actividad->titulo = $request->input('titulo');
@@ -61,17 +62,15 @@ class ActividadController extends Controller
             $actividad->edad_minima = $request->input('edad_minima');
             $actividad->edad_maxima = $request->input('edad_maxima');
             $actividad->centro_civico_id = $request->input('centro_civico_id');
+            $actividad->imagen = $imagenPath;
 
             $actividad->save();
-
-
 
         } catch (\Exception $exception) {
             return redirect()->back()->withErrors(['error' => $exception->getMessage()])->withInput();
         }
 
         return view('actividad.createActividad', compact('centroCivicos'));
-
     }
 
     public function showActividades($id = null ){
