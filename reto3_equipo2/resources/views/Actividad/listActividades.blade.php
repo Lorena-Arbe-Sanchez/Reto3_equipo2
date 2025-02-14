@@ -3,13 +3,6 @@
 
     <div class="row mx-3 mt-4">
         <div class="col">
-
-            <div class="row">
-                <form action="{{ route('centros.listCentros') }}" method="GET">
-                    <button type="submit" class="btn btn-success">Volver</button>
-                </form>
-            </div>
-
             <div class="row">
                 <div class="col mt-4 mb-5">
                     <h3>Apúntate a las actividades:</h3>
@@ -22,11 +15,12 @@
                 <div class="col-md-3"> <!-- Columna para Centro Civico -->
                     <div class="form-group d-flex flex-direction-row align-items-center gap-2">
                         <label for="centro_civico">Centros</label>
-                        <select class="form-select" id="centro_civico">
+                        <select class="form-select" id="centro_civico" name="centro_civico">
                             <option value="">Todos</option>
-
                             @foreach ($centroCivicos as $centro)
-                                <option value="{{ $centro->id }}">{{ $centro->nombre }}</option>
+                                <option value="{{ $centro->id }}">
+                                    {{ $centro->nombre }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -35,26 +29,35 @@
                 <div class="col-md-3"> <!-- Columna para Edad -->
                     <div class="form-group d-flex flex-direction-row align-items-center gap-2">
                         <label for="edad">Edad</label>
-                        <input type="text" class="form-control" id="edad">
+                        <input type="text" class="form-control" id="edad" name="edad" value="">
                     </div>
                 </div>
 
-                <div class="col-md-3"> <!-- Columna para Idioma -->
-                    <div class="form-group d-flex flex-direction-row align-items-center gap-2">
-                        <label for="idioma">Idioma</label>
-                        <select class="form-select" id="idioma">
-                            <option value="todos">Todos</option>
-                            <option value="espanol">Español</option>
-                            <option value="euskera">Euskera</option>
-                        </select>
-                    </div>
-                </div>
 
-                <div class="col-md-3"> <!-- Columna para Horario -->
-                    <div class="form-group d-flex flex-direction-row align-items-center gap-2">
-                        <label for="horario">Horario</label>
-                        <input type="text" class="form-control" id="horario">
-                    </div>
+                <!--
+                 <div class="col-md-3">  Columna para Idioma
+                 <div class="form-group d-flex flex-direction-row align-items-center gap-2">
+                     <label for="idioma">Idioma</label>
+                     <select class="form-select" id="idioma" name="idioma">
+                         <option value="todos">Todos</option>
+                         <option value="espanol">Español</option>
+                         <option value="euskera">Euskera</option>
+                     </select>
+                 </div>
+             </div>
+
+             <div class="col-md-3"> Columna para Horario
+                 <div class="form-group d-flex flex-direction-row align-items-center gap-2">
+                     <label for="horario">Horario</label>
+                     <input type="text" class="form-control" id="horario" name="horario" value="">
+                 </div>
+             </div>
+                -->
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="{{ route('actividad.showActividadesFiltros') }}" class="btn btn-primary">Filtrar</a>
                 </div>
             </div>
 
@@ -183,13 +186,11 @@
                     });
                 });
 
+                
+
             </script>
 
         </div>
     </div>
 
-    @endsection
-
-    </div>
-    </body>
-    </html>
+@endsection
