@@ -8,6 +8,10 @@
   background-color: #dc3545;
 }
 
+.btn-editar {
+  background-color: #0d6efd;
+}
+
 .notification {
   position: fixed;
   top: -100px;

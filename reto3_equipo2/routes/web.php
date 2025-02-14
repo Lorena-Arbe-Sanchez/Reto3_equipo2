@@ -15,7 +15,7 @@ Route::controller(ActividadController::class)->group(function() {
     Route::get('/showActividades/{id}', 'showActividadesCentro')->name('actividad.showActividadesCentro');
 
     Route::middleware('auth')->group(function () {
-        Route::get('/create', 'create')->name('actividad.create');
+        Route::get('/createActividad', 'create')->name('actividad.create');
         Route::post('/save', 'save')->name('actividad.save');
         Route::get('/editActividad/{id}', 'edit')->name('actividad.edit');
         Route::put('/updateActividad/{id}', 'update')->name('actividad.update');
