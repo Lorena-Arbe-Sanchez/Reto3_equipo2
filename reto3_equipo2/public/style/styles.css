@@ -12,6 +12,24 @@
   background-color: #0d6efd;
 }
 
+#botonCerrarSesion {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  transition: all 0.3s ease;
+  border: none;
+  margin: 0;
+}
+
+#botonCerrarSesion:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
 .notification {
   position: fixed;
   top: -100px;
@@ -88,6 +106,12 @@
 #imagenLogo {
   width: 250px;
   height: auto;
+}
+
+#imagenCerrarSesion {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
 
 /*# sourceMappingURL=styles.css.map */

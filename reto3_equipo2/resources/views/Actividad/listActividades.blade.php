@@ -5,12 +5,6 @@
         <div class="col">
 
             <div class="row">
-                <form action="{{ route('centros.listCentros') }}" method="GET">
-                    <button type="submit" class="btn btn-success">Volver</button>
-                </form>
-            </div>
-
-            <div class="row">
                 <div class="col mt-4 mb-5">
                     <h3>Apúntate a las actividades:</h3>
                 </div>
@@ -64,7 +58,7 @@
                     <div class="col-lg-3 col-md-4 mt-2 d-flex justify-content-center">
                         <div class="card d-flex flex-column h-100 text-center">
                             <img class="card-img-top img-fluid" style="height: 200px; object-fit: cover;"
-                                 src="{{ $actividad->imagen ? asset('storage/' . $actividad->imagen) : asset('storage/actividades/pintura.png') }}"
+                                 src="{{ $actividad->imagen ? asset('storage/' . $actividad->imagen) : asset('storage/' . 'actividades/pintura.png') }}"
                                  alt="Imagen {{ $actividad->titulo }}">
                             <div class="card-body d-flex flex-column flex-grow-1">
                                 <h5 class="card-title">{{ $actividad->titulo }}</h5>
