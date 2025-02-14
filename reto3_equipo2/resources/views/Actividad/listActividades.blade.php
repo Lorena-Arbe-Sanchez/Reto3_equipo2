@@ -61,7 +61,7 @@
             <!--Lista de actividades-->
             <div class="row mt-2">
                 @forelse ($actividades as $actividad)
-                    <div class="col-md-4 mt-2">
+                    <div class="col-lg-3 col-md-4 mt-2 d-flex justify-content-center">
                         <div class="card d-flex flex-column h-100 text-center">
                             <img class="card-img-top img-fluid" style="height: 200px; object-fit: cover;"
                                  src="{{ $actividad->imagen ? asset('storage/' . $actividad->imagen) : asset('storage/' . 'actividades/pintura.png') }}"
@@ -69,19 +69,19 @@
                             <div class="card-body d-flex flex-column flex-grow-1">
                                 <h5 class="card-title">{{ $actividad->titulo }}</h5>
                                 <p class="card-text">{{ $actividad->descripcion }}</p>
-                                <a href="#" class="btn btn-success mt-auto w-auto mx-auto" data-bs-toggle="modal"
+                                <a href="#" class="btn btn-success mt-auto w-100 mx-auto" data-bs-toggle="modal"
                                    data-bs-target="#apuntarseModal" data-actividad="{{ json_encode($actividad) }}">
                                     Más información</a>
                                 @if(Auth::check())
-                                    <form action="{{ route('actividad.delete') }}" method="POST" class="my-1">
+                                    <form action="{{ route('actividad.delete') }}" method="POST" class="my-1 w-100">
                                         @csrf
                                         @method('DELETE')
                                         <input type="hidden" name="id" value="{{ $actividad->id }}">
-                                        <button type="submit" class="btn btn-danger btn-destacado text-white">Borrar</button>
+                                        <button type="submit" class="btn btn-danger btn-destacado w-100 text-white">Borrar</button>
                                     </form>
 
                                     <a href="{{ route('actividad.edit', ['id' => $actividad->id]) }}"
-                                       class="btn btn-primary text-white">Editar</a>
+                                       class="btn btn-editar text-white w-100">Editar</a>
                                 @endif
                             </div>
                             <div class="card-footer">
