@@ -84,7 +84,15 @@ class ActividadController extends Controller
 
     }
 
+    public function showActividadesCentro($id){
 
+        $actividades = Actividad::where('centro_civico_id', $id)->get();
+
+        $centroCivicos = CentroCivico::all();
+
+        return view('Actividad.listActividades', compact('actividades','centroCivicos'));
+
+    }
 
     public function delete(Request $request)
     {
@@ -126,13 +134,6 @@ class ActividadController extends Controller
         $actividad->save();
 
         return redirect()->route('actividad.showActividades')->with('success', 'Actividad actualizada correctamente');
-    }
-
-
-    public function filtrar(){
-
-
-
     }
 
 }

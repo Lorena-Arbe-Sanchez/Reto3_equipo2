@@ -19,7 +19,9 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $centro->nombre }}</h5>
                                 <p class="card-text">{{ $centro->direccion }}</p>
-                                <a href="{{route("actividad.showActividades")}}" class="btn btn-success text-white">Ver actividades</a>
+                                <a href="{{route('actividad.showActividadesCentro', ['id' => $centro->id]) }}"
+                                   class="btn btn-success">Ver actividades
+                                </a>
                             </div>
                         </div>
                     </div>

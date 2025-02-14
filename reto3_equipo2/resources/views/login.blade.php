@@ -9,57 +9,118 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('style/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('style/styles.css') }}">
 </head>
 <body id="login">
 
-<div class="container vh-100 d-flex justify-content-center align-items-center">
-    <div class="login-form card p-4 shadow-lg w-50">
-        <div class="text-center mb-4">
-            <h1>Iniciar Sesión</h1>
+<!-- TODO : Mirar por qué no cambia el background en modo dark, por qué no aparece el mensaje de error cuando está en el modo dark... -->
 
-            <!-- TODO : Quitar si funciona el mensaje lateral entrante. -->
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-        </div>
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
 
-        <form action="{{ route('administrador.login') }}" method="POST">
-            @csrf
+    <div class="card shadow-lg">
+        <div class="card-body p-5">
+            <h2 class="card-title text-center mb-4">Iniciar Sesión</h2>
+            <form id="loginForm" action="{{ route('administrador.login') }}" method="POST">
 
-            <div class="mb-3 row">
-                <div class="col-12">
+                <!-- Agregar un campo oculto con un token de seguridad. -->
+                @csrf
+
+                <div class="mb-3">
                     <label for="usuario" class="form-label">Usuario</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario" value="{{ old('usuario') }}" required>
+                    <input type="text" class="form-control" id="usuario" name="usuario" value="{{ old('usuario') }}" autocomplete="username" required>
                 </div>
-            </div>
-
-            <div class="mb-3 row">
-                <div class="col-12">
+                <div class="mb-3">
                     <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
+                    <input type="password" class="form-control" id="password" name="password" autocomplete="current-password" required>
                 </div>
-            </div>
+                <button type="submit" class="btn text-white w-100">Acceder</button>
 
-            <div class="row button-container text-center">
-                <div class="col-12">
-                    <button type="submit" class="btn text-white w-100">Acceder</button>
-                </div>
-            </div>
-        </form>
-        <div class="row mt-2">
-            <form action="{{ route('centros.listCentros') }}" method="GET">
-                <button type="submit" class="btn btn-success">< Cancelar</button>
             </form>
+            <!-- TODO : ESTILIZAR -->
+            <div class="row mt-2">
+                <form action="{{ route('centros.listCentros') }}" method="GET">
+                    <button type="submit" class="btn btn-success">Cancelar</button>
+                </form>
+            </div>
         </div>
     </div>
+
 </div>
+
+<button id="darkModeToggle" class="btn btn-dark position-fixed top-0 end-0 m-3">
+    <i class="bi bi-moon-fill"></i>
+</button>
+
+<!-- Mensaje entrante de error. -->
+@if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <div id="notification" class="notification">{{ $error }}</div>
+    @endforeach
+@endif
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        //const loginForm = document.getElementById("loginForm");
+        const darkModeToggle = document.getElementById("darkModeToggle");
+        const body = document.body;
+        const notification = document.getElementById("notification");
+        const form = document.getElementById("loginForm");
+
+        /*
+        // Validar form
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault()
+            const usuario = document.getElementById("usuario").value
+            const password = document.getElementById("password").value
+
+            if (!isValidUsuario(usuario)) {
+                console.error("El usuario debe ser válido.")
+                return
+            }
+
+            if (password.length < 8) {
+                console.error("La contraseña debe tener como mínimo 8 caracteres.")
+                return
+            }
+
+            console.log("Login exitoso.")
+        })
+
+        // Validar usuario
+        function isValidUsuario(usuario) {
+            // Cualquier carácter alfanumérico de 2 a 20 veces.
+            const usuarioRegex = /^[\w]{2,20}$/
+            return usuarioRegex.test(usuario)
+        }
+         */
+
+        // Dark mode toggle
+        darkModeToggle.addEventListener("click", () => {
+            body.classList.toggle("dark-mode")
+            const icon = darkModeToggle.querySelector("i")
+            if (body.classList.contains("dark-mode")) {
+                icon.classList.replace("bi-moon-fill", "bi-sun-fill")
+            } else {
+                icon.classList.replace("bi-sun-fill", "bi-moon-fill")
+            }
+        })
+
+        if (notification) {
+            notification.classList.add("show");
+            setTimeout(() => {
+                notification.classList.remove("show");
+            }, 3000);
+        }
+
+        // TODO : Bloquear el envío del formulario si hay notificaciones de error (para que no se reseteen las casillas y no se borren los datos introducidos)
+        if (notification) {
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                console.log("Corrige los errores antes de continuar.");
+            });
+        }
+    });
+</script>
 
 </body>
 </html>
