@@ -1,14 +1,8 @@
 @extends('layouts.public')
 @section('content')
 
-    <div class="row mx-3 mt-4">
+    <div class="row mx-3 my-4">
         <div class="col">
-
-            <div class="row">
-                <form action="{{ route('centros.listCentros') }}" method="GET">
-                    <button type="submit" class="btn btn-success">Volver</button>
-                </form>
-            </div>
 
             <div class="row">
                 <div class="col mt-4 mb-5">
@@ -115,7 +109,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary" id="confirmarApuntarse">Inscribirse</button>
+                            <button type="button" class="btn btn-editar text-white" id="confirmarApuntarse">Inscribirse</button>
                         </div>
                     </div>
                 </div>
@@ -135,7 +129,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                             <!-- TODO : Que exija loguearse con el DNI, que pille el id_actividad y el id_ciudadano, que cree una fila en 'inscripciones' y que actualice el valor de 'plazas_disponibles - 1' de la actividad... -->
-                            <button type="button" class="btn btn-primary" id="confirmarConfirmacion">Confirmar</button>
+                            <button type="button" class="btn btn-editar text-white" id="confirmarConfirmacion">Confirmar</button>
                         </div>
                     </div>
                 </div>
