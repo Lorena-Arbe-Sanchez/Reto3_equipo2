@@ -44,7 +44,8 @@ class ActividadController extends Controller
 
             $imagenPath = null;
             if ($request->hasFile('imagen')) {
-                $imagenPath = $request->file('imagen')->store('actividades', 'public');
+                $imagenOriginalName = $request->file('imagen')->getClientOriginalName();
+                $imagenPath = $request->file('imagen')->storeAs('actividades', $imagenOriginalName, 'public');
             }
 
             $actividad = new Actividad();
@@ -107,11 +108,12 @@ class ActividadController extends Controller
         $actividad = Actividad::find($request->id);
 
         if ($actividad) {
-            if ($actividad->imagen) {
-                Storage::delete('public/' . $actividad->imagen);
+            $imagenPath = 'public/' . $actividad->imagen;
+
+            if ($actividad->imagen && Storage::exists($imagenPath)) {
+                Storage::delete($imagenPath);
             }
 
-            // Eliminar la actividad de la base de datos
             $actividad->delete();
         }
 
