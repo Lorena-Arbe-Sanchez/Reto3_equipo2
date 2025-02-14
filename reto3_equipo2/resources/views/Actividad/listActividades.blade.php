@@ -46,6 +46,7 @@
                             <option value="todos">Todos</option>
                             <option value="espanol">Español</option>
                             <option value="euskera">Euskera</option>
+                            <option value="ingles">Inglés</option>
                         </select>
                     </div>
                 </div>
@@ -64,28 +65,35 @@
                     <div class="col-lg-3 col-md-4 mt-2 d-flex justify-content-center">
                         <div class="card d-flex flex-column h-100 text-center">
                             <img class="card-img-top img-fluid" style="height: 200px; object-fit: cover;"
-                                 src="{{ $actividad->imagen ? asset('storage/' . $actividad->imagen) : asset('storage/' . 'actividades/pintura.png') }}"
+                                 src="{{ $actividad->imagen ? asset('storage/' . $actividad->imagen) :
+                                    asset('storage/' . 'actividades/pintura.png') }}"
                                  alt="Imagen {{ $actividad->titulo }}">
                             <div class="card-body d-flex flex-column flex-grow-1">
                                 <h5 class="card-title">{{ $actividad->titulo }}</h5>
                                 <p class="card-text">{{ $actividad->descripcion }}</p>
+                                @if(!Auth::check())
                                 <a href="#" class="btn btn-success mt-auto w-100 mx-auto" data-bs-toggle="modal"
                                    data-bs-target="#apuntarseModal" data-actividad="{{ json_encode($actividad) }}">
                                     Más información</a>
+                                @endif
                                 @if(Auth::check())
-                                    <form action="{{ route('actividad.delete') }}" method="POST" class="my-1 w-100">
-                                        @csrf
-                                        @method('DELETE')
-                                        <input type="hidden" name="id" value="{{ $actividad->id }}">
-                                        <button type="submit" class="btn btn-danger btn-destacado w-100 text-white">Borrar</button>
-                                    </form>
+                                    <div class="contenedor-botones">
+                                        <form action="{{ route('actividad.delete') }}" method="POST" class="my-1">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="id" value="{{ $actividad->id }}">
+                                            <button type="submit"
+                                                    class="btn btn-danger btn-destacado text-white">Borrar</button>
+                                        </form>
 
-                                    <a href="{{ route('actividad.edit', ['id' => $actividad->id]) }}"
-                                       class="btn btn-editar text-white w-100">Editar</a>
+                                        <a href="{{ route('actividad.edit', ['id' => $actividad->id]) }}"
+                                           class="btn btn-editar text-white">Editar</a>
+                                    </div>
                                 @endif
                             </div>
                             <div class="card-footer">
-                                <small class="text-muted">{{ "Plazas disponibles: ". $actividad->plazas_disponibles ." de ". $actividad->plazas_totales }}</small>
+                                <small class="text-muted">{{ "Plazas disponibles: ". $actividad->plazas_disponibles
+                                    ." de ". $actividad->plazas_totales }}</small>
                             </div>
                         </div>
                     </div>

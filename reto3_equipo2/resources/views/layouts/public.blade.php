@@ -25,27 +25,34 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+    <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarNav">
+        <ul class="navbar-nav d-flex align-items-center">
             @if(Auth::check())
                 <li class="nav-item mx-2">
                     <form action="{{ route('administrador.logout') }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-danger btn-destacado text-white">Cerrar sesión</button>
+                        <button type="submit" class="btn btn-danger btn-destacado" id="botonCerrarSesion">
+                            <img class="img-fluid" id="imagenCerrarSesion"
+                                 src="{{ asset('storage/' . 'iconos/cerrar_sesion.png') }}" alt="Cerrar sesión">
+                        </button>
                     </form>
                 </li>
             @endif
-            <li class="nav-item">
-                <a class="btn btn-success" href="{{ url('/showLogin') }}">Conectarse</a>
+            <li class="nav-item mx-2">
+                <a class="btn btn-success" href="{{ route('login') }}">
+                    @guest
+                        Conectarse
+                    @else
+                        Cambiar de cuenta
+                    @endguest
+                </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">ES</a>
-            </li>
-            <li class="nav-item">
-                <p class="nav-link">|</p>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">EU</a>
+            <li class="nav-item mx-2">
+                <div class="d-flex align-items-center">
+                    <a class="nav-link px-2" href="#">ES</a>
+                    <span class="nav-link px-1">|</span>
+                    <a class="nav-link px-2" href="#">EU</a>
+                </div>
             </li>
         </ul>
     </div>

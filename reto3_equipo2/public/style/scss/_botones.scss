@@ -11,3 +11,20 @@
 .btn-editar{
     background-color: #0d6efd;
 }
+
+#botonCerrarSesion {
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;  /* Reducido ligeramente para mejor proporción */
+    height: 40px; /* Mantener igual que el width para un círculo perfecto */
+    padding: 0;
+    transition: all 0.3s ease; /* Añade una transición suave para efectos hover */
+    border: none; /* Elimina el borde por defecto del botón */
+}
+
+#botonCerrarSesion:hover {
+    transform: scale(1.1); /* Efecto de escala al pasar el mouse */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra suave al hover */
+}
