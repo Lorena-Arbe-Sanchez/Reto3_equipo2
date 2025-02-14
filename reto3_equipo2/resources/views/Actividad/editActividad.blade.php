@@ -17,7 +17,7 @@
             <!--Lista de actividades-->
             <div class="row mt-2">
                 <div class="col d-flex justify-content-center">
-                    <form class="border rounded p-4 w-75" action="{{route ("actividad.update", $datos->id)}}" method="POST">
+                    <form class="border rounded p-4 w-75" action="{{route ("actividad.update", $datos->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -86,6 +86,13 @@
                                 <input type="number" id="edad_maxima" name="edad_maxima" class="form-control" value="{{ $datos->edad_maxima }}">
                             </div>
 
+                            <div class="col-3 d-flex flex-column">
+                                <label for="imagen" class="form-label">Imagen</label>
+                                <input type="file" class="form-control" id="imagen" name="imagen">
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center gap-3 mt-2">
                             <div class="col-3 d-flex flex-column">
                                 <label for="dia_1" class="form-label">Día 1 *</label>
                                 <input type="text" id="dia_1" name="dia_1" class="form-control" value="{{ $datos->dia_1 }}" required>

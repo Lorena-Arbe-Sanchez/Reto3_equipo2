@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class InscripcionController extends Controller
 {
+
     public function store(Request $request){
 
         try {
@@ -25,12 +26,12 @@ class InscripcionController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 
-            $buscar = Ciudadano::findOrFail("dni",$request->get('dni'));
+            $buscar = Ciudadano::findOrFail("dni",$request->get('casillaDni'));
 
-
+            $actividadId = $request->get('id_actividad');
 
             //Modificar el numero de plazas de la actividad
-            $actividad = Actividad::findOrFail($id);
+            $actividad = Actividad::findOrFail($actividadId);
 
             if ($actividad->plazas_disponibles > 0) {
 
@@ -45,7 +46,7 @@ class InscripcionController extends Controller
                     $ciudadano->save();
 
                     $registro = new Inscripcion();
-                    $registro->id_actividad = $id;
+                    $registro->id_actividad = $actividadId;
                     $registro->id_ciudadano = $request->input('id');
                     $registro->save();
 
@@ -53,12 +54,11 @@ class InscripcionController extends Controller
                 }else{
 
                     $registro = new Inscripcion();
-                    $registro->id_actividad = $id;
+                    $registro->id_actividad = $actividadId;
                     $registro->id_ciudadano = $request->input('id');
                     $registro->save();
 
                 }
-
 
                 $actividad->plazas_disponibles = $actividad->plazas_disponibles - 1;
                 $actividad->save();
@@ -68,9 +68,11 @@ class InscripcionController extends Controller
         }
     }
 
-    //public function store(Request $request){
 
-        /*
+
+    /*
+    public function store(Request $request){
+
         try {
             DB::beginTransaction();
 
@@ -112,18 +114,18 @@ class InscripcionController extends Controller
                 'message' => 'Error al realizar la inscripción'
             ], 500);
         }
-        */
-    //}
+    }
+    */
 
-    public function show()
-    {
+
+
+    public function show(){
         $inscripciones = Inscripcion::with('actividad','ciudadano')->paginate(3);
         return view('Inscripcion.listInscripciones', compact('inscripciones'));
     }
 
     //public function destroy(Request $request)
-    public function delete(Request $request)
-    {
+    public function delete(Request $request){
         $request->validate([
             'id_actividad' => 'required|exists:inscripciones,id_actividad',
             'id_ciudadano' => 'required|exists:inscripciones,id_ciudadano'
@@ -135,4 +137,5 @@ class InscripcionController extends Controller
 
         return redirect()->back()->with('success', 'Inscripción eliminada correctamente.');
     }
+
 }

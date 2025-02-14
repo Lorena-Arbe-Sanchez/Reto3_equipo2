@@ -16,7 +16,7 @@
                 <div class="col-md-3"> <!-- Columna para Centro Civico -->
                     <div class="form-group d-flex flex-direction-row align-items-center gap-2">
                         <label for="centro_civico">Centros</label>
-                        <select class="form-select" id="centro_civico">
+                        <select class="form-select" id="centro_civico" name="centro_civico">
                             <option value="">Todos</option>
 
                             @foreach ($centroCivicos as $centro)
@@ -29,7 +29,7 @@
                 <div class="col-md-3"> <!-- Columna para Edad -->
                     <div class="form-group d-flex flex-direction-row align-items-center gap-2">
                         <label for="edad">Edad</label>
-                        <input type="text" class="form-control" id="edad">
+                        <input type="text" class="form-control" id="edad" name="edad" value="">
                     </div>
                 </div>
 
@@ -40,7 +40,6 @@
                             <option value="todos">Todos</option>
                             <option value="espanol">Español</option>
                             <option value="euskera">Euskera</option>
-                            <option value="ingles">Inglés</option>
                         </select>
                     </div>
                 </div>
@@ -50,6 +49,12 @@
                         <label for="horario">Horario</label>
                         <input type="text" class="form-control" id="horario">
                     </div>
+                </div>
+            </div>
+
+            <div class="row pb-5">
+                <div class="col-md-12">
+                    <a href="{{ route('actividad.showActividadesFiltros') }}" class="btn btn-primary">Filtrar</a>
                 </div>
             </div>
 
@@ -72,39 +77,28 @@
                     <div class="col-lg-3 col-md-4 mt-2 d-flex justify-content-center">
                         <div class="card d-flex flex-column h-100 text-center">
                             <img class="card-img-top img-fluid" style="height: 200px; object-fit: cover;"
-                                 src="{{ $actividad->imagen ? asset('storage/' . $actividad->imagen) :
-                                    asset('storage/' . 'actividades/pintura.png') }}"
+                                 src="{{ $actividad->imagen ? asset('storage/' . $actividad->imagen) : asset('storage/' . 'actividades/pintura.png') }}"
                                  alt="Imagen {{ $actividad->titulo }}">
                             <div class="card-body d-flex flex-column flex-grow-1">
                                 <h5 class="card-title">{{ $actividad->titulo }}</h5>
                                 <p class="card-text">{{ $actividad->descripcion }}</p>
-                                @if(!Auth::check())
-                                    <a href="#" class="btn btn-success mt-auto w-100 mx-auto" data-bs-toggle="modal"
-                                       data-bs-target="#apuntarseModal" data-actividad="{{ json_encode($actividad) }}">
-                                        Más información
-                                    </a>
-                                @endif
+                                <a href="#" class="btn btn-success mt-auto w-100 mx-auto" data-bs-toggle="modal"
+                                   data-bs-target="#apuntarseModal" data-actividad="{{ json_encode($actividad) }}">
+                                    Más información</a>
                                 @if(Auth::check())
-                                    <div class="d-flex gap-2 mt-auto">
-                                        <form action="{{ route('actividad.delete') }}" method="POST" class="w-50 m-0">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="hidden" name="id" value="{{ $actividad->id }}">
-                                            <button type="submit" class="btn btn-danger btn-destacado text-white w-100">
-                                                Borrar
-                                            </button>
-                                        </form>
+                                    <form action="{{ route('actividad.delete') }}" method="POST" class="my-1 w-100">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="id" value="{{ $actividad->id }}">
+                                        <button type="submit" class="btn btn-danger btn-destacado w-100 text-white">Borrar</button>
+                                    </form>
 
-                                        <a href="{{ route('actividad.edit', ['id' => $actividad->id]) }}"
-                                           class="btn btn-primary btn-editar text-white w-50">
-                                            Editar
-                                        </a>
-                                    </div>
+                                    <a href="{{ route('actividad.edit', ['id' => $actividad->id]) }}"
+                                       class="btn btn-editar text-white w-100">Editar</a>
                                 @endif
                             </div>
                             <div class="card-footer">
-                                <small class="text-muted">{{ "Plazas disponibles: ". $actividad->plazas_disponibles
-                                    ." de ". $actividad->plazas_totales }}</small>
+                                <small class="text-muted">{{ "Plazas disponibles: ". $actividad->plazas_disponibles ." de ". $actividad->plazas_totales }}</small>
                             </div>
                         </div>
                     </div>
