@@ -14,6 +14,8 @@ class ActividadController extends Controller
         $centroCivicos = CentroCivico::all();
         return view('actividad.createActividad', compact('centroCivicos'));
     }
+
+    //public function store(Request $request){
     public function save(Request $request){
 
 
@@ -74,6 +76,7 @@ class ActividadController extends Controller
 
     }
 
+    //public function index($id = null ){
     public function showActividades($id = null ){
 
         $actividades = "";
@@ -88,6 +91,7 @@ class ActividadController extends Controller
 
     }
 
+    //public function show($id){
     public function showActividadesCentro($id){
 
         $actividades = Actividad::where('centro_civico_id', $id)->get();
@@ -98,6 +102,7 @@ class ActividadController extends Controller
 
     }
 
+    //public function destroy(Request $request)
     public function delete(Request $request)
     {
         $request->validate([

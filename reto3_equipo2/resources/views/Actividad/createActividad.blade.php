@@ -28,7 +28,7 @@
             <!--Lista de actividades-->
             <div class="row mt-2">
                 <div class="col d-flex justify-content-center">
-                    <form action="{{route("actividad.save")}}" method="post" class="border rounded p-4 w-75">
+                    <form action="{{route("actividad.store")}}" method="post" class="border rounded p-4 w-75">
                         @csrf
 
                         <div class="row justify-content-center gap-3">

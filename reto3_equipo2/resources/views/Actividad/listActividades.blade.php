@@ -136,11 +136,27 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>¿Quieres inscribirte en esta actividad?</p>
+
+                            <form action="{{ route("inscripcion.store") }}" method="POST">
+                                @csrf
+                                @method('POST')
+
+                                <p>¿Quieres inscribirte en esta actividad?</p>
+
+                                <div class="mt-3" id="contenedorDni" style="visibility: hidden;">
+                                    <label for="casillaDni" class="form-label">
+                                        <i>Escribe tu DNI para poder completar la inscripción</i>
+                                    </label>
+                                    <input type="text" class="form-control" id="casillaDni" name="casillaDni" placeholder="DNI" value="{{ old('casillaDni') }}">
+                                </div>
+
+                                <!-- TODO : id de la actividad -->
+                                <input type="hidden" name="id_actividad" value="">
+                            </form>
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <!-- TODO : Que exija loguearse con el DNI, que pille el id_actividad y el id_ciudadano, que cree una fila en 'inscripciones' y que actualice el valor de 'plazas_disponibles - 1' de la actividad... -->
                             <button type="button" class="btn btn-editar text-white" id="confirmarConfirmacion">Confirmar</button>
                         </div>
                     </div>
@@ -154,6 +170,7 @@
 
                     apuntarseButtons.forEach(button => {
                         button.addEventListener('click', function(event) {
+
                             event.preventDefault();
 
                             const actividadData = JSON.parse(this.dataset.actividad);
@@ -180,11 +197,134 @@
                                 inscripcionModal.show();
                             });
 
+                            var contenedorDni = document.getElementById('contenedorDni');
+                            var casillaDni = document.getElementById('casillaDni');
+
                             // Evento del botón de confirmar la inscripción en el primer modal
                             const confirmarConfirmacionBtn = document.querySelector('#confirmarConfirmacion');
-                            confirmarConfirmacionBtn.addEventListener('click', () => {
-                                // TODO : Debería aparecer una casilla para rellenar con el DNI...
+                            confirmarConfirmacionBtn.addEventListener('click', async () => {
+
+                                // Solamente si el DNI está visible lo validará y permitirá realizar la inscripción. Si no, mostrará su casilla.
+
+                                if (contenedorDni.style.visibility === 'hidden') {
+                                    // Mostrar casilla del DNI a rellenar
+                                    contenedorDni.style.visibility = 'visible';
+                                }
+                                else {
+
+                                    // Validar el DNI y realizar inscripción
+
+                                    const dni = casillaDni.value;
+                                    const dniRegex = /^[0-9]{8}[A-Z]$/;
+
+                                    if (dni.length !== 9 || !dniRegex.test(dni)) {
+                                        // todo : Ponerlo como mensaje lateral (mirar login en modo claro)
+                                        alert("El DNI debe tener 8 números seguidos de una letra mayúscula.");
+                                    }
+                                    else {
+                                        // Será correcto
+                                        // TODO : Pillar el dato de "casillaDni" y el id d ela actividad, y crear una fila en 'inscripciones'
+                                        // TODO : Actualizar el valor de la columna a 'plazas_disponibles - 1' en la actividad
+                                    }
+
+                                }
+
+
+
+
+
+                                /*
+                                if (contenedorDni.style.visibility === 'hidden') {
+                                    contenedorDni.style.visibility = 'visible';
+                                } else {
+                                    const dni = casillaDni.value;
+                                    const dniRegex = /^[0-9]{8}[A-Z]$/;
+
+                                    if (dni.length !== 9 || !dniRegex.test(dni)) {
+                                        // Mostrar mensaje de error con toast
+                                        const toast = new bootstrap.Toast(document.getElementById('validationToast'));
+                                        const toastBody = document.querySelector('.toast-body');
+                                        toastBody.textContent = "El DNI debe tener 8 números seguidos de una letra mayúscula";
+                                        toast.show();
+                                        return;
+                                    }
+
+                                    try {
+                                        // Realizar la inscripción
+                                        const response = await fetch('{{ route("inscripcion.store") }}', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                            },
+                                            body: JSON.stringify({
+                                                actividad_id: actividadData.id,
+                                                dni: dni
+                                            })
+                                        });
+
+                                        const data = await response.json();
+
+                                        if (data.success) {
+                                            // Cerrar los modales
+                                            bootstrap.Modal.getInstance(document.getElementById('inscripcionFormModal')).hide();
+                                            bootstrap.Modal.getInstance(document.getElementById('apuntarseModal')).hide();
+
+                                            // Actualizar las plazas disponibles en la UI
+                                            const plazasElement = document.querySelector(`[data-actividad-id="${actividadData.id}"] .plazas-disponibles`);
+                                            if (plazasElement) {
+                                                plazasElement.textContent = data.plazas_disponibles;
+                                            }
+
+                                            // Mostrar mensaje de éxito
+                                            const toast = new bootstrap.Toast(document.getElementById('validationToast'));
+                                            const toastBody = document.querySelector('.toast-body');
+                                            document.getElementById('validationToast').classList.remove('bg-danger');
+                                            document.getElementById('validationToast').classList.add('bg-success');
+                                            toastBody.textContent = "¡Inscripción realizada con éxito!";
+                                            toast.show();
+                                        }
+                                    } catch (error) {
+                                        const toast = new bootstrap.Toast(document.getElementById('validationToast'));
+                                        const toastBody = document.querySelector('.toast-body');
+                                        toastBody.textContent = "Error al realizar la inscripción";
+                                        toast.show();
+                                    }
+                                }
+                                */
+
+
+
+
+
+
+
+
+
+                                /*
+                                if (contenedorDni.style.visibility === 'hidden') {
+                                    // Mostrar casilla del DNI a rellenar
+                                    contenedorDni.style.visibility = 'visible';
+                                }
+                                else {
+                                    // Validar el DNI y realizar inscripción
+                                    if (casillaDni.value.length !== 9) {
+                                        // TODO : Ponerlo como mensaje lateral (mirar login en modo claro)
+                                        alert("El DNI debe tener 9 caracteres.");
+                                    }
+                                    else if (!casillaDni.value.test(/^[0-9]{8}[A-Z]$/)) {
+                                        alert("El DNI debe cumplir el formato.");
+                                    }
+                                    else {
+                                        // Será correcto
+                                        // TODO : Pillar el id_actividad y el id_ciudadano, y crear una fila en 'inscripciones'
+                                        // TODO : Actualizar el valor de la columna a 'plazas_disponibles - 1' en la actividad
+                                    }
+                                }
+                                */
+
                             });
+
                         });
                     });
                 });
