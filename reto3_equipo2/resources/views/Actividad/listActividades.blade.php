@@ -11,14 +11,14 @@
             </div>
 
             <div class="row">
-                <div class="col my-4">
+                <div class="col mt-4 mb-5">
                     <h3>Apúntate a las actividades:</h3>
                 </div>
             </div>
 
             <!--Filtros-->
 
-            <div class="row">
+            <div class="row mb-4">
                 <div class="col-md-3"> <!-- Columna para Centro Civico -->
                     <div class="form-group d-flex flex-direction-row align-items-center gap-2">
                         <label for="centro_civico">Centros</label>
@@ -66,10 +66,10 @@
                             <img class="card-img-top img-fluid" style="height: 200px; object-fit: cover;"
                                  src="{{ $actividad->imagen ? asset('storage/' . $actividad->imagen) : asset('storage/' . 'actividades/pintura.png') }}"
                                  alt="Imagen {{ $actividad->titulo }}">
-                            <div class="card-body">
+                            <div class="card-body d-flex flex-column flex-grow-1">
                                 <h5 class="card-title">{{ $actividad->titulo }}</h5>
                                 <p class="card-text">{{ $actividad->descripcion }}</p>
-                                <a href="#" class="btn btn-success my-2" data-bs-toggle="modal"
+                                <a href="#" class="btn btn-success mt-auto w-auto mx-auto" data-bs-toggle="modal"
                                    data-bs-target="#apuntarseModal" data-actividad="{{ json_encode($actividad) }}">
                                     Más información</a>
                                 @if(Auth::check())
@@ -81,9 +81,7 @@
                                     </form>
 
                                     <a href="{{ route('actividad.edit', ['id' => $actividad->id]) }}"
-                                       class="btn btn-primary text-white">
-                                        Editar
-                                    </a>
+                                       class="btn btn-primary text-white">Editar</a>
                                 @endif
                             </div>
                             <div class="card-footer">
@@ -132,10 +130,11 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>¿Quieres inscribirte a la actividad ?</p>
+                            <p>¿Quieres inscribirte en esta actividad?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <!-- TODO : Que cree una fila en 'inscripciones' y que actualice el valor de 'plazas_disponibles'... -->
                             <button type="button" class="btn btn-primary" id="confirmarConfirmacion">Confirmar</button>
                         </div>
                     </div>
@@ -167,6 +166,7 @@
                             modalImagen.src = actividadData.imagen ? `/storage/${actividadData.imagen}` : `/storage/actividades/pintura.png`;
                             modalImagen.alt = `Imagen de ${actividadData.titulo}`;
 
+                            // Evento del botón "Inscribirse" en el primer modal
                             const confirmarApuntarseBtn = document.querySelector('#confirmarApuntarse');
                             confirmarApuntarseBtn.addEventListener('click', () => {
                                 // Mostrar el segundo modal (de la inscripción)

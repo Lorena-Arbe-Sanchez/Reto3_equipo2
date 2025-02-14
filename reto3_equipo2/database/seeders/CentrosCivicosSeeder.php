@@ -46,6 +46,39 @@ class CentrosCivicosSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'nombre' => 'Centro Cívico Ariznabarra',
+                'telefono' => '945162650',
+                'correo' => 'cc.ariznabarra.coo@vitoria-gasteiz.org',
+                'direccion' => 'Ariznabarra Kalea, 19',
+                'codigo_postal' => '01007',
+                'imagen' => 'centros_civicos/ariznabarra.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            // TODO
+            /*
+            [
+                'nombre' => 'Centro Cívico ',
+                'telefono' => '',
+                'correo' => 'cc..coo@vitoria-gasteiz.org',
+                'direccion' => '',
+                'codigo_postal' => '',
+                'imagen' => 'centros_civicos/.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nombre' => 'Centro Cívico ',
+                'telefono' => '',
+                'correo' => 'cc..coo@vitoria-gasteiz.org',
+                'direccion' => '',
+                'codigo_postal' => '',
+                'imagen' => 'centros_civicos/.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            */
         ]);
 
     }

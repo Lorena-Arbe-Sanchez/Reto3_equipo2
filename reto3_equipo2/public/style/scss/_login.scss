@@ -1,11 +1,15 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
 
-$light-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+$light-bg: linear-gradient(135deg, #e4eaf4 0%, #94abcf 100%);
 $dark-bg: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
 
-#login {
+.login-container {
     background: $light-bg;
     transition: background 0.3s ease;
+    min-height: 100vh; /* Asegura que el fondo cubra toda la pantalla */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card {
@@ -18,6 +22,12 @@ $dark-bg: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
 
 .dark-mode {
     background: $dark-bg;
+    color: #fff;
+
+    .login-container {
+        background: $dark-bg;
+        color: #fff;
+    }
 
     .card {
         background-color: rgba(33, 37, 41, 0.9);
