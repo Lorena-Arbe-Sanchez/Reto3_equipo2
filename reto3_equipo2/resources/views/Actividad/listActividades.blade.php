@@ -6,13 +6,13 @@
 
             <div class="row">
                 <div class="col mt-4 mb-5">
-                    <h3>Apúntate a las actividades:</h3>
+                    <h3>Apúntate a las actividades</h3>
                 </div>
             </div>
 
             <!--Filtros-->
 
-            <div class="row mb-4">
+            <div class="row mb-5">
                 <div class="col-md-3"> <!-- Columna para Centro Civico -->
                     <div class="form-group d-flex flex-direction-row align-items-center gap-2">
                         <label for="centro_civico">Centros</label>
@@ -53,8 +53,21 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col">
+                    <!-- TODO : Implementar bien. -->
+                    <?php $actividadesTotales = 0 ?>
+
+                    <?php if ($actividadesTotales == 1): ?>
+                    <p>Se ha encontrado <b>1</b> actividad con los criterios anteriores.</p>
+                    <?php else: ?>
+                    <p>Se han encontrado <b><?php echo $actividadesTotales; ?></b> actividades con los criterios anteriores.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
+
             <!--Lista de actividades-->
-            <div class="row mt-2">
+            <div class="row pt-5">
                 @forelse ($actividades as $actividad)
                     <div class="col-lg-3 col-md-4 mt-2 d-flex justify-content-center">
                         <div class="card d-flex flex-column h-100 text-center">
