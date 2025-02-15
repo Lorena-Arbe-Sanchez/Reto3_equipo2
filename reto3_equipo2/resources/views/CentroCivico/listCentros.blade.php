@@ -14,13 +14,26 @@
                     <div class="col-lg-3 col-md-4 mt-2 d-flex justify-content-center">
                         <div class="card d-flex flex-column h-100 text-center">
                             <img class="card-img-top"
-                                 src="{{ $centro->imagen ? asset('storage/' . $centro->imagen) : asset('storage/' . 'centros_civicos/arriaga.png') }}"
+                                 src="{{ $centro->imagen ? asset('storage/' . $centro->imagen) :
+                                    asset('storage/' . 'centros_civicos/default.png') }}"
                                  alt="Imagen {{ $centro->nombre }}">
                             <div class="card-body d-flex flex-column flex-grow-1">
                                 <h5 class="card-title">{{ $centro->nombre }}</h5>
                                 <p class="card-text">{{ $centro->direccion }}</p>
-                                <a href="{{route('actividad.showActividadesCentro', ['id' => $centro->id]) }}"
-                                   class="btn btn-success mt-auto w-auto mx-auto">Ver actividades
+
+                                <!-- TODO : Poner como en las actividades: su información. Falta de rellenar "data-actividad" y hacer la parte de script abajo. -->
+                                @if(!Auth::check())
+                                    <a href="#" class="btn btn-secundario mt-auto w-100 mx-auto mb-2"
+                                       data-bs-toggle="modal" data-bs-target="#informacionModal"
+                                       data-actividad="">
+                                        Más información
+                                    </a>
+                                @endif
+
+                                <!-- Enlace que navega a la ventana de las actividades de ese centro. Si se está logueado, aparecerá más abajo. -->
+                                <a href="{{ route('actividad.showActividadesCentro', ['id' => $centro->id]) }}"
+                                   class="{{ Auth::check() ? 'btn btn-success w-100 mx-auto mt-auto' : 'btn btn-success w-100 mx-auto' }}">
+                                    Ver actividades
                                 </a>
                             </div>
                         </div>

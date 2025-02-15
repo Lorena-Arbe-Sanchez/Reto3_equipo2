@@ -54,7 +54,7 @@
                                 @method('DELETE')
                                 <input type="hidden" name="id_actividad" value="{{ $inscripcion->id_actividad }}">
                                 <input type="hidden" name="id_ciudadano" value="{{ $inscripcion->id_ciudadano }}">
-                                <button type="submit" class="btn btn-danger btn-destacado text-white">Borrar</button>
+                                <button type="submit" class="btn btn-danger btn-destacado text-white">Eliminar</button>
                             </form>
                         </div>
                     @endforeach
