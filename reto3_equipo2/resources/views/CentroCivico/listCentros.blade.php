@@ -47,7 +47,7 @@
 
             <div class="row mt-4">
                 <div class="col d-flex justify-content-end">
-                    <a href="{{route("actividad.showActividades")}}" class="btn btn-success text-white">Ver todas</a>
+                    <a href="{{route("actividad.showActividades")}}" class="btn btn-primary btn-editar">Ver todas las actividades</a>
                 </div>
             </div>
         </div>

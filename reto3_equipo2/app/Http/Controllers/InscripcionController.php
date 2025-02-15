@@ -135,6 +135,8 @@ class InscripcionController extends Controller
             ->where('id_ciudadano', $request->id_ciudadano)
             ->delete();
 
+        // TODO : Y actualizar el valor a "plazas_disponibles + 1" de la actividad.
+
         return redirect()->back()->with('success', 'Inscripción eliminada correctamente.');
     }
 

@@ -13,7 +13,7 @@ class InscripcionesSeeder extends Seeder
     public function run(): void
     {
         DB::table('inscripciones')->insert([
-            // TODO : Crear como 30 ciudadanos y hacer sus inscripciones (la cantidad por una actividad tiene que coincidir con (plazas_totales - plazas_disponibles) de la actividad)
+            // TODO : Crear como 30 ciudadanos y hacer sus inscripciones (la cantidad total de inscripciones por actividad tiene que coincidir con (actividad --> plazas_totales - plazas_disponibles = plazas_ocupadas) de la actividad)
             [
                 'id_actividad' => 2,
                 'id_ciudadano' => 2,

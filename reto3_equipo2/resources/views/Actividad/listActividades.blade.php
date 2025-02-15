@@ -209,8 +209,9 @@
                             document.getElementById('modal-actividad-idioma').textContent = actividadData.idioma;
                             document.getElementById('modal-actividad-horario').textContent = `${actividadData.hora_inicio} - ${actividadData.hora_fin}`;
                             document.getElementById('modal-actividad-plazas').textContent = `${actividadData.plazas_disponibles}/${actividadData.plazas_totales}`;
+                            const edadMinima = actividadData.edad_minima === null ? "∞" : actividadData.edad_minima;
                             const edadMaxima = actividadData.edad_maxima === null ? "∞" : actividadData.edad_maxima;
-                            document.getElementById('modal-actividad-edades').textContent = `${actividadData.edad_minima} - ${edadMaxima}`;
+                            document.getElementById('modal-actividad-edades').textContent = `${edadMinima} - ${edadMaxima}`;
 
                             // Actualizar la imagen del modal con la de la actividad seleccionada
                             const modalImagen = document.getElementById('modal-actividad-imagen');

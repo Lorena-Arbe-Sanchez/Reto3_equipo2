@@ -65,6 +65,7 @@ class ActividadController extends Controller
             $actividad->plazas_minimas = $request->input('plazas_minimas');
             $actividad->edad_minima = $request->input('edad_minima');
             $actividad->edad_maxima = $request->input('edad_maxima');
+            // TODO : También hay que ponerle el "administrador_id" del admin logueado (e implementar vMisActividades para acceder a las creadas por él más fácilmente; y poder ver/editar/eliminar)
             $actividad->centro_civico_id = $request->input('centro_civico_id');
             $actividad->imagen = $imagenPath;
 

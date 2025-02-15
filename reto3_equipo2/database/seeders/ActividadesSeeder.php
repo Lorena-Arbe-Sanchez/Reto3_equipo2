@@ -265,6 +265,7 @@ class ActividadesSeeder extends Seeder
                 'created_at' => '2024-01-10 10:00:00',
                 'updated_at' => '2024-01-10 10:00:00',
             ],
+            // TODO : Crear unas 10 más (que tengan también todas las plazas libres)
         ]);
     }
 }

@@ -14,8 +14,8 @@ class CiudadanosSeeder extends Seeder
     {
         DB::table('ciudadanos')->insert([
             [
-                'nombre' => 'Alice',
-                'apellidos' => 'Smith Johnson',
+                'nombre' => 'Alicia',
+                'apellidos' => 'Sánchez Jiménez',
                 'dni' => $this->generateValidDNI(),
                 'direccion' => 'Calle Mayor, 123',
                 'codigo_postal' => '28001',
@@ -25,7 +25,7 @@ class CiudadanosSeeder extends Seeder
             ],
             [
                 'nombre' => 'Bob',
-                'apellidos' => 'Williams Brown',
+                'apellidos' => 'Williams Pérez',
                 'dni' => $this->generateValidDNI(),
                 'direccion' => 'Avenida Central, 45',
                 'codigo_postal' => '08001',
@@ -34,8 +34,8 @@ class CiudadanosSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'nombre' => 'Charlie',
-                'apellidos' => 'Jones Davis',
+                'nombre' => 'César',
+                'apellidos' => 'Jiménez Gil',
                 'dni' => $this->generateValidDNI(),
                 'direccion' => 'Plaza del Sol, 67',
                 'codigo_postal' => '41001',
@@ -45,7 +45,7 @@ class CiudadanosSeeder extends Seeder
             ],
             [
                 'nombre' => 'Diana',
-                'apellidos' => 'Miller Wilson',
+                'apellidos' => 'Miller Martín',
                 'dni' => $this->generateValidDNI(),
                 'direccion' => 'Calle Luna, 89',
                 'codigo_postal' => '30001',
@@ -54,8 +54,8 @@ class CiudadanosSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'nombre' => 'Eve',
-                'apellidos' => 'Garcia Perez',
+                'nombre' => 'Eugenia',
+                'apellidos' => 'García Pérez',
                 'dni' => $this->generateValidDNI(),
                 'direccion' => 'Paseo de las Delicias, 10',
                 'codigo_postal' => '29001',
