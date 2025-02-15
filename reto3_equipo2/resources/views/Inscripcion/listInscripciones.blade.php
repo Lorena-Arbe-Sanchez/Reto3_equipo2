@@ -5,7 +5,7 @@
         <div class="col">
             <div class="row">
                 <form action="{{ route('centros.listCentros') }}" method="GET">
-                    <button type="submit" class="btn btn-success">Volver</button>
+                    <button type="submit" class="btn btn-success btn-secundario">Volver</button>
                 </form>
             </div>
             <div class="row">
@@ -34,7 +34,7 @@
                 </div>
             </div>
 
-            <!-- TODO : Ponerlo como tabla, y añadir columna de "nombre". -->
+            <!-- TODO : Ponerlo como una tabla. -->
 
             <!--Lista de inscripciones-->
             <div class="row mt-2 w-75 mx-auto border rounded px-2 pb-2">

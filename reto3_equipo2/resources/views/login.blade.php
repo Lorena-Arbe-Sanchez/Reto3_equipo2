@@ -31,7 +31,6 @@
                     <label for="password" class="form-label">Contraseña</label>
                     <input type="password" class="form-control" id="password" name="password" autocomplete="current-password" required>
                 </div>
-                <!-- TODO : Implementar. -->
                 <button type="submit" class="btn btn-success w-100">Acceder</button>
 
             </form>
@@ -53,13 +52,14 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        //const loginForm = document.getElementById("loginForm");
+        const loginForm = document.getElementById("loginForm");
         const darkModeToggle = document.getElementById("darkModeToggle");
         const body = document.body;
         const notification = document.getElementById("notification");
         const form = document.getElementById("loginForm");
 
-        /*
+        /* TODO : Hacer la validación de datos antes de comprobar en BD.
+
         // Validar form
         loginForm.addEventListener("submit", (e) => {
             e.preventDefault()
@@ -67,13 +67,11 @@
             const password = document.getElementById("password").value
 
             if (!isValidUsuario(usuario)) {
-                console.error("El usuario debe ser válido.")
-                return
+                alert("El usuario debe ser válido.")
             }
 
             if (password.length < 8) {
-                console.error("La contraseña debe tener como mínimo 8 caracteres.")
-                return
+                alert("La contraseña debe tener como mínimo 8 caracteres.")
             }
 
             console.log("Login exitoso.")
@@ -81,9 +79,9 @@
 
         // Validar usuario
         function isValidUsuario(usuario) {
-            // Cualquier carácter alfanumérico de 2 a 20 veces.
-            const usuarioRegex = /^[\w]{2,20}$/
-            return usuarioRegex.test(usuario)
+            // Cualquier carácter alfanumérico.
+            const usuarioRegex = /^[\w]+$/
+            return usuarioRegex.test(usuario);
         }
          */
 

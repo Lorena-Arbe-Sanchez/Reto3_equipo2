@@ -18,8 +18,11 @@ class InscripcionController extends Controller
 
             // Validar campos requeridos
             $validator = Validator::make($request->all(), [
-                'dni' => 'required',
+                'casillaDni' => 'required|string|size:9',
+                'id_actividad' => 'required|exists:inscripciones,id_actividad',
             ]);
+
+            // TODO : Después de crear la inscripción --> Actualizar el valor de la columna a 'plazas_disponibles - 1' en la actividad
 
             if ($validator->fails()) {
 

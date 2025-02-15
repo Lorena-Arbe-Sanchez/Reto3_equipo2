@@ -5,7 +5,7 @@
         <div class="col">
             <div class="row">
                 <form action="{{ route('centros.listCentros') }}" method="GET">
-                    <button type="submit" class="btn btn-success">Volver</button>
+                    <button type="submit" class="btn btn-success btn-secundario">Volver</button>
                 </form>
             </div>
             <div class="row">
@@ -40,10 +40,16 @@
                                 <textarea id="descripcion" name="descripcion" class="form-control border border-dark">{{ old('descripcion') }}</textarea>
                             </div>
 
-                            <!-- TODO : Que sea un select con 3 opciones: "Español" / "Euskera" / "Inglés" -->
                             <div class="col-3 d-flex flex-column">
                                 <label for="idioma" class="form-label">Idioma</label>
                                 <input type="text" id="idioma" name="idioma" class="form-control border border-dark" value="{{ old('idioma') }}">
+
+                                <!-- TODO : Que sea un select con 3 opciones: "Español" / "Euskera" / "Inglés" -->
+{{--                                <select class="form-select border border-dark" id="idioma" name="idioma">--}}
+{{--                                    <option value="Español">{{ old('idioma') }}</option>--}}
+{{--                                    <option value="Euskera">{{ old('idioma') }}</option>--}}
+{{--                                    <option value="Inglés">{{ old('idioma') }}</option>--}}
+{{--                                </select>--}}
                             </div>
                         </div>
 
@@ -120,7 +126,7 @@
                         </div>
 
                         <div class="row justify-content-center">
-                            <button type="submit" class="btn text-white mt-4 w-25">Crear Actividad</button>
+                            <button type="submit" class="btn btn-success text-white mt-4 w-25">Crear Actividad</button>
                         </div>
                     </form>
                 </div>
