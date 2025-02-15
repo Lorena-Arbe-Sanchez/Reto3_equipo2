@@ -14,6 +14,8 @@
                 </div>
             </div>
 
+            <!-- TODO : Ponerlos como select con opciones rellenadas de la BD y el 2º dependiente del 1º. -->
+
             <!--Filtros-->
             <div class="row mt-3">
                 <div class="col d-flex justify-content-evenly">

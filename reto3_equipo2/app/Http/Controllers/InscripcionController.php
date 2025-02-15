@@ -120,7 +120,7 @@ class InscripcionController extends Controller
 
 
     public function show(){
-        $inscripciones = Inscripcion::with('actividad','ciudadano')->paginate(3);
+        $inscripciones = Inscripcion::with('actividad','ciudadano')->paginate(10);
         return view('Inscripcion.listInscripciones', compact('inscripciones'));
     }
 
