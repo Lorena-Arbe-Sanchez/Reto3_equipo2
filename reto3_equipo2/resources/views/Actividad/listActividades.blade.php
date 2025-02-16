@@ -83,7 +83,7 @@
 
             <!-- TODO : Ponerlo como mensaje lateral (que se sobreponga a todo y no afecte a lo demás / a lo de abajo) + Que no se recargue la página -->
             @if ($errors->any())
-                <div class="alert alert-danger">
+                <div class="alert alert-danger" id="danger-message">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -94,7 +94,7 @@
 
             <!-- TODO : Ponerlo como mensaje lateral también -->
             @if(session('success'))
-                <div class="alert alert-success">
+                <div class="alert alert-success" id="success-message">
                     {{ session('success') }}
                 </div>
             @endif
@@ -266,7 +266,6 @@
                                     contenedorDni.style.visibility = 'visible';
                                 }
                                 else {
-
                                     // Validar el DNI y realizar inscripción
 
                                     const dni = casillaDni.value;
@@ -276,7 +275,6 @@
                                         // todo : Ponerlo como mensaje lateral (mirar login en modo claro)
                                         alert("El DNI debe tener 8 números seguidos de una letra mayúscula.");
                                         casillaDni.focus();
-
                                     }
                                     else {
                                         // Se establecerán los datos de "casillaDni" y de "id_actividad" del formulario, y se creará una fila en 'inscripciones'.
@@ -287,95 +285,21 @@
                                         casillaDni.value = "";
                                         contenedorDni.style.visibility = 'hidden';
                                     }
-
                                 }
-
-
-
-                                {{--if (contenedorDni.style.visibility === 'hidden') {--}}
-                                {{--    contenedorDni.style.visibility = 'visible';--}}
-                                {{--} else {--}}
-                                {{--    const dni = casillaDni.value;--}}
-                                {{--    const dniRegex = /^[0-9]{8}[A-Z]$/;--}}
-
-                                {{--    if (dni.length !== 9 || !dniRegex.test(dni)) {--}}
-                                {{--        // Mostrar mensaje de error con toast--}}
-                                {{--        const toast = new bootstrap.Toast(document.getElementById('validationToast'));--}}
-                                {{--        const toastBody = document.querySelector('.toast-body');--}}
-                                {{--        toastBody.textContent = "El DNI debe tener 8 números seguidos de una letra mayúscula";--}}
-                                {{--        toast.show();--}}
-                                {{--        return;--}}
-                                {{--    }--}}
-
-                                {{--    try {--}}
-                                {{--        // Realizar la inscripción--}}
-                                {{--        const response = await fetch('{{ route("inscripcion.store") }}', {--}}
-                                {{--            method: 'POST',--}}
-                                {{--            headers: {--}}
-                                {{--                'Content-Type': 'application/json',--}}
-                                {{--                'X-CSRF-TOKEN': '{{ csrf_token() }}'--}}
-                                {{--            },--}}
-                                {{--            body: JSON.stringify({--}}
-                                {{--                actividad_id: actividadData.id,--}}
-                                {{--                dni: dni--}}
-                                {{--            })--}}
-                                {{--        });--}}
-
-                                {{--        const data = await response.json();--}}
-
-                                {{--        if (data.success) {--}}
-                                {{--            // Cerrar los modales--}}
-                                {{--            bootstrap.Modal.getInstance(document.getElementById('inscripcionFormModal')).hide();--}}
-                                {{--            bootstrap.Modal.getInstance(document.getElementById('apuntarseModal')).hide();--}}
-
-                                {{--            // Actualizar las plazas disponibles en la UI--}}
-                                {{--            const plazasElement = document.querySelector(`[data-actividad-id="${actividadData.id}"] .plazas-disponibles`);--}}
-                                {{--            if (plazasElement) {--}}
-                                {{--                plazasElement.textContent = data.plazas_disponibles;--}}
-                                {{--            }--}}
-
-                                {{--            // Mostrar mensaje de éxito--}}
-                                {{--            const toast = new bootstrap.Toast(document.getElementById('validationToast'));--}}
-                                {{--            const toastBody = document.querySelector('.toast-body');--}}
-                                {{--            document.getElementById('validationToast').classList.remove('bg-danger');--}}
-                                {{--            document.getElementById('validationToast').classList.add('bg-success');--}}
-                                {{--            toastBody.textContent = "¡Inscripción realizada con éxito!";--}}
-                                {{--            toast.show();--}}
-                                {{--        }--}}
-                                {{--    } catch (error) {--}}
-                                {{--        const toast = new bootstrap.Toast(document.getElementById('validationToast'));--}}
-                                {{--        const toastBody = document.querySelector('.toast-body');--}}
-                                {{--        toastBody.textContent = "Error al realizar la inscripción";--}}
-                                {{--        toast.show();--}}
-                                {{--    }--}}
-                                {{--}--}}
-
-
-
-                                /*
-                                if (contenedorDni.style.visibility === 'hidden') {
-                                    // Mostrar casilla del DNI a rellenar
-                                    contenedorDni.style.visibility = 'visible';
-                                }
-                                else {
-                                    // Validar el DNI y realizar inscripción
-                                    if (casillaDni.value.length !== 9) {
-                                        alert("El DNI debe tener 9 caracteres.");
-                                    }
-                                    else if (!casillaDni.value.test(/^[0-9]{8}[A-Z]$/)) {
-                                        alert("El DNI debe cumplir el formato.");
-                                    }
-                                    else {
-                                        // Será correcto
-                                    }
-                                }
-                                */
 
                             });
 
                         });
                     });
                 });
+
+                // Temporizadores para los mensajes (de 5 segundos)
+                setTimeout(function() {
+                    document.getElementById('success-message').style.display = 'none';
+                }, 5000);
+                setTimeout(function() {
+                    document.getElementById('danger-message').style.display = 'none';
+                }, 5000);
 
             </script>
 
