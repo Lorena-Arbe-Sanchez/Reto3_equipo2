@@ -301,6 +301,108 @@
                     document.getElementById('danger-message').style.display = 'none';
                 }, 5000);
 
+
+                
+                // TODO : Repasar
+                /*
+                document.addEventListener('DOMContentLoaded', function() {
+            const centroCivicoSelect = document.getElementById('centro_civico');
+            const edadInput = document.getElementById('edad');
+            const idiomaSelect = document.getElementById('idioma');
+            const horarioInput = document.getElementById('horario');
+            const textoBusquedaInput = document.getElementById('textoBusqueda');
+            const btnBuscar = document.getElementById('btnBuscar');
+            const btnFiltrar = document.getElementById('btnFiltrar');
+            const listaActividades = document.getElementById('listaActividades');
+            const actividadesTotalesSpan = document.getElementById('actividadesTotales');
+            let actividades = Array.from(document.querySelectorAll('.actividad-item'));
+
+            function filtrarActividades() {
+                const centroCivicoSeleccionado = centroCivicoSelect.value;
+                const edadIngresada = edadInput.value;
+                const idiomaSeleccionado = idiomaSelect.value;
+                const horarioIngresado = horarioInput.value;
+                const textoBusqueda = textoBusquedaInput.value.toLowerCase();
+
+                let actividadesFiltradas = actividades.filter(actividad => {
+                    const centroCivicoActividad = actividad.dataset.centroCivico;
+                    const edadMinimaActividad = actividad.dataset.edadMinima;
+                    const edadMaximaActividad = actividad.dataset.edadMaxima;
+                    const idiomaActividad = actividad.dataset.idioma;
+                    const horarioActividad = actividad.dataset.horario.toLowerCase();
+                    const textoActividad = actividad.dataset.texto.toLowerCase();
+
+                    let cumpleFiltro = true;
+
+                    // Filtro de Centro Cívico
+                    if (centroCivicoSeleccionado && centroCivicoSeleccionado !== "" && centroCivicoSeleccionado !== centroCivicoActividad) {
+                        cumpleFiltro = false;
+                    }
+
+                    // Filtro de Edad
+                    if (edadIngresada) {
+                        const edad = parseInt(edadIngresada);
+                        const edadMinima = parseInt(edadMinimaActividad) || 0; // Si es null, asumimos 0
+                        const edadMaxima = parseInt(edadMaximaActividad) || Infinity; // Si es null, asumimos infinito
+
+                        if (edad < edadMinima || edad > edadMaxima) {
+                            cumpleFiltro = false;
+                        }
+                    }
+
+                    // Filtro de Idioma
+                    if (idiomaSeleccionado && idiomaSeleccionado !== "") {
+                        if (idiomaSeleccionado !== "todos" && idiomaSeleccionado !== idiomaActividad) {
+                            cumpleFiltro = false;
+                        }
+                    }
+
+                    // Filtro de Horario
+                    if (horarioIngresado && horarioIngresado !== "" && !horarioActividad.includes(horarioIngresado.toLowerCase())) {
+                        cumpleFiltro = false;
+                    }
+
+                    // Filtro de Texto
+                    if (textoBusqueda && textoBusqueda !== "" && !textoActividad.includes(textoBusqueda)) {
+                        cumpleFiltro = false;
+                    }
+
+                    return cumpleFiltro;
+                });
+
+                // Ocultar todas las actividades
+                actividades.forEach(actividad => {
+                    actividad.style.display = 'none';
+                });
+
+                // Mostrar solo las actividades filtradas
+                actividadesFiltradas.forEach(actividad => {
+                    actividad.style.display = 'block';
+                });
+
+                // Actualizar el número total de actividades encontradas
+                actividadesTotalesSpan.textContent = actividadesFiltradas.length;
+            }
+
+            // Event listeners para cada filtro
+            centroCivicoSelect.addEventListener('change', filtrarActividades);
+            edadInput.addEventListener('input', filtrarActividades);
+            idiomaSelect.addEventListener('change', filtrarActividades);
+            horarioInput.addEventListener('input', filtrarActividades);
+            btnBuscar.addEventListener('click', function(event) {
+                event.preventDefault(); // Evitar la recarga de la página al presionar "Buscar"
+                filtrarActividades();
+            });
+            btnFiltrar.addEventListener('click', function(event) {
+                event.preventDefault(); // Evitar la recarga de la página al presionar "Filtrar"
+                filtrarActividades();
+            });
+
+            // Inicializar el número total de actividades
+            actividadesTotalesSpan.textContent = actividades.length;
+        });
+                 */
+
             </script>
 
         </div>
