@@ -119,6 +119,20 @@
       <excludeFolder url="file://$MODULE_DIR$/reto3_equipo2/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/reto3_equipo2/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/reto3_equipo2/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/reto3_equipo2/vendor/archtechx/enums" />
+      <excludeFolder url="file://$MODULE_DIR$/reto3_equipo2/vendor/dragon-code/contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/reto3_equipo2/vendor/dragon-code/pretty-array" />
+      <excludeFolder url="file://$MODULE_DIR$/reto3_equipo2/vendor/dragon-code/support" />
+      <excludeFolder url="file://$MODULE_DIR$/reto3_equipo2/vendor/laravel-lang/config" />
+      <excludeFolder url="file://$MODULE_DIR$/reto3_equipo2/vendor/laravel-lang/lang" />
+      <excludeFolder url="file://$MODULE_DIR$/reto3_equipo2/vendor/laravel-lang/locale-list" />
+      <excludeFolder url="file://$MODULE_DIR$/reto3_equipo2/vendor/laravel-lang/locales" />
+      <excludeFolder url="file://$MODULE_DIR$/reto3_equipo2/vendor/laravel-lang/native-country-names" />
+      <excludeFolder url="file://$MODULE_DIR$/reto3_equipo2/vendor/laravel-lang/native-currency-names" />
+      <excludeFolder url="file://$MODULE_DIR$/reto3_equipo2/vendor/laravel-lang/native-locale-names" />
+      <excludeFolder url="file://$MODULE_DIR$/reto3_equipo2/vendor/laravel-lang/publisher" />
+      <excludeFolder url="file://$MODULE_DIR$/reto3_equipo2/vendor/laravel/breeze" />
+      <excludeFolder url="file://$MODULE_DIR$/reto3_equipo2/vendor/symfony/polyfill-php81" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

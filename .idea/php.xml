@@ -128,6 +128,20 @@
       <path value="$PROJECT_DIR$/reto3_equipo2/vendor/hamcrest/hamcrest-php" />
       <path value="$PROJECT_DIR$/reto3_equipo2/vendor/carbonphp/carbon-doctrine-types" />
       <path value="$PROJECT_DIR$/reto3_equipo2/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/reto3_equipo2/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/reto3_equipo2/vendor/laravel-lang/config" />
+      <path value="$PROJECT_DIR$/reto3_equipo2/vendor/laravel-lang/lang" />
+      <path value="$PROJECT_DIR$/reto3_equipo2/vendor/archtechx/enums" />
+      <path value="$PROJECT_DIR$/reto3_equipo2/vendor/laravel-lang/native-country-names" />
+      <path value="$PROJECT_DIR$/reto3_equipo2/vendor/laravel-lang/native-currency-names" />
+      <path value="$PROJECT_DIR$/reto3_equipo2/vendor/laravel-lang/locale-list" />
+      <path value="$PROJECT_DIR$/reto3_equipo2/vendor/laravel-lang/locales" />
+      <path value="$PROJECT_DIR$/reto3_equipo2/vendor/dragon-code/contracts" />
+      <path value="$PROJECT_DIR$/reto3_equipo2/vendor/dragon-code/pretty-array" />
+      <path value="$PROJECT_DIR$/reto3_equipo2/vendor/laravel-lang/native-locale-names" />
+      <path value="$PROJECT_DIR$/reto3_equipo2/vendor/laravel-lang/publisher" />
+      <path value="$PROJECT_DIR$/reto3_equipo2/vendor/dragon-code/support" />
+      <path value="$PROJECT_DIR$/reto3_equipo2/vendor/laravel/breeze" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />

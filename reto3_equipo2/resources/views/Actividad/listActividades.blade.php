@@ -81,10 +81,28 @@
                 </div>
             </div>
 
+            <!-- TODO : Ponerlo como mensaje lateral (que se sobreponga a todo y no afecte a lo demás / a lo de abajo) + Que no se recargue la página -->
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <!-- TODO : Ponerlo como mensaje lateral también -->
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             <!--Lista de actividades-->
             <div class="row pt-5">
                 @forelse ($actividades as $actividad)
-                    <div class="col-lg-3 col-md-4 mt-2 d-flex justify-content-center">
+                    <div class="col-lg-3 col-md-4 my-4 px-4 d-flex justify-content-center">
                         <div class="card d-flex flex-column h-100 text-center">
                             <img class="card-img-top img-fluid" style="height: 200px; object-fit: cover;"
                                  src="{{ $actividad->imagen ? asset('storage/' . $actividad->imagen) :
@@ -118,8 +136,10 @@
                                 @endif
                             </div>
                             <div class="card-footer">
-                                <small class="text-muted">{{ "Plazas disponibles: ". $actividad->plazas_disponibles
-                                    ." de ". $actividad->plazas_totales }}</small>
+                                <small class="text-muted">
+                                    Plazas disponibles: <b>{{ $actividad->plazas_disponibles }}</b> de
+                                    {{ $actividad->plazas_totales }}
+                                </small>
                             </div>
                         </div>
                     </div>
@@ -150,7 +170,11 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary btn-secundario" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary btn-editar text-white" id="confirmarApuntarse">Inscribirse</button>
+                            <!-- TODO : Que solo deje inscribirse si hay al menos 1 plaza
+                            disponible (transformar a int el valor de "$actividad->plazas_disponibles" y comprobar).
+                            Si ya no quedan plazas debería salir un error en el control de arriba.
+                            Saldría algo como "No hay plazas disponibles para esta actividad" -->
+                            <button type="button" class="btn btn-primary btn-editar text-white" id="confirmarApuntarse">Inscribirme</button>
                         </div>
                     </div>
                 </div>
@@ -251,14 +275,15 @@
                                     if (dni.length !== 9 || !dniRegex.test(dni)) {
                                         // todo : Ponerlo como mensaje lateral (mirar login en modo claro)
                                         alert("El DNI debe tener 8 números seguidos de una letra mayúscula.");
+                                        casillaDni.focus();
+
                                     }
                                     else {
                                         // Se establecerán los datos de "casillaDni" y de "id_actividad" del formulario, y se creará una fila en 'inscripciones'.
                                         document.querySelector('#inscripcionFormModal form input[name="id_actividad"]').value = document.getElementById('modal-actividad-id').textContent;
                                         // Enviar el formulario
                                         document.querySelector('#inscripcionFormModal form').submit();
-                                        // todo : mensaje lateral también
-                                        alert("Inscripción realizada correctamente.");
+                                        // Si vuelve aquí es que la inserción ha salido bien y se puede continuar.
                                         casillaDni.value = "";
                                         contenedorDni.style.visibility = 'hidden';
                                     }
@@ -355,6 +380,10 @@
             </script>
 
         </div>
+    </div>
+
+    <div class="footer mt-5 pt-4 border-top text-center">
+        <p class="text-muted">© 2025 All rights reserved</p>
     </div>
 
     @endsection

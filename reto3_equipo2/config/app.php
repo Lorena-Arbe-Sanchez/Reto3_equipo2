@@ -65,7 +65,8 @@ return [
     |
     */
 
-    'timezone' => env('APP_TIMEZONE', 'UTC'),
+    //'timezone' => env('APP_TIMEZONE', 'UTC'),
+    'timezone' => 'Europe/Madrid',
 
     /*
     |--------------------------------------------------------------------------
@@ -78,9 +79,11 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
+    //'locale' => env('APP_LOCALE', 'en'),
+    'locale' => 'es',
 
-    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
+    //'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
+    'fallback_locale' => 'en',
 
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
 

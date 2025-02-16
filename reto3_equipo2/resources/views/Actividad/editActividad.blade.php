@@ -113,6 +113,10 @@
         </div>
     </div>
 
+    <div class="footer mt-5 pt-4 border-top text-center">
+        <p class="text-muted">© 2025 All rights reserved</p>
+    </div>
+
     @endsection
 
     </div>

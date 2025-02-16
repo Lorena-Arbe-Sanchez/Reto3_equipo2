@@ -17,6 +17,7 @@ Route::controller(ActividadController::class)->group(function() {
     Route::get('/showActividades', 'showActividades')->name('actividad.showActividades');
     Route::get('/showActividades/{id}', 'showActividadesCentro')->name('actividad.showActividadesCentro');
 
+    // Todos los usuarios podrán acceder a los listados de actividades, pero solo los administradores (logueados con "auth") podrán realizar la gestión.
     Route::middleware('auth')->group(function () {
         Route::get('/createActividad', 'create')->name('actividad.create');
         Route::post('/save', 'save')->name('actividad.save');
@@ -32,15 +33,18 @@ Route::controller(AdministradorController::class)->group(function() {
     Route::post('/logout', 'logout')->name('administrador.logout');
 });
 
-Route::controller(InscripcionController::class)->middleware('auth')->group(function() {
-    Route::get('/inscripcion', 'store')->name('inscripcion.store');
-    Route::get('/showInscripciones', 'show')->name('inscripcion.show');
-    Route::delete('/deleteInscripcion', 'delete')->name('inscripcion.delete');
+Route::controller(InscripcionController::class)->group(function() {
+    Route::post('/inscripcion', 'store')->name('inscripcion.store');
+
+    Route::middleware('auth')->group(function () {
+        Route::get('/showInscripciones', 'show')->name('inscripcion.show');
+        Route::delete('/deleteInscripcion', 'delete')->name('inscripcion.delete');
+    });
 });
 
 
 
-// TODO : Poner bien las rutas con esto
+// TODO : Poner bien los nombres de las rutas con esto
 /*
 use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\CentroCivicoController;

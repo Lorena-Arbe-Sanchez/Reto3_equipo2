@@ -11,7 +11,7 @@
 
             <div class="row mt-2">
                 @forelse ($centroCivicos as $centro)
-                    <div class="col-lg-3 col-md-4 mt-2 d-flex justify-content-center">
+                    <div class="col-lg-3 col-md-4 my-4 px-4 d-flex justify-content-center">
                         <div class="card d-flex flex-column h-100 text-center">
                             <img class="card-img-top"
                                  src="{{ $centro->imagen ? asset('storage/' . $centro->imagen) :
@@ -69,6 +69,10 @@
                 </div>
             </div>
         @endif
+    </div>
+
+    <div class="footer mt-5 pt-4 border-top text-center">
+        <p class="text-muted">© 2025 All rights reserved</p>
     </div>
 
     @endsection

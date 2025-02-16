@@ -17,7 +17,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Alicia',
                 'apellidos' => 'Sánchez Jiménez',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '12345678Z',
                 'fecha_nacimiento' => Carbon::create('1990-01-01'),
                 'direccion' => 'Calle Mayor, 123',
                 'codigo_postal' => '28001',
@@ -28,7 +28,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Bob',
                 'apellidos' => 'Williams Pérez',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '98765432M',
                 'fecha_nacimiento' => Carbon::create('2002-01-01'),
                 'direccion' => 'Avenida Central, 45',
                 'codigo_postal' => '08001',
@@ -39,7 +39,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'César',
                 'apellidos' => 'Jiménez Gil',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '45612378L',
                 'fecha_nacimiento' => Carbon::create('1960-01-01'),
                 'direccion' => 'Plaza del Sol, 67',
                 'codigo_postal' => '41001',
@@ -50,7 +50,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Diana',
                 'apellidos' => 'Miller Martín',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '32178965H',
                 'fecha_nacimiento' => Carbon::create('1950-01-01'),
                 'direccion' => 'Calle Luna, 89',
                 'codigo_postal' => '30001',
@@ -61,7 +61,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Eugenia',
                 'apellidos' => 'García Pérez',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '74125896J',
                 'fecha_nacimiento' => Carbon::create('2010-01-01'),
                 'direccion' => 'Paseo de las Delicias, 10',
                 'codigo_postal' => '29001',
@@ -72,7 +72,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Fernando',
                 'apellidos' => 'López García',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '85296374D',
                 'fecha_nacimiento' => Carbon::create('1985-05-15'),
                 'direccion' => 'Calle del Río, 24',
                 'codigo_postal' => '28002',
@@ -83,7 +83,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Gloria',
                 'apellidos' => 'Martínez Ruiz',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '15935728Q',
                 'fecha_nacimiento' => Carbon::create('1972-11-03'),
                 'direccion' => 'Travesía de la Paz, 1',
                 'codigo_postal' => '08002',
@@ -94,7 +94,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Hugo',
                 'apellidos' => 'Fernández Gómez',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '26354789T',
                 'fecha_nacimiento' => Carbon::create('2005-08-22'),
                 'direccion' => 'Ronda de la Libertad, 78',
                 'codigo_postal' => '41002',
@@ -105,7 +105,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Irene',
                 'apellidos' => 'Sanz Torres',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '39586741X',
                 'fecha_nacimiento' => Carbon::create('1998-03-10'),
                 'direccion' => 'Camino del Sol, 3',
                 'codigo_postal' => '30002',
@@ -116,7 +116,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Javier',
                 'apellidos' => 'Díaz Álvarez',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '67891234B',
                 'fecha_nacimiento' => Carbon::create('2015-09-28'),
                 'direccion' => 'Plaza Mayor, 5',
                 'codigo_postal' => '29002',
@@ -127,7 +127,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Koldo',
                 'apellidos' => 'Ruiz Dominguez',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '74136985V',
                 'fecha_nacimiento' => Carbon::create('2015-04-22'),
                 'direccion' => 'Pasaje Maritimo, 134',
                 'codigo_postal' => '35002',
@@ -138,7 +138,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Luis',
                 'apellidos' => 'Gutierrez Gonzalez',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '85274196N',
                 'fecha_nacimiento' => Carbon::create('1988-07-12'),
                 'direccion' => 'Callejon Esperanza, 15',
                 'codigo_postal' => '36002',
@@ -149,7 +149,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Marina',
                 'apellidos' => 'Marin Flores',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '96385274R',
                 'fecha_nacimiento' => Carbon::create('1975-02-05'),
                 'direccion' => 'Avenida del Puerto, 22',
                 'codigo_postal' => '37002',
@@ -160,7 +160,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Nicolas',
                 'apellidos' => 'Blazquez Maeso',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '75315926K',
                 'fecha_nacimiento' => Carbon::create('2000-06-18'),
                 'direccion' => 'Carretera Antigua, 45',
                 'codigo_postal' => '38002',
@@ -171,7 +171,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Olivia',
                 'apellidos' => 'Salazar Merino',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '15948732G',
                 'fecha_nacimiento' => Carbon::create('2012-10-30'),
                 'direccion' => 'Glorieta de las Estrellas, 12',
                 'codigo_postal' => '39002',
@@ -182,7 +182,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Pedro',
                 'apellidos' => 'Martínez López',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '26483957C',
                 'fecha_nacimiento' => Carbon::create('1978-06-20'),
                 'direccion' => 'Calle del Campo, 56',
                 'codigo_postal' => '28003',
@@ -193,7 +193,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Raquel',
                 'apellidos' => 'Gómez Sánchez',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '34821697P',
                 'fecha_nacimiento' => Carbon::create('2001-04-12'),
                 'direccion' => 'Avenida de la Estación, 12',
                 'codigo_postal' => '08003',
@@ -204,7 +204,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Santiago',
                 'apellidos' => 'Ruiz Pérez',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '76823145F',
                 'fecha_nacimiento' => Carbon::create('1965-12-01'),
                 'direccion' => 'Plaza de España, 8',
                 'codigo_postal' => '41003',
@@ -215,7 +215,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Teresa',
                 'apellidos' => 'Fernández García',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '87951462Y',
                 'fecha_nacimiento' => Carbon::create('1992-09-05'),
                 'direccion' => 'Paseo Marítimo, 34',
                 'codigo_postal' => '30003',
@@ -226,7 +226,7 @@ class CiudadanosSeeder extends Seeder
             [
                 'nombre' => 'Víctor',
                 'apellidos' => 'Álvarez Jiménez',
-                'dni' => $this->generateValidDNI(),
+                'dni' => '91562483W',
                 'fecha_nacimiento' => Carbon::create('2018-02-18'),
                 'direccion' => 'Calle del Olivo, 101',
                 'codigo_postal' => '29003',
@@ -237,11 +237,14 @@ class CiudadanosSeeder extends Seeder
         ]);
     }
 
+    // Hay que poner los DNI-s a mano para que siempre sean los mismos y sea más fácil hacer consultas cada vez que se ejecutan los Seeders.
+    /*
     private function generateValidDNI(){
         $number = mt_rand(10000000, 99999999);
         $letter = substr('TRWAGMYFPDXBNJZSQVHLCKE', $number % 23, 1);
         return (string) $number . $letter;
     }
+    */
 
     private function generateJuegoBarcos(){
         $result = '';

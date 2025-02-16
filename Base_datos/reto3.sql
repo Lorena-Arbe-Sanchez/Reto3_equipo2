@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 12-02-2025 a las 09:57:48
+-- Tiempo de generación: 16-02-2025 a las 12:59:34
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.26
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,13 +28,14 @@ USE `reto3`;
 --
 -- Estructura de tabla para la tabla `actividades`
 --
--- Creación: 11-02-2025 a las 10:40:59
+-- Creación: 11-02-2025 a las 19:05:39
+-- Última actualización: 16-02-2025 a las 11:57:50
 --
 
 DROP TABLE IF EXISTS `actividades`;
 CREATE TABLE `actividades` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `titulo` varchar(20) NOT NULL,
+  `titulo` varchar(30) NOT NULL,
   `descripcion` varchar(300) NOT NULL,
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date NOT NULL,
@@ -63,12 +64,35 @@ CREATE TABLE `actividades` (
 --       `centros_civicos` -> `id`
 --
 
+--
+-- Volcado de datos para la tabla `actividades`
+--
+
+INSERT INTO `actividades` (`id`, `titulo`, `descripcion`, `fecha_inicio`, `fecha_fin`, `dia_1`, `dia_2`, `hora_inicio`, `hora_fin`, `idioma`, `plazas_totales`, `plazas_disponibles`, `plazas_minimas`, `edad_minima`, `edad_maxima`, `imagen`, `administrador_id`, `centro_civico_id`, `created_at`, `updated_at`) VALUES
+(1, 'Yoga Matutino', 'Clase de yoga para comenzar el día con energía y relajación.', '2025-03-01', '2025-06-01', 'L', NULL, '08:00', '09:30', 'Español', 20, 17, 5, 16, NULL, 'actividades/yoga.jpg', 1, 1, '2024-01-10 09:00:00', '2024-01-10 09:00:00'),
+(2, 'Taller de Pintura', 'Aprende técnicas básicas de pintura acrílica y óleo.', '2025-04-05', '2025-07-05', 'M', 'J', '17:00', '19:00', 'Español', 15, 11, 5, 12, 30, 'actividades/pintura.jpg', 2, 2, '2024-01-10 09:00:00', '2024-01-10 09:00:00'),
+(3, 'Club de Lectura', 'Discusión y análisis de libros de diferentes géneros.', '2025-05-10', '2025-09-10', 'V', NULL, '18:30', '20:00', 'Euskera', 10, 7, 3, 18, NULL, 'actividades/lectura.jpg', 1, 3, '2024-01-10 09:00:00', '2024-01-10 09:00:00'),
+(4, 'Danza Moderna', 'Clases de danza contemporánea y expresión corporal.', '2025-03-15', '2025-07-15', 'L', 'J', '19:00', '20:30', 'Español', 20, 15, 8, 14, 35, 'actividades/danza.jpg', 2, 1, '2024-01-10 09:00:00', '2024-01-10 09:00:00'),
+(5, 'Cocina Internacional', 'Aprende a preparar platos de diferentes países.', '2025-06-01', '2025-08-31', 'M', NULL, '16:00', '18:00', 'Español', 12, 6, 4, 18, NULL, 'actividades/cocina.jpg', 1, 1, '2024-01-10 09:00:00', '2024-01-10 09:00:00'),
+(6, 'Inglés Conversacional', 'Clases prácticas para mejorar tu fluidez en inglés básico.', '2025-04-15', '2025-07-15', 'X', 'V', '10:00', '11:30', 'Inglés', 15, 11, 6, 8, 15, 'actividades/ingles.png', 2, 3, '2024-01-10 09:00:00', '2024-01-10 09:00:00'),
+(7, 'Teatro para Principiantes', 'Ejercicios de improvisación y técnicas de actuación básicas.', '2025-05-01', '2025-08-01', 'J', NULL, '19:30', '21:00', 'Euskera', 18, 13, 7, 14, 40, 'actividades/teatro.jpg', 1, 2, '2024-01-10 09:00:00', '2024-01-10 09:00:00'),
+(8, 'Fotografía Digital', 'Aprende a usar tu cámara y a editar fotos digitalmente.', '2025-06-15', '2025-09-15', 'V', NULL, '17:00', '19:00', 'Euskera', 14, 8, 5, 16, NULL, 'actividades/fotografia.jpg', 2, 3, '2024-01-10 09:00:00', '2024-01-10 09:00:00'),
+(9, 'Jardinería Urbana', 'Taller práctico sobre cómo crear y mantener un huerto en la ciudad.', '2025-04-22', '2025-06-22', 'S', NULL, '10:00', '13:00', 'Español', 18, 12, 6, 16, NULL, 'actividades/jardineria.jpg', 1, 2, '2024-01-10 09:00:00', '2024-01-10 09:00:00'),
+(10, 'Escritura Creativa', 'Explora diferentes técnicas y estilos para desarrollar tu potencial como escritor/a juvenil.', '2025-03-08', '2025-05-08', 'X', NULL, '17:30', '19:30', 'Español', 12, 6, 5, 12, 25, 'actividades/escritura.jpg', 2, 3, '2024-01-10 09:00:00', '2024-01-10 09:00:00'),
+(11, 'Mindfulness y Meditación', 'Aprende a reducir el estrés y mejorar tu bienestar a través de la atención plena.', '2025-05-15', '2025-07-15', 'M', NULL, '19:00', '20:30', 'Español', 15, 2, 7, 18, NULL, 'actividades/mindfulness.jpg', 1, 1, '2024-01-10 09:00:00', '2024-01-10 09:00:00'),
+(12, 'Informática para Mayores', 'Curso básico para aprender a usar el ordenador, internet y el correo electrónico.', '2025-04-01', '2025-06-30', 'L', 'M', '11:00', '12:30', 'Euskera', 10, 6, 5, 50, NULL, 'actividades/informatica.jpg', 2, 2, '2024-01-10 09:00:00', '2024-01-10 09:00:00'),
+(13, 'Taller de Memoria', 'Ejercicios para mantener la memoria activa y mejorar la concentración.', '2025-06-05', '2025-08-31', 'X', NULL, '10:30', '12:00', 'Español', 15, 15, 5, 60, NULL, 'actividades/memoria.jpg', 1, 3, '2024-01-10 09:00:00', '2024-01-10 09:00:00'),
+(14, 'Gimnasia Suave', 'Ejercicios de bajo impacto para mejorar la movilidad y la flexibilidad.', '2025-04-10', '2025-06-20', 'M', 'J', '09:00', '10:00', 'Euskera', 20, 20, 8, 50, NULL, 'actividades/gimnasia.jpg', 2, 1, '2024-01-10 09:00:00', '2024-01-10 09:00:00'),
+(15, 'Historia del Arte', 'Recorrido por los principales movimientos artísticos a través de la historia.', '2025-03-15', '2025-05-30', 'V', NULL, '16:00', '17:30', 'Español', 12, 12, 4, 12, NULL, 'actividades/historia.jpg', 1, 2, '2024-01-10 09:00:00', '2024-01-10 09:00:00'),
+(16, 'Taller de Crochet', 'Aprende las técnicas básicas para crear tus propios proyectos de crochet.', '2025-04-01', '2025-06-15', 'L', NULL, '17:00', '19:00', 'Euskera', 10, 10, 5, 13, NULL, 'actividades/crochet.jpg', 2, 3, '2024-01-10 09:00:00', '2024-01-10 09:00:00');
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `administradores`
 --
--- Creación: 11-02-2025 a las 10:40:59
+-- Creación: 11-02-2025 a las 19:05:39
+-- Última actualización: 16-02-2025 a las 11:57:50
 --
 
 DROP TABLE IF EXISTS `administradores`;
@@ -89,12 +113,20 @@ CREATE TABLE `administradores` (
 -- RELACIONES PARA LA TABLA `administradores`:
 --
 
+--
+-- Volcado de datos para la tabla `administradores`
+--
+
+INSERT INTO `administradores` (`id`, `nombre`, `apellidos`, `dni`, `direccion`, `codigo_postal`, `usuario`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'Carlos', 'Fernández López', '12345678Z', 'Calle Mayor, 10', '28001', 'carlosf', '$2y$12$EN31qs0XquUHz4bGY71UDOc3B7KTTGnrzbXWtRxjKac4XSJrYZMAa', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(2, 'María', 'García Pérez', '87654321X', 'Avenida de la Paz, 5', '28002', 'mariag', '$2y$12$1GUtrgCZUVK12EzYyLQvM..loP/tATRGjNgDVB/d4K9x20/wMJWQS', '2025-02-16 10:57:50', '2025-02-16 10:57:50');
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `cache`
 --
--- Creación: 11-02-2025 a las 10:40:59
+-- Creación: 11-02-2025 a las 19:05:39
 --
 
 DROP TABLE IF EXISTS `cache`;
@@ -113,7 +145,7 @@ CREATE TABLE `cache` (
 --
 -- Estructura de tabla para la tabla `cache_locks`
 --
--- Creación: 11-02-2025 a las 10:40:59
+-- Creación: 11-02-2025 a las 19:05:39
 --
 
 DROP TABLE IF EXISTS `cache_locks`;
@@ -132,8 +164,8 @@ CREATE TABLE `cache_locks` (
 --
 -- Estructura de tabla para la tabla `centros_civicos`
 --
--- Creación: 12-02-2025 a las 09:47:46
--- Última actualización: 12-02-2025 a las 09:49:14
+-- Creación: 11-02-2025 a las 19:05:39
+-- Última actualización: 16-02-2025 a las 11:57:50
 --
 
 DROP TABLE IF EXISTS `centros_civicos`;
@@ -158,16 +190,28 @@ CREATE TABLE `centros_civicos` (
 --
 
 INSERT INTO `centros_civicos` (`id`, `nombre`, `telefono`, `correo`, `direccion`, `codigo_postal`, `imagen`, `created_at`, `updated_at`) VALUES
-(1, 'Centro Cívico Abetxuko', '945162656', 'cc.lakua.coo@vitoria-gasteiz.org', 'Plaza de la Cooperativa, 8', '01013', 'centros_civicos/abetxuko.png', '2025-02-12 08:49:14', '2025-02-12 08:49:14'),
-(2, 'Centro Cívico Aldabe', '945161930', 'cc.aldabe.coo@vitoria-gasteiz.org', 'Portal de Arriaga, 1-A', '01012', 'centros_civicos/aldabe.png', '2025-02-12 08:49:14', '2025-02-12 08:49:14'),
-(3, 'Centro Cívico Arana', '945161734', 'cc.arana.coo@vitoria-gasteiz.org', 'Aragón, 7', '01003', 'centros_civicos/arana.png', '2025-02-12 08:49:14', '2025-02-12 08:49:14');
+(1, 'Centro Cívico Abetxuko', '945162656', 'cc.lakua.coo@vitoria-gasteiz.org', 'Plaza de la Cooperativa, 8', '01013', 'centros_civicos/abetxuko.png', '2010-01-10 09:00:00', '2010-01-10 09:00:00'),
+(2, 'Centro Cívico Aldabe', '945161930', 'cc.aldabe.coo@vitoria-gasteiz.org', 'Calle Portal de Arriaga, 1-A', '01012', 'centros_civicos/aldabe.png', '2010-01-10 09:00:00', '2010-01-10 09:00:00'),
+(3, 'Centro Cívico Arana', '945161734', 'cc.arana.coo@vitoria-gasteiz.org', 'Calle Aragón, 7', '01003', 'centros_civicos/arana.png', '2010-01-10 09:00:00', '2010-01-10 09:00:00'),
+(4, 'Centro Cívico Ariznabarra', '945162650', 'cc.ariznabarra.coo@vitoria-gasteiz.org', 'Ariznabarra Kalea, 19', '01007', 'centros_civicos/ariznabarra.png', '2010-01-10 09:00:00', '2010-01-10 09:00:00'),
+(5, 'Centro Cívico Arriaga', '945161770', 'cc.arriaga.coo@vitoria-gasteiz.org', 'Calle Francisco Javier De Landáburu, 9-A', '01010', 'centros_civicos/arriaga.png', '2010-01-10 09:00:00', '2010-01-10 09:00:00'),
+(6, 'Centro Cívico El Campillo', '945161680', 'cc.el_campillo.coo@vitoria-gasteiz.org', 'Calle Santa María, 4', '01001', 'centros_civicos/el_campillo.png', '2010-01-10 09:00:00', '2010-01-10 09:00:00'),
+(7, 'Centro Cívico El Pilar', '945161233', 'cc.el_pilar.coo@vitoria-gasteiz.org', 'Plaza de la Constitución, 5', '01012', 'centros_civicos/el_pilar.png', '2010-01-10 09:00:00', '2010-01-10 09:00:00'),
+(8, 'Centro Cívico Hegoalde', '945161880', 'cc.hegoalde.coo@vitoria-gasteiz.org', 'Calle de Alberto Schommer, 10', '01006', 'centros_civicos/hegoalde.png', '2010-01-10 09:00:00', '2010-01-10 09:00:00'),
+(9, 'Centro Cívico Ibaiondo', '945161813', 'cc.ibaiondo.coo@vitoria-gasteiz.org', 'Landaberde Kalea, 31', '01010', 'centros_civicos/ibaiondo.png', '2010-01-10 09:00:00', '2010-01-10 09:00:00'),
+(10, 'Centro Cívico Iparralde', '945161750', 'cc.iparralde.coo@vitoria-gasteiz.org', 'Plaza Zuberoa, 1', '01002', 'centros_civicos/iparralde.png', '2010-01-10 09:00:00', '2010-01-10 09:00:00'),
+(11, 'Centro Cívico Judimendi', '945161740', 'cc.judimendi.coo@vitoria-gasteiz.org', 'Avenida Judimendi, 26', '01002', 'centros_civicos/judimendi.png', '2010-01-10 09:00:00', '2010-01-10 09:00:00'),
+(12, 'Centro Cívico Lakua', '945162630', 'cc.lakua.coo@vitoria-gasteiz.org', 'Senda Valentín Foronda, 9', '01010', 'centros_civicos/lakua.png', '2010-01-10 09:00:00', '2010-01-10 09:00:00'),
+(13, 'Centro Cívico Salburua', '945161637', 'cc.salburua.coo@vitoria-gasteiz.org', 'Avenida Bratislava, 2', '01003', 'centros_civicos/salburua.png', '2010-01-10 09:00:00', '2010-01-10 09:00:00'),
+(14, 'Centro Cívico Zabalgana', '945161630', 'cc.zabalgana.coo@vitoria-gasteiz.org', 'Juan Gris Kalea, 12', '01015', 'centros_civicos/zabalgana.png', '2010-01-10 09:00:00', '2010-01-10 09:00:00');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `ciudadanos`
 --
--- Creación: 11-02-2025 a las 10:40:59
+-- Creación: 11-02-2025 a las 19:05:39
+-- Última actualización: 16-02-2025 a las 11:57:50
 --
 
 DROP TABLE IF EXISTS `ciudadanos`;
@@ -176,6 +220,7 @@ CREATE TABLE `ciudadanos` (
   `nombre` varchar(255) NOT NULL,
   `apellidos` varchar(255) NOT NULL,
   `dni` varchar(9) NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
   `direccion` varchar(255) NOT NULL,
   `codigo_postal` varchar(5) NOT NULL,
   `juego_barcos` varchar(32) NOT NULL,
@@ -187,12 +232,38 @@ CREATE TABLE `ciudadanos` (
 -- RELACIONES PARA LA TABLA `ciudadanos`:
 --
 
+--
+-- Volcado de datos para la tabla `ciudadanos`
+--
+
+INSERT INTO `ciudadanos` (`id`, `nombre`, `apellidos`, `dni`, `fecha_nacimiento`, `direccion`, `codigo_postal`, `juego_barcos`, `created_at`, `updated_at`) VALUES
+(1, 'Alicia', 'Sánchez Jiménez', '27205981V', '1990-01-01', 'Calle Mayor, 123', '28001', '3A1V9Y5B0C0S2V9Y2Z6U1Z5I3G8U8X0C', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(2, 'Bob', 'Williams Pérez', '53818510M', '2002-01-01', 'Avenida Central, 45', '08001', '8T9E2P2P7X5E6Z1R5W5D6I3H5E3Z0E7P', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(3, 'César', 'Jiménez Gil', '92637876V', '1960-01-01', 'Plaza del Sol, 67', '41001', '2O5Q1I2G0G0K2A9T2O8O5U1E9L4X9Y9R', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(4, 'Diana', 'Miller Martín', '14473031M', '1950-01-01', 'Calle Luna, 89', '30001', '9Z1S5O0F0M9W9N5V3I0A3Y4M6U1R3Y1B', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(5, 'Eugenia', 'García Pérez', '85096747J', '2010-01-01', 'Paseo de las Delicias, 10', '29001', '8D3I6H2I1A4I9U7P1Z7Q9Y2I4W5Y5L6H', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(6, 'Fernando', 'López García', '27445841X', '1985-05-15', 'Calle del Río, 24', '28002', '0O0K6C3L1W9X3R0E6S5L4L3Y5U0I9S5N', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(7, 'Gloria', 'Martínez Ruiz', '60269837Q', '1972-11-03', 'Travesía de la Paz, 1', '08002', '9J3L0H3P2Q9C0X6R9Y9Y5G2Z9M6P4X7S', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(8, 'Hugo', 'Fernández Gómez', '91439715H', '2005-08-22', 'Ronda de la Libertad, 78', '41002', '1F3X8T0X1H9K7I4H8X0T8G8O3E9I0M4O', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(9, 'Irene', 'Sanz Torres', '14620749V', '1998-03-10', 'Camino del Sol, 3', '30002', '3P0N8G1P6K1N4A5O9Z8N9J1Q0Y2F4G4Z', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(10, 'Javier', 'Díaz Álvarez', '80373361E', '2015-09-28', 'Plaza Mayor, 5', '29002', '5X9J2X7G6N6N6O5L5D5P0U3F0N5V2C5P', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(11, 'Koldo', 'Ruiz Dominguez', '43457457S', '2015-04-22', 'Pasaje Maritimo, 134', '35002', '8K7W4C4M2V3T2O7C3M6G7E7J2C7B4Z8Z', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(12, 'Luis', 'Gutierrez Gonzalez', '52926855Z', '1988-07-12', 'Callejon Esperanza, 15', '36002', '7N4V8I6C7H5E1O0R4B3N4R0G3Q2W4P0E', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(13, 'Marina', 'Marin Flores', '75384335H', '1975-02-05', 'Avenida del Puerto, 22', '37002', '3V2E3P3E4R2E9P5Z2M1Q6I5H0I3P0B2A', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(14, 'Nicolas', 'Blazquez Maeso', '43906738Z', '2000-06-18', 'Carretera Antigua, 45', '38002', '6O2C3Q3X1Z9C9Z7B6V2Q8G3X1J6V9L0Y', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(15, 'Olivia', 'Salazar Merino', '80457594Y', '2012-10-30', 'Glorieta de las Estrellas, 12', '39002', '3M3T0F3I6X6E6A2P8K7L0P4P0Z1Y6Y3D', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(16, 'Pedro', 'Martínez López', '45159907M', '1978-06-20', 'Calle del Campo, 56', '28003', '8V5V6G7Z1L1I4Q2A2E4R4W7W9Q9F9L2U', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(17, 'Raquel', 'Gómez Sánchez', '93728053V', '2001-04-12', 'Avenida de la Estación, 12', '08003', '3Q6B7K5G0Q4C8T9N0X9N4J0Q1Z2T8T0W', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(18, 'Santiago', 'Ruiz Pérez', '65597196T', '1965-12-01', 'Plaza de España, 8', '41003', '0M7A8S6U6T9R2K4L7O6K3Q0H7S0P0I0V', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(19, 'Teresa', 'Fernández García', '99691838V', '1992-09-05', 'Paseo Marítimo, 34', '30003', '7P1U7E2T2W7T8H2U5Q4F6W9Y9M7H0F9O', '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(20, 'Víctor', 'Álvarez Jiménez', '75461897R', '2018-02-18', 'Calle del Olivo, 101', '29003', '5O5P5M1E1E0S0G1C2B8W5I5U0M3B2V9Y', '2025-02-16 10:57:50', '2025-02-16 10:57:50');
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `failed_jobs`
 --
--- Creación: 11-02-2025 a las 10:40:59
+-- Creación: 11-02-2025 a las 19:05:39
 --
 
 DROP TABLE IF EXISTS `failed_jobs`;
@@ -215,7 +286,8 @@ CREATE TABLE `failed_jobs` (
 --
 -- Estructura de tabla para la tabla `inscripciones`
 --
--- Creación: 12-02-2025 a las 09:47:47
+-- Creación: 11-02-2025 a las 19:05:40
+-- Última actualización: 16-02-2025 a las 11:57:50
 --
 
 DROP TABLE IF EXISTS `inscripciones`;
@@ -234,12 +306,83 @@ CREATE TABLE `inscripciones` (
 --       `ciudadanos` -> `id`
 --
 
+--
+-- Volcado de datos para la tabla `inscripciones`
+--
+
+INSERT INTO `inscripciones` (`id_actividad`, `id_ciudadano`, `created_at`, `updated_at`) VALUES
+(1, 6, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(1, 9, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(1, 12, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(2, 2, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(2, 8, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(2, 14, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(2, 17, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(3, 1, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(3, 7, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(3, 13, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(4, 2, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(4, 8, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(4, 9, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(4, 14, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(4, 17, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(5, 1, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(5, 6, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(5, 7, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(5, 9, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(5, 12, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(5, 13, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(6, 5, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(6, 10, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(6, 11, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(6, 15, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(7, 1, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(7, 2, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(7, 6, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(7, 8, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(7, 9, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(8, 1, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(8, 6, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(8, 9, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(8, 12, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(8, 14, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(8, 17, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(9, 1, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(9, 6, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(9, 9, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(9, 12, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(9, 13, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(9, 17, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(10, 2, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(10, 5, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(10, 8, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(10, 9, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(10, 14, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(10, 17, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(11, 1, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(11, 3, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(11, 4, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(11, 6, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(11, 7, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(11, 9, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(11, 12, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(11, 13, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(11, 14, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(11, 16, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(11, 17, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(11, 18, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(11, 19, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(12, 3, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(12, 4, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(12, 7, '2025-02-16 10:57:50', '2025-02-16 10:57:50'),
+(12, 18, '2025-02-16 10:57:50', '2025-02-16 10:57:50');
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `jobs`
 --
--- Creación: 11-02-2025 a las 10:40:59
+-- Creación: 11-02-2025 a las 19:05:39
 --
 
 DROP TABLE IF EXISTS `jobs`;
@@ -262,7 +405,7 @@ CREATE TABLE `jobs` (
 --
 -- Estructura de tabla para la tabla `job_batches`
 --
--- Creación: 11-02-2025 a las 10:40:59
+-- Creación: 11-02-2025 a las 19:05:39
 --
 
 DROP TABLE IF EXISTS `job_batches`;
@@ -288,8 +431,8 @@ CREATE TABLE `job_batches` (
 --
 -- Estructura de tabla para la tabla `migrations`
 --
--- Creación: 11-02-2025 a las 10:40:59
--- Última actualización: 12-02-2025 a las 09:49:14
+-- Creación: 11-02-2025 a las 19:05:39
+-- Última actualización: 16-02-2025 a las 11:57:50
 --
 
 DROP TABLE IF EXISTS `migrations`;
@@ -322,7 +465,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 -- Estructura de tabla para la tabla `password_reset_tokens`
 --
--- Creación: 11-02-2025 a las 10:40:59
+-- Creación: 11-02-2025 a las 19:05:39
 --
 
 DROP TABLE IF EXISTS `password_reset_tokens`;
@@ -341,8 +484,7 @@ CREATE TABLE `password_reset_tokens` (
 --
 -- Estructura de tabla para la tabla `sessions`
 --
--- Creación: 11-02-2025 a las 10:40:59
--- Última actualización: 12-02-2025 a las 09:54:23
+-- Creación: 11-02-2025 a las 19:05:39
 --
 
 DROP TABLE IF EXISTS `sessions`;
@@ -359,19 +501,12 @@ CREATE TABLE `sessions` (
 -- RELACIONES PARA LA TABLA `sessions`:
 --
 
---
--- Volcado de datos para la tabla `sessions`
---
-
-INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('Cy3Uqd2n4cY35Ed5NTv2tIrazbZ6mqbV0e072OCb', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNk44YUFPUjRDSnBxMWRUTVBOcElzbmN1MmwxTGZpd2pnTVNFUTlMYiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zaG93TG9naW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1739354063);
-
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `users`
 --
--- Creación: 11-02-2025 a las 10:40:59
+-- Creación: 11-02-2025 a las 19:05:39
 --
 
 DROP TABLE IF EXISTS `users`;

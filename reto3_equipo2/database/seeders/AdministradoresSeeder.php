@@ -16,7 +16,7 @@ class AdministradoresSeeder extends Seeder
             [
                 'nombre' => 'Carlos',
                 'apellidos' => 'Fernández López',
-                'dni' => '12345678Z',
+                'dni' => '28573649S',
                 'direccion' => 'Calle Mayor, 10',
                 'codigo_postal' => '28001',
                 'usuario' => 'carlosf',
@@ -27,7 +27,7 @@ class AdministradoresSeeder extends Seeder
             [
                 'nombre' => 'María',
                 'apellidos' => 'García Pérez',
-                'dni' => '87654321X',
+                'dni' => '49637285A',
                 'direccion' => 'Avenida de la Paz, 5',
                 'codigo_postal' => '28002',
                 'usuario' => 'mariag',
