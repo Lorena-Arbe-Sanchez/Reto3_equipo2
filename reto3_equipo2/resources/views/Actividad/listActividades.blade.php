@@ -179,7 +179,7 @@
                                     <input type="text" class="form-control" id="casillaDni" name="casillaDni" placeholder="DNI" value="{{ old('casillaDni') }}">
                                 </div>
 
-                                <!-- TODO : poner como valor el id de la actividad ~ "modal-actividad-id" -->
+                                <!-- Poner como valor el id de la actividad, obtenido del "modal-actividad-id" anterior. -->
                                 <input type="hidden" name="id_actividad" value="">
                             </form>
 
@@ -253,9 +253,14 @@
                                         alert("El DNI debe tener 8 números seguidos de una letra mayúscula.");
                                     }
                                     else {
-                                        // Será correcto
-                                        // TODO : Pillar el dato de "casillaDni" y el id de la actividad, y crear una fila en 'inscripciones'
-                                        // TODO : Actualizar el valor de la columna a 'plazas_disponibles - 1' en la actividad
+                                        // Se establecerán los datos de "casillaDni" y de "id_actividad" del formulario, y se creará una fila en 'inscripciones'.
+                                        document.querySelector('#inscripcionFormModal form input[name="id_actividad"]').value = document.getElementById('modal-actividad-id').textContent;
+                                        // Enviar el formulario
+                                        document.querySelector('#inscripcionFormModal form').submit();
+                                        // todo : mensaje lateral también
+                                        alert("Inscripción realizada correctamente.");
+                                        casillaDni.value = "";
+                                        contenedorDni.style.visibility = 'hidden';
                                     }
 
                                 }
