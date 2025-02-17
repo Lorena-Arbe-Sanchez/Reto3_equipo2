@@ -79,7 +79,7 @@ class ActividadController extends Controller
     }
 
     //public function index($id = null ){
-    public function showActividades($id = null ){
+    public function index($id = null ){
         $actividades = "";
 
         if($id == null){
@@ -92,7 +92,7 @@ class ActividadController extends Controller
     }
 
     //public function show($id){
-    public function showActividadesCentro($id){
+    public function show($id){
         $actividades = Actividad::where('centro_civico_id', $id)->get();
 
         $centroCivicos = CentroCivico::all();
@@ -179,7 +179,7 @@ class ActividadController extends Controller
 
         $actividades = $actividades->get();
 
-        return view('actividad.showActividades', compact('actividades'));
+        return view('actividad.index', compact('actividades'));
     }
 
 }
