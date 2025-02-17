@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\CentroCivicoController;
 use App\Http\Controllers\ActividadController;
+use App\Http\Controllers\CiudadanoController;
 use App\Http\Controllers\InscripcionController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,14 @@ Route::controller(InscripcionController::class)->group(function() {
     Route::middleware('auth')->group(function () {
         Route::get('/showInscripciones', 'show')->name('inscripcion.show');
         Route::delete('/deleteInscripcion', 'delete')->name('inscripcion.delete');
+    });
+});
+
+Route::controller(CiudadanoController::class)->group(function() {
+    Route::middleware('auth')->group(function () {
+        Route::get('/ciudadano/create', 'create')->name('ciudadano.create');
+        Route::get('/ciudadano/save', 'save')->name('ciudadano.save');
+        Route::delete('/ciudadano/delete', 'delete')->name('ciudadano.delete');
     });
 });
 
