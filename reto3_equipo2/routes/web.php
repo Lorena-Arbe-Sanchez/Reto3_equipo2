@@ -10,12 +10,13 @@ Route::controller(CentroCivicoController::class)->group(function () {
     Route::get('/', 'show')->name('centros.listCentros');
 });
 
-Route::get('/actividades/filtrar', [ActividadController::class, 'showActividadesFiltros'])->name('actividad.showActividadesFiltros');
-
 Route::controller(ActividadController::class)->group(function() {
     // "url": Cómo aparece en la web, "action": Cómo se llama la función de ese controlador, "name": Cómo se llama a la ruta desde una ventana (.blade.php)
     Route::get('/showActividades', 'showActividades')->name('actividad.showActividades');
     Route::get('/showActividades/{id}', 'showActividadesCentro')->name('actividad.showActividadesCentro');
+
+    // TODO : Nueva
+    Route::get('/actividades/filtrar', 'filtrarActividades')->name('actividad.filtrar');
 
     // Todos los usuarios podrán acceder a los listados de actividades, pero solo los administradores (logueados con "auth") podrán realizar la gestión.
     Route::middleware('auth')->group(function () {

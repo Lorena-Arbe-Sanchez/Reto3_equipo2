@@ -166,22 +166,60 @@ class ActividadController extends Controller
         return redirect()->route('actividad.showActividades')->with('success', 'Actividad actualizada correctamente');
     }
 
-    public function showActividadesFiltros(Request $request){
+    public function filtrarActividades(Request $request){
+        $centro_civico = $request->input('centro_civico');
         $edad = $request->input('edad');
+        $idioma = $request->input('idioma');
+        $horario = $request->input('horario');
+        $textoBusqueda = $request->input('textoBusqueda');
 
-        // Lógica para filtrar actividades por edad
-        $actividades = Actividad::query();
+        $query = Actividad::query();
 
+        // Aplicar los filtros según los parámetros recibidos
+        if ($centro_civico) {
+            $query->where('centro_civico_id', $centro_civico);
+        }
         if ($edad) {
-            $actividades->where('edad_minima', '<=', $edad)
-                ->where(function($query) use ($edad) {
-                    $query->where('edad_maxima', '>=', $edad);
+            $query->where('edad_minima', '<=', $edad)->where('edad_maxima', '>=', $edad);
+        }
+        if ($idioma && $idioma !== 'todos') {
+            $query->where('idioma', $idioma);
+        }
+        if ($horario) {
+            // Validar que el horario tenga el formato correcto (HH:MM)
+            if (preg_match('/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/', $horario)) {
+                // Convertir el horario de búsqueda a un formato comparable (segundos desde la medianoche)
+                $horarioSegundos = $this->horaAsegundos($horario);
+
+                // Filtrar actividades cuyo horario coincida con el horario de búsqueda
+                $query->where(function ($q) use ($horarioSegundos) {
+                    $q->whereRaw('TIME_TO_SEC(hora_inicio) <= ?', [$horarioSegundos])
+                        ->whereRaw('TIME_TO_SEC(hora_fin) >= ?', [$horarioSegundos]);
                 });
+            }
+        }
+        if ($textoBusqueda) {
+            $query->where('titulo', 'like', '%' . $textoBusqueda . '%')
+                ->orWhere('descripcion', 'like', '%' . $textoBusqueda . '%');
         }
 
-        $actividades = $actividades->get();
+        $actividades = $query->get();
+        $actividadesCount = $actividades->count();
 
-        return view('actividad.showActividades', compact('actividades'));
+        $html = view('partials.actividades_list', ['actividades' => $actividades])->render();
+
+        return response()->json(['html' => $html, 'actividadesCount' => $actividadesCount]);
+    }
+
+    /**
+     * Convierte una hora en formato HH:MM a segundos desde la medianoche.
+     *
+     * @param string $hora La hora en formato HH:MM.
+     * @return int Los segundos desde la medianoche.
+     */
+    private function horaAsegundos(string $hora): int {
+        list($horas, $minutos) = explode(':', $hora);
+        return ($horas * 3600) + ($minutos * 60);
     }
 
 }

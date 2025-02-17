@@ -74,11 +74,17 @@
 
             <div class="row">
                 <div class="col">
+                    <p>Se han encontrado <b id="actividadesTotales">0</b> actividades con los criterios anteriores.</p>
+
+                    <!-- TODO : Poner mensaje con algo así -->
+                    {{--
                     @if($actividadesTotales == 1)
                         <p>Se ha encontrado <b>1</b> actividad con los criterios anteriores.</p>
                     @else
                         <p>Se han encontrado <b>{{ $actividadesTotales }}</b> actividades con los criterios anteriores.</p>
                     @endif
+                    --}}
+
                 </div>
             </div>
 
@@ -125,10 +131,13 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary btn-secundario" data-bs-dismiss="modal">Cancelar</button>
+
                             <!-- TODO : Que solo deje inscribirse si hay al menos 1 plaza
                             disponible (transformar a int el valor de "$actividad->plazas_disponibles" y comprobar).
                             Si ya no quedan plazas debería salir un error en el control de arriba ("if ($errors->any())").
                             Saldría algo como "No hay plazas disponibles para esta actividad" -->
+
+                            <!-- TODO : Que solo deje inscribirse si cumple en rango de edad -->
                             <button type="button" class="btn btn-primary btn-editar text-white" id="confirmarApuntarse">Inscribirme</button>
                         </div>
                     </div>
@@ -251,7 +260,7 @@
 
                     const actividadesContainer = document.getElementById('actividadesContainer');
                     const actividadesTotalesElement = document.getElementById('actividadesTotales');
-                    const filtros = document.querySelectorAll('.filter');
+                    const filtros = document.querySelectorAll('.filtrarDatos');
                     const aplicarFiltrosBtn = document.getElementById('aplicarFiltrosBtn');
 
                     // Función para aplicar los filtros
@@ -284,25 +293,25 @@
 
                             const data = await response.json();
 
-                            // Update the activities list
+                            // Actualizar el listado de actividades
                             actividadesContainer.innerHTML = data.html;
 
-                            // Update the activities count
+                            // Actualizar el count de actividades
                             actividadesTotalesElement.textContent = data.actividadesCount;
 
-                        } catch (error) {
+                        }
+                        catch (error) {
                             console.error('Error:', error);
                         }
                     }
 
-
-                    // Event listeners for individual filters
+                    // Listener para filtros por individual
                     filtros.forEach(filter => {
                         filter.addEventListener('change', aplicarFiltros);
-                        filter.addEventListener('input', aplicarFiltros); // For input types like text
+                        filter.addEventListener('input', aplicarFiltros);
                     });
 
-                    // Event listener for "Aplicar filtros" button
+                    // Listener para el botón de "Aplicar filtros"
                     aplicarFiltrosBtn.addEventListener('click', aplicarFiltros);
 
                 });
