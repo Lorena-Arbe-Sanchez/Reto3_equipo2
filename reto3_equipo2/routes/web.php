@@ -15,22 +15,22 @@ Route::controller(CentroCivicoController::class)->group(function () {
 Route::get('/actividades/filtro', [ActividadController::class, 'showActividadesFiltros'])->name('actividad.showActividadesFiltros');
 
 Route::controller(ActividadController::class)->group(function() {
-    Route::get('/actividad', 'index')->name('actividad.showActividades');
-    Route::get('/actividad/{id}', 'show')->name('actividad.showActividadesCentro');
+    Route::get('/actividad', 'showActividades')->name('actividad.showActividades');
+    Route::get('/actividad/{id}', 'showActividadesCentro')->name('actividad.showActividadesCentro');
 
     // Todos los usuarios podrán acceder a los listados de actividades, pero solo los administradores (logueados con "auth") podrán realizar la gestión.
     Route::middleware('auth')->group(function () {
-        Route::get('/actividad', 'create')->name('actividad.create');
-        Route::post('/actividad', 'store')->name('actividad.save');
+        Route::get('/actividad/create', 'create')->name('actividad.create');
+        Route::post('/actividad/store', 'save')->name('actividad.save');
         Route::get('/actividad/{id}/edit', 'edit')->name('actividad.edit');
-        Route::put('/actividad/{id}', 'update')->name('actividad.update');
-        Route::delete('/actividad/{id}', 'destroy')->name('actividad.delete');
+        Route::put('/actividad/{id}/update', 'update')->name('actividad.update');
+        Route::delete('/actividad/destroy', 'delete')->name('actividad.delete');
     });
 });
 
 Route::controller(AdministradorController::class)->group(function() {
-    Route::get('/login', 'login')->name('login');
-    Route::post('/login', 'login_admin')->name('administrador.login');
+    Route::get('/login', 'showLogin')->name('login');
+    Route::post('/login/create', 'login')->name('administrador.login');
     Route::post('/logout', 'logout')->name('administrador.logout');
 });
 
@@ -38,16 +38,16 @@ Route::controller(InscripcionController::class)->group(function() {
     Route::post('/inscripcion', 'store')->name('inscripcion.store');
 
     Route::middleware('auth')->group(function () {
-        Route::get('/inscripcion', 'show')->name('inscripcion.show');
-        Route::delete('/inscripcion/{id}', 'destroy')->name('inscripcion.delete');
+        Route::get('/inscripcion/show', 'show')->name('inscripcion.show');
+        Route::delete('/inscripcion/destroy', 'delete')->name('inscripcion.delete');
     });
 });
 
 Route::controller(CiudadanoController::class)->group(function() {
     Route::middleware('auth')->group(function () {
-        Route::get('/ciudadano', 'create')->name('ciudadano.create');
-        Route::post('/ciudadano', 'store')->name('ciudadano.store');
-        Route::delete('/ciudadano/{id}', 'destroy')->name('ciudadano.destroy');
+        Route::get('/ciudadano/create', 'create')->name('ciudadano.create');
+        Route::post('/ciudadano/store', 'store')->name('ciudadano.store');
+        Route::delete('/ciudadano/destroy', 'destroy')->name('ciudadano.destroy');
     });
 });
 
