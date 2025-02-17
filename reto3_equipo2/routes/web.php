@@ -10,8 +10,7 @@ Route::controller(CentroCivicoController::class)->group(function () {
     Route::get('/', 'show')->name('centros.listCentros');
 });
 
-// TODO : Si lo hago con script --> QUITAR
-Route::get('/actividades/filtro', [ActividadController::class, 'showActividadesFiltros'])->name('actividad.showActividadesFiltros');
+Route::get('/actividades/filtrar', [ActividadController::class, 'showActividadesFiltros'])->name('actividad.showActividadesFiltros');
 
 Route::controller(ActividadController::class)->group(function() {
     // "url": Cómo aparece en la web, "action": Cómo se llama la función de ese controlador, "name": Cómo se llama a la ruta desde una ventana (.blade.php)
