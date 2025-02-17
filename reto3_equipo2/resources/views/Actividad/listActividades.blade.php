@@ -136,7 +136,7 @@
                                 @endif
                             </div>
                             <div class="card-footer">
-                                <small class="text-muted">
+                                <small class="text-muted plazas-disponibles">
                                     Plazas disponibles: <b>{{ $actividad->plazas_disponibles }}</b> de
                                     {{ $actividad->plazas_totales }}
                                 </small>
@@ -302,7 +302,7 @@
                 }, 5000);
 
 
-                
+
                 // TODO : Repasar
                 /*
                 document.addEventListener('DOMContentLoaded', function() {

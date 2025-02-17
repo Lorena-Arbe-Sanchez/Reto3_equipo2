@@ -21,6 +21,8 @@ class ActividadController extends Controller
         try {
             $centroCivicos = CentroCivico::all();
 
+            // TODO : Validar de manera más completa (con patrones y tal)
+
             // Validar campos requeridos
             $validator = Validator::make($request->all(), [
                 'titulo' => 'required',
@@ -37,7 +39,7 @@ class ActividadController extends Controller
                 'edad_minima',
                 'edad_maxima',
                 'centro_civico_id' => 'required',
-                'imagen' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
+                'imagen' => 'image|mimes:jpeg,png,jpg,svg|max:2048',
             ]);
 
             if ($validator->fails()) {

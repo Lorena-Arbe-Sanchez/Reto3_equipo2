@@ -118,4 +118,18 @@
   object-fit: contain;
 }
 
+.plazas-disponibles {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.9em;
+  display: block;
+}
+
+@media (max-width: 576px) {
+  .plazas-disponibles {
+    font-size: 0.8em;
+  }
+}
+
 /*# sourceMappingURL=styles.css.map */

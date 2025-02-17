@@ -1,10 +1,27 @@
+// Imagen del logo del ayuntamiento
 #imagenLogo{
     width: 230px;
     height: auto;
 }
 
+// Icono de logout
 #imagenCerrarSesion {
     width: 20px;
     height: 20px;
     object-fit: contain;
+}
+
+// Para el footer de las cards de los listados
+.plazas-disponibles {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9em;
+    display: block;
+}
+
+@media (max-width: 576px) {
+    .plazas-disponibles {
+        font-size: 0.8em;
+    }
 }
