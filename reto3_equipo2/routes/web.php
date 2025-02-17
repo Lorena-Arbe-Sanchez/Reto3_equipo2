@@ -46,7 +46,7 @@ Route::controller(InscripcionController::class)->group(function() {
 Route::controller(CiudadanoController::class)->group(function() {
     Route::middleware('auth')->group(function () {
         Route::get('/ciudadano/create', 'create')->name('ciudadano.create');
-        Route::get('/ciudadano/save', 'save')->name('ciudadano.save');
+        Route::post('/ciudadano/save', 'save')->name('ciudadano.save');
         Route::delete('/ciudadano/delete', 'delete')->name('ciudadano.delete');
     });
 });
