@@ -17,7 +17,7 @@ class ActividadController extends Controller
     }
 
     //public function store(Request $request){
-    public function save(Request $request){
+    public function store(Request $request){
         try {
             $centroCivicos = CentroCivico::all();
 
@@ -79,7 +79,7 @@ class ActividadController extends Controller
     }
 
     //public function index($id = null ){
-    public function showActividades($id = null ){
+    public function index($id = null ){
         $actividades = "";
 
         if($id == null){
@@ -92,7 +92,7 @@ class ActividadController extends Controller
     }
 
     //public function show($id){
-    public function showActividadesCentro($id){
+    public function show($id){
         $actividades = Actividad::where('centro_civico_id', $id)->get();
 
         $centroCivicos = CentroCivico::all();
@@ -101,7 +101,7 @@ class ActividadController extends Controller
     }
 
     //public function destroy(Request $request)
-    public function delete(Request $request){
+    public function destroy(Request $request){
         $request->validate([
             'id' => 'required'
         ]);

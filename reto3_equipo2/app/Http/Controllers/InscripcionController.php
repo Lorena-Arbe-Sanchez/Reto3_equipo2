@@ -101,7 +101,7 @@ class InscripcionController extends Controller
     }
 
     //public function destroy(Request $request)
-    public function delete(Request $request){
+    public function destroy(Request $request){
         $request->validate([
             'id_actividad' => 'required|exists:inscripciones,id_actividad',
             'id_ciudadano' => 'required|exists:inscripciones,id_ciudadano'
