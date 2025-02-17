@@ -47,7 +47,7 @@ Route::controller(CiudadanoController::class)->group(function() {
     Route::middleware('auth')->group(function () {
         Route::get('/ciudadano/create', 'create')->name('ciudadano.create');
         Route::post('/ciudadano/store', 'store')->name('ciudadano.store');
-        Route::delete('/ciudadano/destroy', 'destroy')->name('ciudadano.destroy');
+        //Route::delete('/ciudadano/destroy', 'destroy')->name('ciudadano.destroy');
     });
 });
 

@@ -19,17 +19,32 @@
             <!--Filtros-->
             <div class="row mt-3">
                 <div class="col d-flex justify-content-evenly">
-                    <form>
-                        <div class="form-group d-flex flex-direction-row align-items-center gap-2">
+                    <form action="{{ route('inscripcion.show') }}" method="GET" class="d-flex gap-3">
+                        <div class="form-group d-flex align-items-center gap-2">
                             <label for="centro_civico" class="form-label mb-0">Centro civico</label>
-                            <input type="text" class="form-control" id="centro_civico">
+                            <select class="form-select" id="centro_civico" name="centro_civico">
+                                <option value="">Todos</option>
+                                @foreach ($centroCivicos as $centro)
+                                    <option value="{{ $centro->id }}" {{ request('centro_civico') == $centro->id ? 'selected' : '' }}>
+                                        {{ $centro->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
-                    </form>
-                    <form>
-                        <div class="form-group d-flex flex-direction-row align-items-center gap-2">
+
+                        <div class="form-group d-flex align-items-center gap-2">
                             <label for="actividad" class="form-label mb-0">Actividad</label>
-                            <input type="text" class="form-control" id="actividad">
+                            <select class="form-select" id="actividad" name="actividad">
+                                <option value="">Todas</option>
+                                @foreach ($actividades as $actividad)
+                                    <option value="{{ $actividad->id }}" {{ request('actividad') == $actividad->id ? 'selected' : '' }}>
+                                        {{ $actividad->titulo }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
+
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
                     </form>
                 </div>
             </div>

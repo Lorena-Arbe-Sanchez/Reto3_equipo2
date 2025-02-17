@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Actividad;
+use App\Models\CentroCivico;
 use App\Models\Ciudadano;
 use App\Models\Inscripcion;
 use Illuminate\Http\Request;
@@ -95,9 +96,26 @@ class InscripcionController extends Controller
 
     }
 
-    public function show(){
-        $inscripciones = Inscripcion::with('actividad','ciudadano')->paginate(10);
-        return view('Inscripcion.listInscripciones', compact('inscripciones'));
+    public function show(Request $request)
+    {
+        $query = Inscripcion::with('actividad', 'ciudadano');
+
+        if ($request->filled('centro_civico')) {
+            $query->whereHas('actividad.centroCivico', function ($q) use ($request) {
+                $q->where('id', $request->centro_civico);
+            });
+        }
+
+        if ($request->filled('actividad')) {
+            $query->where('id_actividad', $request->actividad);
+        }
+
+        $inscripciones = $query->paginate(10);
+
+        $centroCivicos = CentroCivico::all();
+        $actividades = Actividad::all();
+
+        return view('Inscripcion.listInscripciones', compact('inscripciones', 'centroCivicos', 'actividades'));
     }
 
     //public function destroy(Request $request)
