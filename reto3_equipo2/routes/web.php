@@ -18,10 +18,10 @@ Route::controller(ActividadController::class)->group(function() {
     // Todos los usuarios podrán acceder a los listados de actividades, pero solo los administradores (logueados con "auth") podrán realizar la gestión.
     Route::middleware('auth')->group(function () {
         Route::get('/actividad/create', 'create')->name('actividad.create');
-        Route::post('/actividad/store', 'store')->name('actividad.save');
+        Route::post('/actividad/store', 'store')->name('actividad.store');
         Route::get('/actividad/{id}/edit', 'edit')->name('actividad.edit');
         Route::put('/actividad/{id}/update', 'update')->name('actividad.update');
-        Route::delete('/actividad/destroy', 'delete')->name('actividad.delete');
+        Route::delete('/actividad/destroy', 'destroy')->name('actividad.destroy');
     });
 
     Route::get('/actividad', 'index')->name('actividad.showActividades');
@@ -39,7 +39,7 @@ Route::controller(InscripcionController::class)->group(function() {
 
     Route::middleware('auth')->group(function () {
         Route::get('/inscripcion/show', 'show')->name('inscripcion.show');
-        Route::delete('/inscripcion/destroy', 'destroy')->name('inscripcion.delete');
+        Route::delete('/inscripcion/destroy', 'destroy')->name('inscripcion.destroy');
     });
 });
 

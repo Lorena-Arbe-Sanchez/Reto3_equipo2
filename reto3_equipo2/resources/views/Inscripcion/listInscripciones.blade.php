@@ -57,7 +57,7 @@
                             <p class="col-2 my-2">{{ $inscripcion->ciudadano->nombre }}</p>
                             <p class="col-2 my-2">{{ $inscripcion->ciudadano->apellidos }}</p>
                             <p class="col-2 my-2">{{ $inscripcion->ciudadano->dni }}</p>
-                            <form action="{{ route('inscripcion.delete') }}" method="POST" class="col-2 my-2">
+                            <form action="{{ route('inscripcion.destroy') }}" method="POST" class="col-2 my-2">
                                 @csrf
                                 @method('DELETE')
                                 <input type="hidden" name="id_actividad" value="{{ $inscripcion->id_actividad }}">

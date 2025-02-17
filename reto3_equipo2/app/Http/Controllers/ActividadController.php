@@ -101,7 +101,7 @@ class ActividadController extends Controller
     }
 
     //public function destroy(Request $request)
-    public function delete(Request $request){
+    public function destroy(Request $request){
         $request->validate([
             'id' => 'required'
         ]);
