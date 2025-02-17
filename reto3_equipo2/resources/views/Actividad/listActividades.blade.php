@@ -20,10 +20,13 @@
                         <label for="centro_civico">Centros:</label>
                         <!-- TODO : Quitar los "filtrarDatos" -->
                         <select class="form-select filtrarDatos" id="centro_civico" name="centro_civico">
-                            <option value="">Todos</option>
+                            <option value="" {{ request('centro_civico') == null ? 'selected' : '' }}>Todos</option>
 
                             @foreach ($centroCivicos as $centro)
-                                <option value="{{ $centro->id }}">{{ $centro->nombre }}</option>
+                                <option value="{{ $centro->id }}" {{ (request('centro_civico') == $centro->id ||
+                                    (isset($centroSeleccionado) && $centroSeleccionado == $centro->id)) ? 'selected' : '' }}>
+                                        {{ $centro->nombre }}
+                                </option>
                             @endforeach
                         </select>
                     </div>

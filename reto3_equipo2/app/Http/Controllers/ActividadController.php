@@ -101,6 +101,7 @@ class ActividadController extends Controller
             'actividades' => $result['actividades'],
             'actividadesTotales' => $result['actividadesTotales'],
             'centroCivicos' => CentroCivico::all(),
+            'centroSeleccionado' => $id,
         ]);
     }
 
