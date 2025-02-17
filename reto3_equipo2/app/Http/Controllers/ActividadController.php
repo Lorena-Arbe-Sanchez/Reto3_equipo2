@@ -81,25 +81,79 @@ class ActividadController extends Controller
     }
 
     //public function index($id = null ){
-    public function showActividades($id = null ){
-        $actividades = "";
+    public function showActividades(Request $request){
 
-        if($id == null){
-            $actividades = Actividad::all();
-        }
+        $result = $this->filtrarActividades($request);
 
-        $centroCivicos = CentroCivico::all();
-
-        return view('Actividad.listActividades', compact('actividades','centroCivicos'));
+        return view('Actividad.listActividades', [
+            'actividades' => $result['actividades'],
+            'actividadesTotales' => $result['actividadesTotales'],
+            'centroCivicos' => CentroCivico::all(),
+        ]);
     }
 
     //public function show($id){
-    public function showActividadesCentro($id){
-        $actividades = Actividad::where('centro_civico_id', $id)->get();
+    public function showActividadesCentro(Request $request, $id){
 
-        $centroCivicos = CentroCivico::all();
+        $result = $this->filtrarActividades($request, $id);
 
-        return view('Actividad.listActividades', compact('actividades','centroCivicos'));
+        return view('Actividad.listActividades', [
+            'actividades' => $result['actividades'],
+            'actividadesTotales' => $result['actividadesTotales'],
+            'centroCivicos' => CentroCivico::all(),
+        ]);
+    }
+
+    public function filtrarActividades(Request $request, $id = null)
+    {
+        $query = Actividad::query();
+
+        if ($id) {
+            $query->where('centro_civico_id', $id);
+        }
+
+        if ($request->has('centro_civico')) {
+            $query->where('centro_civico_id', $request->query('centro_civico'));
+        }
+        if ($request->has('edad')) {
+            $query->where('edad_minima', '<=', $request->query('edad'))
+                ->where('edad_maxima', '>=', $request->query('edad'));
+        }
+        if ($request->has('idioma') && $request->query('idioma') !== 'todos') {
+            $query->where('idioma', $request->query('idioma'));
+        }
+        if ($request->has('horario')) {
+            $horario = $request->query('horario');
+            if (preg_match('/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/', $horario)) {
+                $horarioSegundos = $this->horaAsegundos($horario);
+                $query->where(function ($q) use ($horarioSegundos) {
+                    $q->whereRaw('TIME_TO_SEC(hora_inicio) <= ?', [$horarioSegundos])
+                        ->whereRaw('TIME_TO_SEC(hora_fin) >= ?', [$horarioSegundos]);
+                });
+            }
+        }
+        if ($request->has('textoBusqueda')) {
+            $query->where('titulo', 'like', '%' . $request->query('textoBusqueda') . '%')
+                ->orWhere('descripcion', 'like', '%' . $request->query('textoBusqueda') . '%');
+        }
+
+        $actividades = $query->get();
+
+        // Contar el total de actividades encontradas
+        $actividadesTotales = $actividades->count();
+
+        return compact('actividades', 'actividadesTotales');
+    }
+
+    /**
+     * Convierte una hora en formato HH:MM a segundos desde la medianoche.
+     *
+     * @param string $hora La hora en formato HH:MM.
+     * @return int Los segundos desde la medianoche.
+     */
+    private function horaAsegundos(string $hora): int {
+        list($horas, $minutos) = explode(':', $hora);
+        return ($horas * 3600) + ($minutos * 60);
     }
 
     //public function destroy(Request $request)
@@ -166,6 +220,7 @@ class ActividadController extends Controller
         return redirect()->route('actividad.showActividades')->with('success', 'Actividad actualizada correctamente');
     }
 
+    /*
     public function filtrarActividades(Request $request){
         $centro_civico = $request->input('centro_civico');
         $edad = $request->input('edad');
@@ -210,16 +265,6 @@ class ActividadController extends Controller
 
         return response()->json(['html' => $html, 'actividadesCount' => $actividadesCount]);
     }
-
-    /**
-     * Convierte una hora en formato HH:MM a segundos desde la medianoche.
-     *
-     * @param string $hora La hora en formato HH:MM.
-     * @return int Los segundos desde la medianoche.
-     */
-    private function horaAsegundos(string $hora): int {
-        list($horas, $minutos) = explode(':', $hora);
-        return ($horas * 3600) + ($minutos * 60);
-    }
+    */
 
 }

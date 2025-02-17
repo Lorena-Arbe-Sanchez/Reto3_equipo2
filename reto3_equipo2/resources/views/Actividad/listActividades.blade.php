@@ -18,6 +18,7 @@
                 <div class="col-xl-2 col-md-4 col-sm-6">
                     <div class="form-group d-flex flex-direction-row align-items-center gap-3">
                         <label for="centro_civico">Centros:</label>
+                        <!-- TODO : Quitar los "filtrarDatos" -->
                         <select class="form-select filtrarDatos" id="centro_civico" name="centro_civico">
                             <option value="">Todos</option>
 
@@ -67,24 +68,18 @@
                 </div>
 
                 <div class="col-xl-auto col-md-3 col-sm-5">
-                    <button class="btn btn-secundario btn-success w-100" id="aplicarFiltrosBtn">Aplicar filtros</button>
+                    <a href="{{ route('actividad.showActividades') }}" class="btn btn-secundario btn-success w-100" id="aplicarFiltrosBtn">Aplicar filtros</a>
                 </div>
 
             </div>
 
             <div class="row">
                 <div class="col">
-                    <p>Se han encontrado <b id="actividadesTotales">0</b> actividades con los criterios anteriores.</p>
-
-                    <!-- TODO : Poner mensaje con algo así -->
-                    {{--
                     @if($actividadesTotales == 1)
                         <p>Se ha encontrado <b>1</b> actividad con los criterios anteriores.</p>
                     @else
                         <p>Se han encontrado <b>{{ $actividadesTotales }}</b> actividades con los criterios anteriores.</p>
                     @endif
-                    --}}
-
                 </div>
             </div>
 
@@ -108,7 +103,53 @@
 
             <!--Lista de actividades-->
             <div class="row pt-5" id="actividadesContainer">
-                @include('partials.actividades_list', ['actividades' => $actividades])
+                @forelse ($actividades as $actividad)
+                    <div class="col-lg-3 col-md-4 my-4 px-4 d-flex justify-content-center">
+                        <div class="card d-flex flex-column h-100 text-center">
+                            <img class="card-img-top img-fluid" style="height: 200px; object-fit: cover;"
+                                 src="{{ $actividad->imagen ? asset('storage/' . $actividad->imagen) :
+                                    asset('storage/' . 'actividades/default.jpg') }}"
+                                 alt="Imagen {{ $actividad->titulo }}">
+                            <div class="card-body d-flex flex-column flex-grow-1">
+                                <h5 class="card-title">{{ $actividad->titulo }}</h5>
+                                <p class="card-text">{{ $actividad->descripcion }}</p>
+                                @if(!Auth::check())
+                                    <a href="#" class="btn btn-success mt-auto w-100 mx-auto" data-bs-toggle="modal"
+                                       data-bs-target="#apuntarseModal" data-actividad="{{ json_encode($actividad) }}">
+                                        Más información
+                                    </a>
+                                @endif
+                                @if(Auth::check())
+                                    <div class="d-flex gap-2 mt-auto">
+                                        <form action="{{ route('actividad.delete') }}" method="POST" class="w-50 m-0">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="id" value="{{ $actividad->id }}">
+                                            <button type="submit" class="btn btn-danger btn-destacado text-white w-100">
+                                                Eliminar
+                                            </button>
+                                        </form>
+
+                                        <a href="{{ route('actividad.edit', ['id' => $actividad->id]) }}"
+                                           class="btn btn-primary btn-editar text-white w-50">
+                                            Editar
+                                        </a>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted plazas-disponibles">
+                                    Plazas disponibles: <b>{{ $actividad->plazas_disponibles }}</b> de
+                                    {{ $actividad->plazas_totales }}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="col">
+                        <p>No se encontraron actividades.</p>
+                    </div>
+                @endforelse
             </div>
 
             <div class="modal fade" id="apuntarseModal" tabindex="-1" aria-labelledby="apuntarseModalLabel" aria-hidden="true">
@@ -256,64 +297,28 @@
                         });
                     });
 
-                    // Parte para gestionar los filtros y el listado de actividades.
+                });
 
-                    const actividadesContainer = document.getElementById('actividadesContainer');
-                    const actividadesTotalesElement = document.getElementById('actividadesTotales');
-                    const filtros = document.querySelectorAll('.filtrarDatos');
-                    const aplicarFiltrosBtn = document.getElementById('aplicarFiltrosBtn');
+                // Parte para gestionar los filtros y el listado de actividades.
 
-                    // Función para aplicar los filtros
-                    async function aplicarFiltros() {
-                        const centro_civico = document.getElementById('centro_civico').value;
-                        const edad = document.getElementById('edad').value;
-                        const idioma = document.getElementById('idioma').value;
-                        const horario = document.getElementById('horario').value;
-                        const textoBusqueda = document.getElementById('textoBusqueda').value;
+                document.getElementById('aplicarFiltrosBtn').addEventListener('click', function(event) {
+                    event.preventDefault(); // Evita la acción por defecto
 
-                        try {
-                            const response = await fetch('/actividades/filtrar', {
-                                method: 'GET',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                                },
-                                body: JSON.stringify({
-                                    centro_civico: centro_civico,
-                                    edad: edad,
-                                    idioma: idioma,
-                                    horario: horario,
-                                    textoBusqueda: textoBusqueda
-                                })
-                            });
+                    let url = new URL(window.location.origin + "{{ route('actividad.showActividades') }}");
 
-                            if (!response.ok) {
-                                throw new Error(`HTTP error! status: ${response.status}`);
-                            }
+                    let filtros = {
+                        centro_civico: document.getElementById('centro_civico').value,
+                        edad: document.getElementById('edad').value,
+                        idioma: document.getElementById('idioma').value,
+                        horario: document.getElementById('horario').value,
+                        textoBusqueda: document.getElementById('textoBusqueda').value
+                    };
 
-                            const data = await response.json();
-
-                            // Actualizar el listado de actividades
-                            actividadesContainer.innerHTML = data.html;
-
-                            // Actualizar el count de actividades
-                            actividadesTotalesElement.textContent = data.actividadesCount;
-
-                        }
-                        catch (error) {
-                            console.error('Error:', error);
-                        }
-                    }
-
-                    // Listener para filtros por individual
-                    filtros.forEach(filter => {
-                        filter.addEventListener('change', aplicarFiltros);
-                        filter.addEventListener('input', aplicarFiltros);
+                    Object.keys(filtros).forEach(key => {
+                        if (filtros[key]) url.searchParams.append(key, filtros[key]);
                     });
 
-                    // Listener para el botón de "Aplicar filtros"
-                    aplicarFiltrosBtn.addEventListener('click', aplicarFiltros);
-
+                    window.location.href = url.toString(); // Redirige a la ruta con los filtros en la URL
                 });
 
                 // Temporizadores para los mensajes (de 5 segundos)

@@ -15,9 +15,6 @@ Route::controller(ActividadController::class)->group(function() {
     Route::get('/showActividades', 'showActividades')->name('actividad.showActividades');
     Route::get('/showActividades/{id}', 'showActividadesCentro')->name('actividad.showActividadesCentro');
 
-    // TODO : Nueva
-    Route::get('/actividades/filtrar', 'filtrarActividades')->name('actividad.filtrar');
-
     // Todos los usuarios podrán acceder a los listados de actividades, pero solo los administradores (logueados con "auth") podrán realizar la gestión.
     Route::middleware('auth')->group(function () {
         Route::get('/createActividad', 'create')->name('actividad.create');
