@@ -24,6 +24,7 @@ Route::controller(ActividadController::class)->group(function() {
         Route::delete('/actividad/destroy', 'destroy')->name('actividad.destroy');
     });
 
+    // Estas rutas hay que escribirlas debajo de la parte de middleware, porque si no, las rutas con parámetros se solapan.
     Route::get('/actividad', 'index')->name('actividad.showActividades');
     Route::get('/actividad/{id}', 'show')->name('actividad.showActividadesCentro');
 
