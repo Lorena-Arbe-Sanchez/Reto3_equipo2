@@ -182,18 +182,13 @@
                             <p><b>Descripción: </b><span id="modal-actividad-descripcion"></span></p>
                             <p><b>Idioma: </b><span id="modal-actividad-idioma"></span></p>
                             <p><b>Horario: </b><span id="modal-actividad-horario"></span></p>
-                            <p><b>Plazas Libres: </b><span id="modal-actividad-plazas"></span></p>
+                            <p><b>Plazas libres: </b><span id="modal-actividad-plazas"></span></p>
                             <p><b>Edades: </b><span id="modal-actividad-edades"></span></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary btn-secundario" data-bs-dismiss="modal">Cancelar</button>
 
-                            <!-- TODO : Que solo deje inscribirse si hay al menos 1 plaza
-                            disponible (transformar a int el valor de "$actividad->plazas_disponibles" y comprobar).
-                            Si ya no quedan plazas debería salir un error en el control de arriba ("if ($errors->any())").
-                            Saldría algo como "No hay plazas disponibles para esta actividad" -->
-
-                            <!-- TODO : Que solo deje inscribirse si cumple en rango de edad -->
+                            <!-- TODO : Que solo deje inscribirse si el ciudadano con ese DNI está dentro del rango de edad -->
                             <button type="button" class="btn btn-primary btn-editar text-white" id="confirmarApuntarse">Inscribirme</button>
                         </div>
                     </div>
@@ -247,4 +242,7 @@
 
     </div>
     </body>
+
+    @vite(['resources/js/listActividades.js'])
+
     </html>

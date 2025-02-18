@@ -1,4 +1,7 @@
 @extends('layouts.public')
+
+@section('title', 'Editar Actividad')
+
 @section('content')
 
     <div class="row mx-3 mt-4">

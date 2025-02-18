@@ -1,4 +1,5 @@
 @extends('layouts.public')
+
 @section('content')
 
     <div class="row mx-3 mt-4">

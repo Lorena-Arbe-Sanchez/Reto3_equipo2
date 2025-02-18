@@ -53,6 +53,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Evento del botón "Inscribirse" en el primer modal
             const confirmarApuntarseBtn = document.querySelector('#confirmarApuntarse');
+
+            // Comprobar si hay plazas disponibles
+            if (actividadData.plazas_disponibles === 0) {
+                // Deshabilitar el botón "Inscribirme"
+                confirmarApuntarseBtn.disabled = true;
+                // Cambiar el texto del botón para indicar que está deshabilitado
+                confirmarApuntarseBtn.textContent = "Sin plazas";
+            }
+            else {
+                // Habilitar el botón "Inscribirme"
+                confirmarApuntarseBtn.disabled = false;
+                // Restaurar el texto original del botón
+                confirmarApuntarseBtn.textContent = "Inscribirme";
+            }
+
             confirmarApuntarseBtn.addEventListener('click', () => {
                 // Mostrar el segundo modal (de la inscripción)
                 var inscripcionModal = new bootstrap.Modal(document.getElementById('inscripcionFormModal'));
