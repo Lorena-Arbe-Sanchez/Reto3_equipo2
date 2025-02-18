@@ -45,7 +45,7 @@
                     <div class="col-xl-2 col-md-4 col-sm-6">
                         <div class="form-group d-flex flex-direction-row align-items-center gap-3">
                             <label for="idioma">Idioma:</label>
-                            <select class="form-select" id="idioma">
+                            <select class="form-select" id="idioma" name="idioma">
                                 <option value="todos">Todos</option>
                                 <option value="espanol">Español</option>
                                 <option value="euskera">Euskera</option>
@@ -58,7 +58,7 @@
                     <div class="col-xl-2 col-md-4 col-sm-6">
                         <div class="form-group d-flex flex-direction-row align-items-center gap-3">
                             <label for="horario">Horario:</label>
-                            <input type="text" class="form-control" id="horario" value="{{ request('horario') }}">
+                            <input type="text" class="form-control" id="horario" name="horario" value="{{ request('horario') }}">
                         </div>
                     </div>
 
@@ -67,13 +67,12 @@
                     <div class="col-xl-2 col-md-5 col-sm-7">
                         <div class="form-group d-flex align-items-center gap-3">
                             <label for="textoBusqueda">Búsqueda:</label>
-                            <input type="text" class="form-control" id="textoBusqueda" value="{{ request('textoBusqueda') }}"placeholder="Título o descripción">
-                            <input type="text" class="form-control" id="textoBusqueda" value="{{ request('textoBusqueda') }}"placeholder="Título o descripción">
+                            <input type="text" class="form-control" id="textoBusqueda" name="textoBusqueda" value="{{ request('textoBusqueda') }}"placeholder="Título o descripción">
                         </div>
                     </div>
 
                     <div class="col-xl-auto col-md-3 col-sm-5">
-                        <button type="submit" class="btn btn-secundario btn-success w-100">Aplicar filtros</button>
+                        <button type="submit" class="btn btn-secundario btn-success w-100" id="aplicarFiltrosBtn">Aplicar filtros</button>
                     </div>
 
                 </div>
@@ -306,27 +305,7 @@
 
                 });
 
-                // Parte para gestionar los filtros y el listado de actividades.
-
-                {{--document.getElementById('aplicarFiltrosBtn').addEventListener('click', function(event) {--}}
-                {{--    event.preventDefault(); // Evita la acción por defecto--}}
-
-                {{--    let url = new URL(window.location.origin + "{{ route('actividad.showActividades') }}");--}}
-
-                {{--    let filtros = {--}}
-                {{--        centro_civico: document.getElementById('centro_civico').value,--}}
-                {{--        edad: document.getElementById('edad').value,--}}
-                {{--        idioma: document.getElementById('idioma').value,--}}
-                {{--        horario: document.getElementById('horario').value,--}}
-                {{--        textoBusqueda: document.getElementById('textoBusqueda').value--}}
-                {{--    };--}}
-
-                {{--    Object.keys(filtros).forEach(key => {--}}
-                {{--        if (filtros[key]) url.searchParams.append(key, filtros[key]);--}}
-                {{--    });--}}
-
-                {{--    window.location.href = url.toString(); // Redirige a la ruta con los filtros en la URL--}}
-                {{--});--}}
+                // TODO : REUBICAR ESTOS
 
                 // Temporizadores para los mensajes (de 5 segundos)
                 setTimeout(function() {
@@ -335,6 +314,8 @@
                 setTimeout(function() {
                     document.getElementById('danger-message').style.display = 'none';
                 }, 5000);
+
+                // TODO : HACER QUE LO DE LOS FILTROS SE GUARDE CUANDO SE RECARGUE LA PÁGINA (LOS VALORES QUE SE ESCRIBIERON)
 
             </script>
 

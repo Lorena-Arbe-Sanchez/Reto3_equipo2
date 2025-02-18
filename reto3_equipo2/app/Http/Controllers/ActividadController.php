@@ -113,17 +113,17 @@ class ActividadController extends Controller
             $query->where('centro_civico_id', $id);
         }
 
-        if ($request->has('centro_civico')) {
+        if ($request->has('centro_civico') && $request->query('centro_civico') !== null) {
             $query->where('centro_civico_id', $request->query('centro_civico'));
         }
-        if ($request->has('edad')) {
+        if ($request->has('edad') && $request->query('edad') !== null) {
             $query->where('edad_minima', '<=', $request->query('edad'))
                 ->where('edad_maxima', '>=', $request->query('edad'));
         }
         if ($request->has('idioma') && $request->query('idioma') !== 'todos') {
             $query->where('idioma', $request->query('idioma'));
         }
-        if ($request->has('horario')) {
+        if ($request->has('horario') && $request->query('horario') !== null) {
             $horario = $request->query('horario');
             if (preg_match('/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/', $horario)) {
                 $horarioSegundos = $this->horaAsegundos($horario);
@@ -133,7 +133,7 @@ class ActividadController extends Controller
                 });
             }
         }
-        if ($request->has('textoBusqueda')) {
+        if ($request->has('textoBusqueda') && $request->query('textoBusqueda') !== null) {
             $query->where('titulo', 'like', '%' . $request->query('textoBusqueda') . '%')
                 ->orWhere('descripcion', 'like', '%' . $request->query('textoBusqueda') . '%');
         }
@@ -143,6 +143,7 @@ class ActividadController extends Controller
         // Contar el total de actividades encontradas
         $actividadesTotales = $actividades->count();
 
+        // TODO : Quitar
         dump($request->all());
 
         return compact('actividades', 'actividadesTotales');
