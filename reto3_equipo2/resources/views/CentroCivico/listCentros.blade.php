@@ -66,6 +66,9 @@
                     <form action="{{ route('actividad.create') }}" method="GET">
                         <button type="submit" class="btn btn-success">Crear Actividades</button>
                     </form>
+                    <form action="{{ route('ciudadano.create') }}" method="GET">
+                        <button type="submit" class="btn btn-success">Crear Ciudadanos</button>
+                    </form>
                 </div>
             </div>
         @endif
