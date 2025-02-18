@@ -12,69 +12,73 @@
 
             <!--Filtros-->
 
-            <div class="row mb-5 g-2 d-flex flex-wrap align-items-center gap-4">
+            <form id="filtroForm" method="GET" action="{{ route('actividad.showActividades') }}">
 
-                <!-- Columna para Centro Civico -->
-                <div class="col-xl-2 col-md-4 col-sm-6">
-                    <div class="form-group d-flex flex-direction-row align-items-center gap-3">
-                        <label for="centro_civico">Centros:</label>
-                        <!-- TODO : Quitar los "filtrarDatos" -->
-                        <select class="form-select filtrarDatos" id="centro_civico" name="centro_civico">
-                            <option value="" {{ request('centro_civico') == null ? 'selected' : '' }}>Todos</option>
+                <div class="row mb-5 g-2 d-flex flex-wrap align-items-center gap-4">
 
-                            @foreach ($centroCivicos as $centro)
-                                <option value="{{ $centro->id }}" {{ (request('centro_civico') == $centro->id ||
-                                    (isset($centroSeleccionado) && $centroSeleccionado == $centro->id)) ? 'selected' : '' }}>
-                                        {{ $centro->nombre }}
-                                </option>
-                            @endforeach
-                        </select>
+                    <!-- Columna para Centro Civico -->
+                    <div class="col-xl-2 col-md-4 col-sm-6">
+                        <div class="form-group d-flex flex-direction-row align-items-center gap-3">
+                            <label for="centro_civico">Centros:</label>
+                            <select class="form-select" id="centro_civico" name="centro_civico">
+                                <option value="" {{ request('centro_civico') == null ? 'selected' : '' }}>Todos</option>
+
+                                @foreach ($centroCivicos as $centro)
+                                    <option value="{{ $centro->id }}" {{ (request('centro_civico') == $centro->id ||
+                                        (isset($centroSeleccionado) && $centroSeleccionado == $centro->id)) ? 'selected' : '' }}>
+                                            {{ $centro->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Columna para Edad -->
-                <div class="col-xl-2 col-md-4 col-sm-6">
-                    <div class="form-group d-flex flex-direction-row align-items-center gap-3">
-                        <label for="edad">Edad:</label>
-                        <input type="text" class="form-control filtrarDatos" id="edad" name="edad" value="">
+                    <!-- Columna para Edad -->
+                    <div class="col-xl-2 col-md-4 col-sm-6">
+                        <div class="form-group d-flex flex-direction-row align-items-center gap-3">
+                            <label for="edad">Edad:</label>
+                            <input type="text" class="form-control" id="edad" name="edad" value="{{ request('edad') }}">
+                        </div>
                     </div>
-                </div>
 
-                <!-- Columna para Idioma -->
-                <div class="col-xl-2 col-md-4 col-sm-6">
-                    <div class="form-group d-flex flex-direction-row align-items-center gap-3">
-                        <label for="idioma">Idioma:</label>
-                        <select class="form-select filtrarDatos" id="idioma">
-                            <option value="todos">Todos</option>
-                            <option value="espanol">Español</option>
-                            <option value="euskera">Euskera</option>
-                            <option value="ingles">Inglés</option>
-                        </select>
+                    <!-- Columna para Idioma -->
+                    <div class="col-xl-2 col-md-4 col-sm-6">
+                        <div class="form-group d-flex flex-direction-row align-items-center gap-3">
+                            <label for="idioma">Idioma:</label>
+                            <select class="form-select" id="idioma">
+                                <option value="todos">Todos</option>
+                                <option value="espanol">Español</option>
+                                <option value="euskera">Euskera</option>
+                                <option value="ingles">Inglés</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Columna para Horario -->
-                <div class="col-xl-2 col-md-4 col-sm-6">
-                    <div class="form-group d-flex flex-direction-row align-items-center gap-3">
-                        <label for="horario">Horario:</label>
-                        <input type="text" class="form-control filtrarDatos" id="horario">
+                    <!-- Columna para Horario -->
+                    <div class="col-xl-2 col-md-4 col-sm-6">
+                        <div class="form-group d-flex flex-direction-row align-items-center gap-3">
+                            <label for="horario">Horario:</label>
+                            <input type="text" class="form-control" id="horario" value="{{ request('horario') }}">
+                        </div>
                     </div>
-                </div>
 
-                <!-- Buscador de palabras concretas (en títulos y descripciones de actividades) y botón de aplicar todos los filtros -->
+                    <!-- Buscador de palabras concretas (en títulos y descripciones de actividades) y botón de aplicar todos los filtros -->
 
-                <div class="col-xl-2 col-md-5 col-sm-7">
-                    <div class="form-group d-flex align-items-center gap-3">
-                        <label for="textoBusqueda">Búsqueda:</label>
-                        <input type="text" class="form-control filtrarDatos" id="textoBusqueda" placeholder="Título o descripción">
+                    <div class="col-xl-2 col-md-5 col-sm-7">
+                        <div class="form-group d-flex align-items-center gap-3">
+                            <label for="textoBusqueda">Búsqueda:</label>
+                            <input type="text" class="form-control" id="textoBusqueda" value="{{ request('textoBusqueda') }}"placeholder="Título o descripción">
+                            <input type="text" class="form-control" id="textoBusqueda" value="{{ request('textoBusqueda') }}"placeholder="Título o descripción">
+                        </div>
                     </div>
+
+                    <div class="col-xl-auto col-md-3 col-sm-5">
+                        <button type="submit" class="btn btn-secundario btn-success w-100">Aplicar filtros</button>
+                    </div>
+
                 </div>
 
-                <div class="col-xl-auto col-md-3 col-sm-5">
-                    <a href="{{ route('actividad.showActividades') }}" class="btn btn-secundario btn-success w-100" id="aplicarFiltrosBtn">Aplicar filtros</a>
-                </div>
-
-            </div>
+            </form>
 
             <div class="row">
                 <div class="col">
@@ -304,25 +308,25 @@
 
                 // Parte para gestionar los filtros y el listado de actividades.
 
-                document.getElementById('aplicarFiltrosBtn').addEventListener('click', function(event) {
-                    event.preventDefault(); // Evita la acción por defecto
+                {{--document.getElementById('aplicarFiltrosBtn').addEventListener('click', function(event) {--}}
+                {{--    event.preventDefault(); // Evita la acción por defecto--}}
 
-                    let url = new URL(window.location.origin + "{{ route('actividad.showActividades') }}");
+                {{--    let url = new URL(window.location.origin + "{{ route('actividad.showActividades') }}");--}}
 
-                    let filtros = {
-                        centro_civico: document.getElementById('centro_civico').value,
-                        edad: document.getElementById('edad').value,
-                        idioma: document.getElementById('idioma').value,
-                        horario: document.getElementById('horario').value,
-                        textoBusqueda: document.getElementById('textoBusqueda').value
-                    };
+                {{--    let filtros = {--}}
+                {{--        centro_civico: document.getElementById('centro_civico').value,--}}
+                {{--        edad: document.getElementById('edad').value,--}}
+                {{--        idioma: document.getElementById('idioma').value,--}}
+                {{--        horario: document.getElementById('horario').value,--}}
+                {{--        textoBusqueda: document.getElementById('textoBusqueda').value--}}
+                {{--    };--}}
 
-                    Object.keys(filtros).forEach(key => {
-                        if (filtros[key]) url.searchParams.append(key, filtros[key]);
-                    });
+                {{--    Object.keys(filtros).forEach(key => {--}}
+                {{--        if (filtros[key]) url.searchParams.append(key, filtros[key]);--}}
+                {{--    });--}}
 
-                    window.location.href = url.toString(); // Redirige a la ruta con los filtros en la URL
-                });
+                {{--    window.location.href = url.toString(); // Redirige a la ruta con los filtros en la URL--}}
+                {{--});--}}
 
                 // Temporizadores para los mensajes (de 5 segundos)
                 setTimeout(function() {

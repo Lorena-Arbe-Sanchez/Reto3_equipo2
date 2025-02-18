@@ -143,6 +143,8 @@ class ActividadController extends Controller
         // Contar el total de actividades encontradas
         $actividadesTotales = $actividades->count();
 
+        dump($request->all());
+
         return compact('actividades', 'actividadesTotales');
     }
 
