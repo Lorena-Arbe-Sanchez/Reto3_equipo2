@@ -26,7 +26,7 @@
 
             <div class="row mt-2">
                 <div class="col d-flex justify-content-center">
-                    <form action="{{route("actividad.save")}}" method="post" class="border rounded p-4 w-75" enctype="multipart/form-data">
+                    <form action="{{route("actividad.store")}}" method="post" class="border rounded p-4 w-75" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row justify-content-center gap-3">

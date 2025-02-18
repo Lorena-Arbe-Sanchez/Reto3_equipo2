@@ -26,7 +26,7 @@
                                 @foreach ($centroCivicos as $centro)
                                     <option value="{{ $centro->id }}" {{ (request('centro_civico') == $centro->id ||
                                         (isset($centroSeleccionado) && $centroSeleccionado == $centro->id)) ? 'selected' : '' }}>
-                                            {{ $centro->nombre }}
+                                        {{ $centro->nombre }}
                                     </option>
                                 @endforeach
                             </select>
@@ -127,7 +127,7 @@
                                 @endif
                                 @if(Auth::check())
                                     <div class="d-flex gap-2 mt-auto">
-                                        <form action="{{ route('actividad.delete') }}" method="POST" class="w-50 m-0">
+                                        <form action="{{ route('actividad.destroy') }}" method="POST" class="w-50 m-0">
                                             @csrf
                                             @method('DELETE')
                                             <input type="hidden" name="id" value="{{ $actividad->id }}">

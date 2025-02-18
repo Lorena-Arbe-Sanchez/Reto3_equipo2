@@ -13,11 +13,10 @@ class ActividadController extends Controller
 
     public function create(){
         $centroCivicos = CentroCivico::all();
-        return view('actividad.createActividad', compact('centroCivicos'));
+        return view('Actividad.createActividad', compact('centroCivicos'));
     }
 
-    //public function store(Request $request){
-    public function save(Request $request){
+    public function store(Request $request){
         try {
             $centroCivicos = CentroCivico::all();
 
@@ -80,8 +79,7 @@ class ActividadController extends Controller
         return view('actividad.createActividad', compact('centroCivicos'));
     }
 
-    //public function index($id = null ){
-    public function showActividades(Request $request){
+    public function index(Request $request){
 
         $result = $this->filtrarActividades($request);
 
@@ -92,8 +90,7 @@ class ActividadController extends Controller
         ]);
     }
 
-    //public function show($id){
-    public function showActividadesCentro(Request $request, $id){
+    public function show(Request $request, $id){
 
         $result = $this->filtrarActividades($request, $id);
 
@@ -105,8 +102,7 @@ class ActividadController extends Controller
         ]);
     }
 
-    public function filtrarActividades(Request $request, $id = null)
-    {
+    public function filtrarActividades(Request $request, $id = null){
         $query = Actividad::query();
 
         if ($id) {
@@ -160,8 +156,7 @@ class ActividadController extends Controller
         return ($horas * 3600) + ($minutos * 60);
     }
 
-    //public function destroy(Request $request)
-    public function delete(Request $request){
+    public function destroy(Request $request){
         $request->validate([
             'id' => 'required'
         ]);
@@ -223,52 +218,5 @@ class ActividadController extends Controller
 
         return redirect()->route('actividad.showActividades')->with('success', 'Actividad actualizada correctamente');
     }
-
-    /*
-    public function filtrarActividades(Request $request){
-        $centro_civico = $request->input('centro_civico');
-        $edad = $request->input('edad');
-        $idioma = $request->input('idioma');
-        $horario = $request->input('horario');
-        $textoBusqueda = $request->input('textoBusqueda');
-
-        $query = Actividad::query();
-
-        // Aplicar los filtros según los parámetros recibidos
-        if ($centro_civico) {
-            $query->where('centro_civico_id', $centro_civico);
-        }
-        if ($edad) {
-            $query->where('edad_minima', '<=', $edad)->where('edad_maxima', '>=', $edad);
-        }
-        if ($idioma && $idioma !== 'todos') {
-            $query->where('idioma', $idioma);
-        }
-        if ($horario) {
-            // Validar que el horario tenga el formato correcto (HH:MM)
-            if (preg_match('/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/', $horario)) {
-                // Convertir el horario de búsqueda a un formato comparable (segundos desde la medianoche)
-                $horarioSegundos = $this->horaAsegundos($horario);
-
-                // Filtrar actividades cuyo horario coincida con el horario de búsqueda
-                $query->where(function ($q) use ($horarioSegundos) {
-                    $q->whereRaw('TIME_TO_SEC(hora_inicio) <= ?', [$horarioSegundos])
-                        ->whereRaw('TIME_TO_SEC(hora_fin) >= ?', [$horarioSegundos]);
-                });
-            }
-        }
-        if ($textoBusqueda) {
-            $query->where('titulo', 'like', '%' . $textoBusqueda . '%')
-                ->orWhere('descripcion', 'like', '%' . $textoBusqueda . '%');
-        }
-
-        $actividades = $query->get();
-        $actividadesCount = $actividades->count();
-
-        $html = view('partials.actividades_list', ['actividades' => $actividades])->render();
-
-        return response()->json(['html' => $html, 'actividadesCount' => $actividadesCount]);
-    }
-    */
 
 }
