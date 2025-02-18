@@ -1,9 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    // Guardar los valores de los filtros en localStorage antes de enviar el formulario
+    const filtroForm = document.getElementById('filtroForm');
+    if (filtroForm) {
+        filtroForm.addEventListener('submit', function() {
+            localStorage.setItem('centro_civico', document.getElementById('centro_civico').value);
+            localStorage.setItem('edad', document.getElementById('edad').value);
+            localStorage.setItem('idioma', document.getElementById('idioma').value);
+            localStorage.setItem('horario', document.getElementById('horario').value);
+            localStorage.setItem('textoBusqueda', document.getElementById('textoBusqueda').value);
+        });
+
+        // Restaurar los valores de los filtros desde localStorage al cargar la página
+        document.getElementById('centro_civico').value = localStorage.getItem('centro_civico') || '';
+        document.getElementById('edad').value = localStorage.getItem('edad') || '';
+        document.getElementById('idioma').value = localStorage.getItem('idioma') || 'todos';
+        document.getElementById('horario').value = localStorage.getItem('horario') || '';
+        document.getElementById('textoBusqueda').value = localStorage.getItem('textoBusqueda') || '';
+    }
+
     const contenedorDni = document.getElementById('contenedorDni');
     if (contenedorDni) {
         contenedorDni.style.visibility = 'hidden';
     }
+
+    // Eventos y lógica existente (apuntarse/inscribirse, resetear, etc.)
 
     const apuntarseButtons = document.querySelectorAll('[data-bs-toggle="modal"]');
 
@@ -109,5 +130,3 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
-
-// TODO : HACER QUE LO DE LOS FILTROS SE GUARDE CUANDO SE RECARGUE LA PÁGINA (LOS VALORES QUE SE ESCRIBIERON)

@@ -142,7 +142,8 @@ class ActividadController extends Controller
         $actividadesTotales = $actividades->count();
 
         // Código para mostrar por pantalla los valores de los filtros como logs de depuración
-        //dump($request->all());
+        // TODO : QUITAR LUEGO
+        dump($request->all());
 
         return compact('actividades', 'actividadesTotales');
     }
