@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="row mt-2">
-                <div class="col d-flex justify-content-center gap-2">
+                <div class="col d-flex justify-content-center gap-4">
                     <form action="{{ route('inscripcion.show') }}" method="GET">
                         <button type="submit" class="btn btn-success">Ver Inscripciones</button>
                     </form>

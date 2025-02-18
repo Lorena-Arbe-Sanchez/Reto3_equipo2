@@ -19,10 +19,8 @@
 
                 <div class="row mb-5 g-2 d-flex flex-wrap align-items-center gap-4">
 
-                    <!-- TODO : Estilizar las columnas. -->
-
                     <!-- Columna para Centro Civico -->
-                    <div class="col-xl col-md-4 col-sm-6">
+                    <div class="col-xl-2 col-md-4 col-sm-7">
                         <div class="form-group d-flex flex-direction-row align-items-center gap-3">
                             <label for="centro_civico">Centros:</label>
                             <select class="form-select" id="centro_civico" name="centro_civico">
@@ -39,7 +37,7 @@
                     </div>
 
                     <!-- Columna para Edad -->
-                    <div class="col-xl col-md-4 col-sm-6">
+                    <div class="col-xl-1 col-md-4 col-sm-7">
                         <div class="form-group d-flex flex-direction-row align-items-center gap-3">
                             <label for="edad">Edad:</label>
                             <input type="text" class="form-control" id="edad" name="edad" value="{{ request('edad') }}">
@@ -47,7 +45,7 @@
                     </div>
 
                     <!-- Columna para Idioma -->
-                    <div class="col-xl col-md-4 col-sm-6">
+                    <div class="col-xl-auto col-md-4 col-sm-7">
                         <div class="form-group d-flex flex-direction-row align-items-center gap-3">
                             <label for="idioma">Idioma:</label>
                             <select class="form-select" id="idioma" name="idioma">
@@ -60,7 +58,7 @@
                     </div>
 
                     <!-- Columna para Horario -->
-                    <div class="col-xl col-md-4 col-sm-6">
+                    <div class="col-xl-1 col-md-4 col-sm-7">
                         <div class="form-group d-flex flex-direction-row align-items-center gap-3">
                             <label for="horario">Hora:</label>
                             <input type="text" class="form-control" id="horario" name="horario" value="{{ request('horario') }}">
@@ -69,18 +67,18 @@
 
                     <!-- Buscador de palabras concretas (en títulos y descripciones de actividades) y botón de aplicar todos los filtros -->
 
-                    <div class="col-xl col-md-5 col-sm-7">
+                    <div class="col-xl-auto col-md-5 col-sm-7">
                         <div class="form-group d-flex align-items-center gap-3">
                             <label for="textoBusqueda">Búsqueda:</label>
                             <input type="text" class="form-control" id="textoBusqueda" name="textoBusqueda" value="{{ request('textoBusqueda') }}"placeholder="Título o descripción">
                         </div>
                     </div>
 
-                    <div class="col-auto">
+                    <div class="col-auto col-sm-auto">
                         <button type="submit" class="btn btn-secundario btn-success w-100" id="aplicarFiltrosBtn">Aplicar filtros</button>
                     </div>
 
-                    <div class="col-auto">
+                    <div class="col-auto col-sm-auto">
                         <button type="submit" class="btn btn-secundario btn-success w-100" id="resetearFiltrosBtn">Resetear filtros</button>
                     </div>
 

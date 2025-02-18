@@ -134,4 +134,10 @@ class InscripcionController extends Controller
         return redirect()->back()->with('success', 'Inscripción eliminada correctamente.');
     }
 
+    public function getActividadesPorCentro($id){
+        $actividades = Actividad::where('centro_civico_id', $id)->get();
+
+        return response()->json($actividades);
+    }
+
 }

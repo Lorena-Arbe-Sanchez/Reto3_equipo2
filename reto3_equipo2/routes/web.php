@@ -24,7 +24,7 @@ Route::controller(ActividadController::class)->group(function() {
         Route::delete('/actividad/destroy', 'destroy')->name('actividad.destroy');
     });
 
-    // Estas rutas hay que escribirlas debajo de la parte de middleware, porque si no, las rutas con parámetros se solapan.
+    // Estas rutas hay que escribirlas debajo de la parte de middleware, porque si no, las rutas con parámetros se solapan y no funcionan.
     Route::get('/actividad', 'index')->name('actividad.showActividades');
     Route::get('/actividad/{id}', 'show')->name('actividad.showActividadesCentro');
 
@@ -44,6 +44,9 @@ Route::controller(InscripcionController::class)->group(function() {
         Route::delete('/inscripcion/destroy', 'destroy')->name('inscripcion.destroy');
     });
 });
+
+// TODO
+Route::get('/actividad/centro/{id}', [InscripcionController::class, 'getActividadesPorCentro']);
 
 Route::controller(CiudadanoController::class)->group(function() {
     Route::middleware('auth')->group(function () {

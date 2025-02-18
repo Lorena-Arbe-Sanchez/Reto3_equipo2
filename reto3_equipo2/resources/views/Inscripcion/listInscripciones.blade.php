@@ -17,14 +17,12 @@
                 </div>
             </div>
 
-            <!-- TODO : Ponerlos como select con opciones rellenadas de la BD y el 2º dependiente del 1º. -->
-
             <!--Filtros-->
             <div class="row mt-3">
                 <div class="col d-flex justify-content-evenly">
                     <form action="{{ route('inscripcion.show') }}" method="GET" class="d-flex gap-3">
                         <div class="form-group d-flex align-items-center gap-2">
-                            <label for="centro_civico" class="form-label mb-0">Centro civico</label>
+                            <label for="centro_civico" class="form-label mb-0">Centro civico:</label>
                             <select class="form-select" id="centro_civico" name="centro_civico">
                                 <option value="">Todos</option>
                                 @foreach ($centroCivicos as $centro)
@@ -36,7 +34,7 @@
                         </div>
 
                         <div class="form-group d-flex align-items-center gap-2">
-                            <label for="actividad" class="form-label mb-0">Actividad</label>
+                            <label for="actividad" class="form-label mb-0">Actividad:</label>
                             <select class="form-select" id="actividad" name="actividad">
                                 <option value="">Todas</option>
                                 @foreach ($actividades as $actividad)
@@ -52,7 +50,17 @@
                 </div>
             </div>
 
-            <!-- TODO : Ponerlo como una tabla. -->
+{{--            <div class="row">--}}
+{{--                <div class="col">--}}
+{{--                    @if($inscripcionesTotales == 1)--}}
+{{--                        <p>Se ha encontrado <b>1</b> inscripción con los criterios anteriores.</p>--}}
+{{--                    @else--}}
+{{--                        <p>Se han encontrado <b>{{ $inscripcionesTotales }}</b> inscripciones con los criterios anteriores.</p>--}}
+{{--                    @endif--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+            <!-- TODO : Ponerlo como una tabla o más estilizado (con espacios). -->
 
             <!--Lista de inscripciones-->
             <div class="row mt-2 w-75 mx-auto border rounded px-2 pb-2">
@@ -99,6 +107,36 @@
     <div class="footer mt-5 pt-4 border-top text-center">
         <p class="text-muted">© 2025 All rights reserved</p>
     </div>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const centroCivicoSelect = document.getElementById('centro_civico');
+            const actividadSelect = document.getElementById('actividad');
+
+            centroCivicoSelect.addEventListener('change', function() {
+                const centroId = this.value;
+
+                // Limpiar el select de actividades
+                actividadSelect.innerHTML = '<option value="">Todas</option>';
+
+                if (centroId) {
+                    // Hacer una petición AJAX para obtener las actividades del centro seleccionado
+                    fetch(`/actividad/centro/${centroId}`)
+                        .then(response => response.json())
+                        .then(actividades => {
+                            actividades.forEach(actividad => {
+                                const option = document.createElement('option');
+                                option.value = actividad.id;
+                                option.textContent = actividad.titulo;
+                                actividadSelect.appendChild(option);
+                            });
+                        });
+                }
+            });
+        });
+
+    </script>
 
 @endsection
 
