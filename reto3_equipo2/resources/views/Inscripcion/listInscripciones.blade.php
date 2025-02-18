@@ -72,6 +72,8 @@
                             <p class="col-2 my-2">{{ $inscripcion->ciudadano->nombre }}</p>
                             <p class="col-2 my-2">{{ $inscripcion->ciudadano->apellidos }}</p>
                             <p class="col-2 my-2">{{ $inscripcion->ciudadano->dni }}</p>
+
+                            <!-- TODO : Poner que si se consigue borrar, salga un mensaje lateral de esos. -->
                             <form action="{{ route('inscripcion.destroy') }}" method="POST" class="col-2 my-2">
                                 @csrf
                                 @method('DELETE')

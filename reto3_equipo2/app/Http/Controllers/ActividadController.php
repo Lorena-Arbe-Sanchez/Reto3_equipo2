@@ -13,13 +13,14 @@ class ActividadController extends Controller
 
     public function create(){
         $centroCivicos = CentroCivico::all();
-        return view('actividad.createActividad', compact('centroCivicos'));
+        return view('Actividad.createActividad', compact('centroCivicos'));
     }
 
-    //public function store(Request $request){
     public function store(Request $request){
         try {
             $centroCivicos = CentroCivico::all();
+
+            // TODO : Validar de manera más completa (con patrones y tal)
 
             // Validar campos requeridos
             $validator = Validator::make($request->all(), [
@@ -37,7 +38,7 @@ class ActividadController extends Controller
                 'edad_minima',
                 'edad_maxima',
                 'centro_civico_id' => 'required',
-                'imagen' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
+                'imagen' => 'image|mimes:jpeg,png,jpg,svg|max:2048',
             ]);
 
             if ($validator->fails()) {
@@ -78,29 +79,83 @@ class ActividadController extends Controller
         return view('actividad.createActividad', compact('centroCivicos'));
     }
 
-    //public function index($id = null ){
-    public function index($id = null ){
-        $actividades = "";
+    public function index(Request $request){
 
-        if($id == null){
-            $actividades = Actividad::all();
+        $result = $this->filtrarActividades($request);
+
+        return view('Actividad.listActividades', [
+            'actividades' => $result['actividades'],
+            'actividadesTotales' => $result['actividadesTotales'],
+            'centroCivicos' => CentroCivico::all(),
+        ]);
+    }
+
+    public function show(Request $request, $id){
+
+        $result = $this->filtrarActividades($request, $id);
+
+        return view('Actividad.listActividades', [
+            'actividades' => $result['actividades'],
+            'actividadesTotales' => $result['actividadesTotales'],
+            'centroCivicos' => CentroCivico::all(),
+            'centroSeleccionado' => $id,
+        ]);
+    }
+
+    public function filtrarActividades(Request $request, $id = null){
+        $query = Actividad::query();
+
+        if ($id) {
+            $query->where('centro_civico_id', $id);
         }
 
-        $centroCivicos = CentroCivico::all();
+        if ($request->has('centro_civico') && $request->query('centro_civico') !== null) {
+            $query->where('centro_civico_id', $request->query('centro_civico'));
+        }
+        if ($request->has('edad') && $request->query('edad') !== null) {
+            $query->where('edad_minima', '<=', $request->query('edad'))
+                ->where('edad_maxima', '>=', $request->query('edad'));
+        }
+        if ($request->has('idioma') && $request->query('idioma') !== 'todos') {
+            $query->where('idioma', $request->query('idioma'));
+        }
+        if ($request->has('horario') && $request->query('horario') !== null) {
+            $horario = $request->query('horario');
+            if (preg_match('/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/', $horario)) {
+                $horarioSegundos = $this->horaAsegundos($horario);
+                $query->where(function ($q) use ($horarioSegundos) {
+                    $q->whereRaw('TIME_TO_SEC(hora_inicio) <= ?', [$horarioSegundos])
+                        ->whereRaw('TIME_TO_SEC(hora_fin) >= ?', [$horarioSegundos]);
+                });
+            }
+        }
+        if ($request->has('textoBusqueda') && $request->query('textoBusqueda') !== null) {
+            $query->where('titulo', 'like', '%' . $request->query('textoBusqueda') . '%')
+                ->orWhere('descripcion', 'like', '%' . $request->query('textoBusqueda') . '%');
+        }
 
-        return view('Actividad.listActividades', compact('actividades','centroCivicos'));
+        $actividades = $query->get();
+
+        // Contar el total de actividades encontradas
+        $actividadesTotales = $actividades->count();
+
+        // TODO : Quitar
+        dump($request->all());
+
+        return compact('actividades', 'actividadesTotales');
     }
 
-    //public function show($id){
-    public function show($id){
-        $actividades = Actividad::where('centro_civico_id', $id)->get();
-
-        $centroCivicos = CentroCivico::all();
-
-        return view('Actividad.listActividades', compact('actividades','centroCivicos'));
+    /**
+     * Convierte una hora en formato HH:MM a segundos desde la medianoche.
+     *
+     * @param string $hora La hora en formato HH:MM.
+     * @return int Los segundos desde la medianoche.
+     */
+    private function horaAsegundos(string $hora): int {
+        list($horas, $minutos) = explode(':', $hora);
+        return ($horas * 3600) + ($minutos * 60);
     }
 
-    //public function destroy(Request $request)
     public function destroy(Request $request){
         $request->validate([
             'id' => 'required'
@@ -162,24 +217,6 @@ class ActividadController extends Controller
         $actividad->save();
 
         return redirect()->route('actividad.showActividades')->with('success', 'Actividad actualizada correctamente');
-    }
-
-    public function showActividadesFiltros(Request $request){
-        $edad = $request->input('edad');
-
-        // Lógica para filtrar actividades por edad
-        $actividades = Actividad::query();
-
-        if ($edad) {
-            $actividades->where('edad_minima', '<=', $edad)
-                ->where(function($query) use ($edad) {
-                    $query->where('edad_maxima', '>=', $edad);
-                });
-        }
-
-        $actividades = $actividades->get();
-
-        return view('actividad.index', compact('actividades'));
     }
 
 }

@@ -12,72 +12,80 @@
 
             <!--Filtros-->
 
-            <div class="row mb-5">
-                <div class="col-md-3"> <!-- Columna para Centro Civico -->
-                    <div class="form-group d-flex flex-direction-row align-items-center gap-2">
-                        <label for="centro_civico">Centros</label>
-                        <select class="form-select" id="centro_civico" name="centro_civico">
-                            <option value="">Todos</option>
+            <form id="filtroForm" method="GET" action="{{ route('actividad.showActividades') }}">
 
-                            @foreach ($centroCivicos as $centro)
-                                <option value="{{ $centro->id }}">{{ $centro->nombre }}</option>
-                            @endforeach
-                        </select>
+                <div class="row mb-5 g-2 d-flex flex-wrap align-items-center gap-4">
+
+                    <!-- Columna para Centro Civico -->
+                    <div class="col-xl-2 col-md-4 col-sm-6">
+                        <div class="form-group d-flex flex-direction-row align-items-center gap-3">
+                            <label for="centro_civico">Centros:</label>
+                            <select class="form-select" id="centro_civico" name="centro_civico">
+                                <option value="" {{ request('centro_civico') == null ? 'selected' : '' }}>Todos</option>
+
+                                @foreach ($centroCivicos as $centro)
+                                    <option value="{{ $centro->id }}" {{ (request('centro_civico') == $centro->id ||
+                                        (isset($centroSeleccionado) && $centroSeleccionado == $centro->id)) ? 'selected' : '' }}>
+                                        {{ $centro->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-md-3"> <!-- Columna para Edad -->
-                    <div class="form-group d-flex flex-direction-row align-items-center gap-2">
-                        <label for="edad">Edad</label>
-                        <input type="text" class="form-control" id="edad" name="edad" value="">
+                    <!-- Columna para Edad -->
+                    <div class="col-xl-2 col-md-4 col-sm-6">
+                        <div class="form-group d-flex flex-direction-row align-items-center gap-3">
+                            <label for="edad">Edad:</label>
+                            <input type="text" class="form-control" id="edad" name="edad" value="{{ request('edad') }}">
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-md-3"> <!-- Columna para Idioma -->
-                    <div class="form-group d-flex flex-direction-row align-items-center gap-2">
-                        <label for="idioma">Idioma</label>
-                        <select class="form-select" id="idioma">
-                            <option value="todos">Todos</option>
-                            <option value="espanol">Español</option>
-                            <option value="euskera">Euskera</option>
-                            <option value="ingles">Inglés</option>
-                        </select>
+                    <!-- Columna para Idioma -->
+                    <div class="col-xl-2 col-md-4 col-sm-6">
+                        <div class="form-group d-flex flex-direction-row align-items-center gap-3">
+                            <label for="idioma">Idioma:</label>
+                            <select class="form-select" id="idioma" name="idioma">
+                                <option value="todos">Todos</option>
+                                <option value="espanol">Español</option>
+                                <option value="euskera">Euskera</option>
+                                <option value="ingles">Inglés</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-md-3"> <!-- Columna para Horario -->
-                    <div class="form-group d-flex flex-direction-row align-items-center gap-2">
-                        <label for="horario">Horario</label>
-                        <input type="text" class="form-control" id="horario">
+                    <!-- Columna para Horario -->
+                    <div class="col-xl-2 col-md-4 col-sm-6">
+                        <div class="form-group d-flex flex-direction-row align-items-center gap-3">
+                            <label for="horario">Horario:</label>
+                            <input type="text" class="form-control" id="horario" name="horario" value="{{ request('horario') }}">
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- TODO : (HAY QUE ESTILIZAR EL BOTÓN Y REUBICAR EVERYTHING) - Buscador de palabras concretas (en títulos y descripciones de actividades) y botón de aplicar filtro -->
-            <div class="row">
-                <div class="form-group d-flex flex-direction-row align-items-center gap-2 w-auto">
-                    <label for="textoBusqueda">Texto</label>
-                    <input type="text" class="form-control" id="textoBusqueda" placeholder="Título o descripción">
-                    <a href="" class="btn btn-success">Buscar</a>
-                </div>
-            </div>
+                    <!-- Buscador de palabras concretas (en títulos y descripciones de actividades) y botón de aplicar todos los filtros -->
 
-            <div class="row py-5">
-                <div class="col-md-12">
-                    <a href="{{ route('actividad.showActividadesFiltros') }}" class="btn btn-success">Filtrar</a>
+                    <div class="col-xl-2 col-md-5 col-sm-7">
+                        <div class="form-group d-flex align-items-center gap-3">
+                            <label for="textoBusqueda">Búsqueda:</label>
+                            <input type="text" class="form-control" id="textoBusqueda" name="textoBusqueda" value="{{ request('textoBusqueda') }}"placeholder="Título o descripción">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-auto col-md-3 col-sm-5">
+                        <button type="submit" class="btn btn-secundario btn-success w-100" id="aplicarFiltrosBtn">Aplicar filtros</button>
+                    </div>
+
                 </div>
-            </div>
+
+            </form>
 
             <div class="row">
                 <div class="col">
-                    <!-- TODO : Implementar bien (que "$actividadesTotales" sea el listado filtrado resultante). -->
-                    <?php $actividadesTotales = 0 ?>
-
-                    <?php if ($actividadesTotales == 1): ?>
-                    <p>Se ha encontrado <b>1</b> actividad con los criterios anteriores.</p>
-                    <?php else: ?>
-                    <p>Se han encontrado <b><?php echo $actividadesTotales; ?></b> actividades con los criterios anteriores.</p>
-                    <?php endif; ?>
+                    @if($actividadesTotales == 1)
+                        <p>Se ha encontrado <b>1</b> actividad con los criterios anteriores.</p>
+                    @else
+                        <p>Se han encontrado <b>{{ $actividadesTotales }}</b> actividades con los criterios anteriores.</p>
+                    @endif
                 </div>
             </div>
 
@@ -100,7 +108,7 @@
             @endif
 
             <!--Lista de actividades-->
-            <div class="row pt-5">
+            <div class="row pt-5" id="actividadesContainer">
                 @forelse ($actividades as $actividad)
                     <div class="col-lg-3 col-md-4 my-4 px-4 d-flex justify-content-center">
                         <div class="card d-flex flex-column h-100 text-center">
@@ -136,7 +144,7 @@
                                 @endif
                             </div>
                             <div class="card-footer">
-                                <small class="text-muted">
+                                <small class="text-muted plazas-disponibles">
                                     Plazas disponibles: <b>{{ $actividad->plazas_disponibles }}</b> de
                                     {{ $actividad->plazas_totales }}
                                 </small>
@@ -170,10 +178,13 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary btn-secundario" data-bs-dismiss="modal">Cancelar</button>
+
                             <!-- TODO : Que solo deje inscribirse si hay al menos 1 plaza
                             disponible (transformar a int el valor de "$actividad->plazas_disponibles" y comprobar).
-                            Si ya no quedan plazas debería salir un error en el control de arriba.
+                            Si ya no quedan plazas debería salir un error en el control de arriba ("if ($errors->any())").
                             Saldría algo como "No hay plazas disponibles para esta actividad" -->
+
+                            <!-- TODO : Que solo deje inscribirse si cumple en rango de edad -->
                             <button type="button" class="btn btn-primary btn-editar text-white" id="confirmarApuntarse">Inscribirme</button>
                         </div>
                     </div>
@@ -291,7 +302,10 @@
 
                         });
                     });
+
                 });
+
+                // TODO : REUBICAR ESTOS
 
                 // Temporizadores para los mensajes (de 5 segundos)
                 setTimeout(function() {
@@ -301,107 +315,7 @@
                     document.getElementById('danger-message').style.display = 'none';
                 }, 5000);
 
-
-
-                // TODO : Repasar
-                /*
-                document.addEventListener('DOMContentLoaded', function() {
-            const centroCivicoSelect = document.getElementById('centro_civico');
-            const edadInput = document.getElementById('edad');
-            const idiomaSelect = document.getElementById('idioma');
-            const horarioInput = document.getElementById('horario');
-            const textoBusquedaInput = document.getElementById('textoBusqueda');
-            const btnBuscar = document.getElementById('btnBuscar');
-            const btnFiltrar = document.getElementById('btnFiltrar');
-            const listaActividades = document.getElementById('listaActividades');
-            const actividadesTotalesSpan = document.getElementById('actividadesTotales');
-            let actividades = Array.from(document.querySelectorAll('.actividad-item'));
-
-            function filtrarActividades() {
-                const centroCivicoSeleccionado = centroCivicoSelect.value;
-                const edadIngresada = edadInput.value;
-                const idiomaSeleccionado = idiomaSelect.value;
-                const horarioIngresado = horarioInput.value;
-                const textoBusqueda = textoBusquedaInput.value.toLowerCase();
-
-                let actividadesFiltradas = actividades.filter(actividad => {
-                    const centroCivicoActividad = actividad.dataset.centroCivico;
-                    const edadMinimaActividad = actividad.dataset.edadMinima;
-                    const edadMaximaActividad = actividad.dataset.edadMaxima;
-                    const idiomaActividad = actividad.dataset.idioma;
-                    const horarioActividad = actividad.dataset.horario.toLowerCase();
-                    const textoActividad = actividad.dataset.texto.toLowerCase();
-
-                    let cumpleFiltro = true;
-
-                    // Filtro de Centro Cívico
-                    if (centroCivicoSeleccionado && centroCivicoSeleccionado !== "" && centroCivicoSeleccionado !== centroCivicoActividad) {
-                        cumpleFiltro = false;
-                    }
-
-                    // Filtro de Edad
-                    if (edadIngresada) {
-                        const edad = parseInt(edadIngresada);
-                        const edadMinima = parseInt(edadMinimaActividad) || 0; // Si es null, asumimos 0
-                        const edadMaxima = parseInt(edadMaximaActividad) || Infinity; // Si es null, asumimos infinito
-
-                        if (edad < edadMinima || edad > edadMaxima) {
-                            cumpleFiltro = false;
-                        }
-                    }
-
-                    // Filtro de Idioma
-                    if (idiomaSeleccionado && idiomaSeleccionado !== "") {
-                        if (idiomaSeleccionado !== "todos" && idiomaSeleccionado !== idiomaActividad) {
-                            cumpleFiltro = false;
-                        }
-                    }
-
-                    // Filtro de Horario
-                    if (horarioIngresado && horarioIngresado !== "" && !horarioActividad.includes(horarioIngresado.toLowerCase())) {
-                        cumpleFiltro = false;
-                    }
-
-                    // Filtro de Texto
-                    if (textoBusqueda && textoBusqueda !== "" && !textoActividad.includes(textoBusqueda)) {
-                        cumpleFiltro = false;
-                    }
-
-                    return cumpleFiltro;
-                });
-
-                // Ocultar todas las actividades
-                actividades.forEach(actividad => {
-                    actividad.style.display = 'none';
-                });
-
-                // Mostrar solo las actividades filtradas
-                actividadesFiltradas.forEach(actividad => {
-                    actividad.style.display = 'block';
-                });
-
-                // Actualizar el número total de actividades encontradas
-                actividadesTotalesSpan.textContent = actividadesFiltradas.length;
-            }
-
-            // Event listeners para cada filtro
-            centroCivicoSelect.addEventListener('change', filtrarActividades);
-            edadInput.addEventListener('input', filtrarActividades);
-            idiomaSelect.addEventListener('change', filtrarActividades);
-            horarioInput.addEventListener('input', filtrarActividades);
-            btnBuscar.addEventListener('click', function(event) {
-                event.preventDefault(); // Evitar la recarga de la página al presionar "Buscar"
-                filtrarActividades();
-            });
-            btnFiltrar.addEventListener('click', function(event) {
-                event.preventDefault(); // Evitar la recarga de la página al presionar "Filtrar"
-                filtrarActividades();
-            });
-
-            // Inicializar el número total de actividades
-            actividadesTotalesSpan.textContent = actividades.length;
-        });
-                 */
+                // TODO : HACER QUE LO DE LOS FILTROS SE GUARDE CUANDO SE RECARGUE LA PÁGINA (LOS VALORES QUE SE ESCRIBIERON)
 
             </script>
 
