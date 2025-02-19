@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const dniRegex = /^[0-9]{8}[A-Z]$/;
 
                     if (dni.length !== 9 || !dniRegex.test(dni)) {
-                        // todo : Ponerlo como mensaje lateral (mirar login en modo claro)
+                        // TODO : Ponerlo como mensaje lateral
                         alert("El DNI debe tener 8 números seguidos de una letra mayúscula.");
                         casillaDni.focus();
                     }

@@ -38,6 +38,7 @@ El Ayuntamiento de Vitoria-Gasteiz ha solicitado el desarrollo de una aplicació
 
 - **Mejoras de cara al futuro:**
   - **Juego de barcos:** Implementación de la inscripción a una actividad mediante el juego de barcos de la TMC (combinación de 16 caracteres numéricos y 16 letras, cada número asociado a una letra, como proceso de autenticación). 
+  - **Cambio de idioma:** Conseguir programar la funcionalidad del cambio de idioma en la página, mediante las dos opciones del header. 
   - **Mis actividades:** Ofrecer la posibilidad de visualizar y gestionar las actividades creadas por el administrador logueado, para poder acceder a ellas más fácilmente.
   - **Adición de ventanas y funcionalidades:** Crear una ventana principal con un carrousel y un menú de navegación para poder acceder posteriormente a otras ventanas u opciones.
   - **Notificaciones automáticas:** Envío de notificaciones a los usuarios (mediante una nueva columna llamada "correo" en "ciudadanos") para informar sobre sus inscripciones realizadas en las actividades, anunciando nuevas actividades o cambios en las existentes. 
@@ -163,6 +164,12 @@ php artisan storage:link
 
 - **Iniciar el servidor:** Ejecutar `php artisan serve` y acceder a la aplicación en `http://localhost:8000`.
 - **Acceso de administrador:** Las credenciales de un administrador de prueba son: "carlosf" y "contra123".
+
+---
+
+## Más documentación
+
+- [Figma](https://www.figma.com/design/hePF8rcjsbKDYCFhA7iP3i/Dise%C3%B1os?node-id=0-1&t=fbZAAqFQxlsKT93G-1)
 
 ---
 

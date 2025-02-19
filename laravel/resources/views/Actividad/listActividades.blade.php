@@ -96,7 +96,7 @@
                 </div>
             </div>
 
-            <!-- TODO : Ponerlo como mensaje lateral (que se sobreponga a todo y no afecte a lo demás / a lo de abajo) + Que no se recargue la página -->
+            <!-- TODO : Ponerlo como mensaje lateral -->
             @if ($errors->any())
                 <div class="alert alert-danger" id="danger-message">
                     <ul>
@@ -107,7 +107,7 @@
                 </div>
             @endif
 
-            <!-- TODO : Ponerlo como mensaje lateral también -->
+            <!-- TODO : Ponerlo como mensaje lateral -->
             @if(session('success'))
                 <div class="alert alert-success" id="success-message">
                     {{ session('success') }}
@@ -185,8 +185,6 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary btn-secundario" data-bs-dismiss="modal">Cancelar</button>
-
-                            <!-- TODO : Que solo deje inscribirse si el ciudadano con ese DNI está dentro del rango de edad -->
                             <button type="button" class="btn btn-primary btn-editar text-white" id="confirmarApuntarse">Inscribirme</button>
                         </div>
                     </div>
