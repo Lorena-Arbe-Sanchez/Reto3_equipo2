@@ -22,11 +22,10 @@
                                 <h5 class="card-title">{{ $centro->nombre }}</h5>
                                 <p class="card-text">{{ $centro->direccion }}</p>
 
-                                <!-- TODO : Poner como en las actividades: su información. Falta de rellenar "data-actividad" y hacer la parte de script abajo. -->
                                 @if(!Auth::check())
                                     <a href="#" class="btn btn-secundario mt-auto w-100 mx-auto mb-2"
-                                       data-bs-toggle="modal" data-bs-target="#informacionModal"
-                                       data-actividad="">
+                                       data-bs-toggle="modal" data-bs-target="#masInfoModal"
+                                       data-centro="{{ json_encode($centro) }}">
                                         Más información
                                     </a>
                                 @endif
@@ -44,6 +43,30 @@
                         <p>No se encontraron centros cívicos.</p>
                     </div>
                 @endforelse
+            </div>
+
+            <div class="modal fade" id="masInfoModal" tabindex="-1" aria-labelledby="masInfoModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="masInfoModalLabel">Datos del centro cívico</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img class="img-thumbnail mb-5" id="modal-centro-imagen"
+                                 src="" alt="Imagen del centro cívico">
+                            <span id="modal-centro-id" style="visibility: hidden"></span>
+                            <p><b>Nombre: </b><span id="modal-centro-nombre"></span></p>
+                            <p><b>Teléfono: </b><span id="modal-centro-telefono"></span></p>
+                            <p><b>Correo: </b><span id="modal-centro-correo"></span></p>
+                            <p><b>Dirección: </b><span id="modal-centro-direccion"></span></p>
+                            <p><b>Código postal: </b><span id="modal-centro-codigo"></span></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-secundario" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="row mt-4">
@@ -83,4 +106,7 @@
 
     </div>
     </body>
+
+    @vite(['resources/js/listCentros.js'])
+
     </html>

@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Actualizar la imagen del modal con la de la actividad seleccionada
             const modalImagen = document.getElementById('modal-actividad-imagen');
-            modalImagen.src = actividadData.imagen ? `/storage/${actividadData.imagen}` : `/storage/actividades/pintura.png`;
+            modalImagen.src = actividadData.imagen ? `/storage/${actividadData.imagen}` : `/storage/actividades/default.jpg`;
             modalImagen.alt = `Imagen de ${actividadData.titulo}`;
 
             // Evento del botón "Inscribirse" en el primer modal
