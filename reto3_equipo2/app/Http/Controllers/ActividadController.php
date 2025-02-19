@@ -20,25 +20,23 @@ class ActividadController extends Controller
         try {
             $centroCivicos = CentroCivico::all();
 
-            // TODO : Validar de manera más completa (con patrones y tal)
-
             // Validar campos requeridos
             $validator = Validator::make($request->all(), [
-                'titulo' => 'required',
-                'descripcion' => 'required',
-                'fecha_inicio' => 'required',
-                'fecha_fin' => 'required',
-                'dia_1' => 'required',
-                'dia_2',
+                'titulo' => 'required|string|max:30',
+                'descripcion' => 'required|string|max:300',
+                'fecha_inicio' => 'required|date|before_or_equal:fecha_fin',
+                'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
+                'dia_1' => 'required|string|in:L,M,X,J,V,S,D',
+                'dia_2' => 'nullable|string|in:L,M,X,J,V,S,D',
                 'hora_inicio' => 'required',
                 'hora_fin' => 'required',
-                'idioma' => 'required',
-                'plazas_totales' => 'required',
-                'plazas_minimas' => 'required',
-                'edad_minima',
-                'edad_maxima',
-                'centro_civico_id' => 'required',
-                'imagen' => 'image|mimes:jpeg,png,jpg,svg|max:2048',
+                'idioma' => 'required|string|max:15',
+                'plazas_totales' => 'required|integer|min:1',
+                'plazas_minimas' => 'required|integer|min:0|max:plazas_totales',
+                'edad_minima' => 'nullable|integer|min:0|max:edad_maxima',
+                'edad_maxima' => 'nullable|integer|min:0',
+                'centro_civico_id' => 'required|exists:centros_civicos,id',
+                'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
             if ($validator->fails()) {

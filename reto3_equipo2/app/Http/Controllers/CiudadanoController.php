@@ -16,11 +16,12 @@ class CiudadanoController extends Controller
     public function store(Request $request){
         try {
             $validator = Validator::make($request->all(), [
-                'nombre' => 'required|string',
-                'apellidos' => 'required|string',
-                'dni' => 'required|string',
-                'direccion' => 'required|string',
-                'codigo_postal' => 'required|string',
+                'nombre' => 'required|string|max:255',
+                'apellidos' => 'required|string|max:255',
+                'dni' => 'required|string|size:9|unique:ciudadanos,dni|regex:/^[0-9]{8}[A-Z]$/',
+                'fecha_nacimiento' => 'required|date|before:today',
+                'direccion' => 'required|string|max:255',
+                'codigo_postal' => 'required|string|size:5|regex:/^[0-9]{5}$/',
                 'juego_barcos' => 'required|string',
             ]);
 
