@@ -7,7 +7,6 @@ use App\Models\CentroCivico;
 use App\Models\Ciudadano;
 use App\Models\Inscripcion;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class InscripcionController extends Controller
@@ -132,7 +131,9 @@ class InscripcionController extends Controller
             ->where('id_ciudadano', $request->id_ciudadano)
             ->delete();
 
-        // TODO : Y actualizar el valor a "plazas_disponibles + 1" de la actividad.
+        // Actualizar el número de plazas disponibles de la actividad sumando 1
+        Actividad::where('id', $request->id_actividad)
+            ->increment('plazas_disponibles');
 
         return redirect()->back()->with('success', 'Inscripción eliminada correctamente.');
     }

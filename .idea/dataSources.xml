@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="reto3@localhost" uuid="60bd1b6f-d316-4286-8464-82e36a295d1f">
+    <data-source source="LOCAL" name="reto3@localhost" uuid="17ed9a83-f590-4e58-babf-d15ffa222fa5">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>

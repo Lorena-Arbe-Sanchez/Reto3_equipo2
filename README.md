@@ -6,7 +6,7 @@ El Ayuntamiento de Vitoria-Gasteiz ha solicitado el desarrollo de una aplicació
 
 ---
 
-## Características principales
+## Características
 
 - **Consulta de actividades:** Los ciudadanos podrán consultar todas las actividades disponibles en los centros cívicos.
 - **Inscripción en actividades:** Los ciudadanos podrán inscribirse en las actividades de su interés.
@@ -16,22 +16,34 @@ El Ayuntamiento de Vitoria-Gasteiz ha solicitado el desarrollo de una aplicació
 ## Funcionalidades principales
 
 ### Para ciudadanos:
-- **Consulta de actividades disponibles** con filtros por:
+- **Consulta de actividades ofertadas** con filtros por:
   - Ubicación
   - Edad
   - Idioma
   - Horario
-- **Inscripción en actividades.**
+- **Inscripción en actividades** de interés.
 
 ### Para administradores:
-- **Gestión de actividades:** Creación, modificación y eliminación de actividades.
-- **Gestión de inscripciones y participantes:** Consulta y administración de las inscripciones y los participantes.
+- **Gestión de actividades** (creación, modificación y eliminación).
+- **Consulta de participantes inscritos.**
 
 ---
 
 ## Posibles innovaciones
 
-- 
+- **Implementadas:**
+  - **Visualización de centros:** Poder visualizar aparte de las actividades ofertadas, también el listado de centros disponibles (con sus datos) y la navegación directa a sus actividades.
+  - **Consulta de inscripciones y posibilidad de eliminación:** Tener la opción de eliminar las inscripciones deseadas del listado con filtros de la ventana correspondiente.
+  - **Creación de ciudadanos:** Poder crear ciudadanos, para que en el caso de no querer/poder inscribirse en una actividad mediante el código de la TMC (que es igual que el número de DNI), se pueda inscribir con sus datos personales.
+
+- **Mejoras de cara al futuro:**
+  - **Juego de barcos:** Implementación de la inscripción a una actividad mediante el juego de barcos de la TMC (combinación de 16 caracteres numéricos y 16 letras, cada número asociado a una letra, como proceso de autenticación). 
+  - **Mis actividades:** Ofrecer la posibilidad de visualizar y gestionar las actividades creadas por el administrador logueado, para poder acceder a ellas más fácilmente.
+  - **Adición de ventanas y funcionalidades:** Crear una ventana principal con un carrousel y un menú de navegación para poder acceder posteriormente a otras ventanas u opciones.
+  - **Notificaciones automáticas:** Envío de notificaciones a los usuarios (mediante una nueva columna llamada "correo" en "ciudadanos") para informar sobre sus inscripciones realizadas en las actividades, anunciando nuevas actividades o cambios en las existentes. 
+  - **Integración con redes sociales:** Permitir a los usuarios compartir actividades en sus redes sociales. 
+  - **Sistema de valoración:** Los usuarios pueden valorar y dejar comentarios sobre las actividades en las que han participado. 
+  - **Aplicación móvil:** Desarrollo de una aplicación móvil complementaria para facilitar el acceso a las funciones principales desde cualquier dispositivo.
 
 ---
 
@@ -81,40 +93,68 @@ El Ayuntamiento de Vitoria-Gasteiz ha solicitado el desarrollo de una aplicació
 
 ## Instalación y configuración
 
-### 1. Clonar el Repositorio
+### 1. Clonar el repositorio y cambiar de directorio
 
 ```bash
+cd C:\xampp\htdocs
 git clone https://github.com/Lorena-Arbe-Sanchez/Reto3_equipo2.git
 cd Reto3_equipo2
+cd laravel
 ```
 
-### 2. Instalar Dependencias
+### 2. Iniciar la aplicación "XAMPP"
+
+Iniciar los servicios (pulsando "Start") de **Apache** y **MySQL** desde el panel de control.
+
+### 3. Instalar dependencias
 
 ```bash
 composer install
 npm install
 ```
 
-### 3. Configurar el Archivo .env
+### 4. Configurar archivo .env
 
-Copiar el archivo `.env.example` a `.env` y configurar las variables necesarias, como la conexión a la base de datos.
+Configurar las variables necesarias, como la conexión a la base de datos.
 
-### 4. Generar la Clave de la Aplicación
+### 5. Compilar recursos
+
+```bash
+npm run build
+npm run dev
+```
+
+### 6. Generar claves
+
+Ejecutar estos comandos en caso de ser necesario debido a errores en la ventana.
 
 ```bash
 php artisan key:generate
+php artisan jwt:secret
 ```
 
-### 5. Migrar la Base de Datos
+### 7. Migrar la base de datos
+
+Crear la Database en la parte superior derecha de PhpStorm (name `reto3`, port `3307`, user `root`) y ejecutar:
 
 ```bash
 php artisan migrate
 ```
 
-### 6. Compilar los Recursos
+---
+
+### 8. Poblar la base de datos con datos iniciales
 
 ```bash
-npm run dev
+php artisan db:seed
+```
+
+---
+
+### 9. Crear enlace simbólico para recursos estáticos (imágenes y estilos)
+
+```bash
+php artisan storage:link
 ```
 
 ---
@@ -122,7 +162,7 @@ npm run dev
 ## Uso
 
 - **Iniciar el servidor:** Ejecutar `php artisan serve` y acceder a la aplicación en `http://localhost:8000`.
-- **Acceso de administrador:** Las credenciales de un administrador de ejemplo son: "carlosf" y "contra123".
+- **Acceso de administrador:** Las credenciales de un administrador de prueba son: "carlosf" y "contra123".
 
 ---
 

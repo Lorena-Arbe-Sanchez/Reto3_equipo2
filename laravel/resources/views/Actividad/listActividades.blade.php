@@ -211,7 +211,7 @@
 
                                 <div class="mt-3" id="contenedorDni" style="visibility: hidden;">
                                     <label for="casillaDni" class="form-label">
-                                        <i>Escribe tu DNI para poder completar la inscripción</i>
+                                        <i>Escribe tu código de la TMC para poder completar la inscripción</i>
                                     </label>
                                     <input type="text" class="form-control" id="casillaDni" name="casillaDni" placeholder="DNI" value="{{ old('casillaDni') }}">
                                 </div>

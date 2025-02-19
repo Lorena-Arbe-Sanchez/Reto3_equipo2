@@ -46,13 +46,6 @@
                             <div class="col-3 d-flex flex-column">
                                 <label for="idioma" class="form-label">Idioma *</label>
                                 <input type="text" id="idioma" name="idioma" class="form-control border border-dark" value="{{ old('idioma') }}">
-
-                                <!-- TODO : Que sea un select con 3 opciones: "Español" / "Euskera" / "Inglés" -->
-{{--                                <select class="form-select border border-dark" id="idioma" name="idioma">--}}
-{{--                                    <option value="Español">{{ old('idioma') }}</option>--}}
-{{--                                    <option value="Euskera">{{ old('idioma') }}</option>--}}
-{{--                                    <option value="Inglés">{{ old('idioma') }}</option>--}}
-{{--                                </select>--}}
                             </div>
                         </div>
 

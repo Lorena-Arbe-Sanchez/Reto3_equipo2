@@ -5,6 +5,8 @@
       <list>
         <option value="$PROJECT_DIR$/reto3_equipo2/tests/Unit" />
         <option value="$PROJECT_DIR$/reto3_equipo2/tests/Feature" />
+        <option value="$PROJECT_DIR$/laravel/tests/Unit" />
+        <option value="$PROJECT_DIR$/laravel/tests/Feature" />
       </list>
     </option>
   </component>
