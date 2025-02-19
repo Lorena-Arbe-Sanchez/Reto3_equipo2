@@ -57,7 +57,7 @@ services:
       - php.display_errors=on
       - php.error_reporting=E_ALL
     volumes:
-      - ../laravel:/var/www/html/laravel
+      - ../reto3_equipo2:/var/www/html/reto3_equipo2
     depends_on:
       - mariadb
       - redis
