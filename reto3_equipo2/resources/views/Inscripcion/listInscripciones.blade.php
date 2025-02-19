@@ -11,18 +11,20 @@
                     <button type="submit" class="btn btn-success btn-secundario">Volver</button>
                 </form>
             </div>
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col d-flex justify-content-center">
                     <h3>Lista de personas inscritas</h3>
                 </div>
             </div>
 
             <!--Filtros-->
-            <div class="row mt-3">
-                <div class="col d-flex justify-content-evenly">
-                    <form action="{{ route('inscripcion.show') }}" method="GET" class="d-flex gap-3">
-                        <div class="form-group d-flex align-items-center gap-2">
-                            <label for="centro_civico" class="form-label mb-0">Centro civico:</label>
+            <div class="row py-4" id="filtrosInscripciones">
+                <div class="col">
+                    <form action="{{ route('inscripcion.show') }}" method="GET" class="row gy-3 gx-3 align-items-center">
+                        <div class="col-sm-auto">
+                            <label for="centro_civico" class="col-form-label">Centro civico:</label>
+                        </div>
+                        <div class="col-sm-auto">
                             <select class="form-select" id="centro_civico" name="centro_civico">
                                 <option value="">Todos</option>
                                 @foreach ($centroCivicos as $centro)
@@ -33,8 +35,10 @@
                             </select>
                         </div>
 
-                        <div class="form-group d-flex align-items-center gap-2">
-                            <label for="actividad" class="form-label mb-0">Actividad:</label>
+                        <div class="col-sm-auto">
+                            <label for="actividad" class="col-form-label">Actividad:</label>
+                        </div>
+                        <div class="col-sm-auto">
                             <select class="form-select" id="actividad" name="actividad">
                                 <option value="">Todas</option>
                                 @foreach ($actividades as $actividad)
@@ -45,7 +49,9 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                        <div class="col-sm-auto">
+                            <button type="submit" class="btn btn-primary">Filtrar</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -59,8 +65,6 @@
 {{--                    @endif--}}
 {{--                </div>--}}
 {{--            </div>--}}
-
-            <!-- TODO : Ponerlo como una tabla o más estilizado (con espacios). -->
 
             <!--Lista de inscripciones-->
             <div class="row mt-2 w-75 mx-auto border rounded px-2 pb-2">
@@ -108,38 +112,11 @@
         <p class="text-muted">© 2025 All rights reserved</p>
     </div>
 
-    <script>
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const centroCivicoSelect = document.getElementById('centro_civico');
-            const actividadSelect = document.getElementById('actividad');
-
-            centroCivicoSelect.addEventListener('change', function() {
-                const centroId = this.value;
-
-                // Limpiar el select de actividades
-                actividadSelect.innerHTML = '<option value="">Todas</option>';
-
-                if (centroId) {
-                    // Hacer una petición AJAX para obtener las actividades del centro seleccionado
-                    fetch(`/actividad/centro/${centroId}`)
-                        .then(response => response.json())
-                        .then(actividades => {
-                            actividades.forEach(actividad => {
-                                const option = document.createElement('option');
-                                option.value = actividad.id;
-                                option.textContent = actividad.titulo;
-                                actividadSelect.appendChild(option);
-                            });
-                        });
-                }
-            });
-        });
-
-    </script>
-
 @endsection
 
 </div>
 </body>
+
+    @vite(['resources/js/listInscripciones.js'])
+
 </html>

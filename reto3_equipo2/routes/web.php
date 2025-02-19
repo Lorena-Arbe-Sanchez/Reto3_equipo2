@@ -42,11 +42,10 @@ Route::controller(InscripcionController::class)->group(function() {
     Route::middleware('auth')->group(function () {
         Route::get('/inscripcion/show', 'show')->name('inscripcion.show');
         Route::delete('/inscripcion/destroy', 'destroy')->name('inscripcion.destroy');
+        Route::get('/actividad/todas', 'getTodasActividades');
+        Route::get('/actividad/centro/{id}', 'getActividadesPorCentro');
     });
 });
-
-// TODO
-Route::get('/actividad/centro/{id}', [InscripcionController::class, 'getActividadesPorCentro']);
 
 Route::controller(CiudadanoController::class)->group(function() {
     Route::middleware('auth')->group(function () {

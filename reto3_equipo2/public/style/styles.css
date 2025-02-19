@@ -132,5 +132,10 @@
     font-size: 0.8em;
   }
 }
+#filtrosInscripciones {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /*# sourceMappingURL=styles.css.map */

@@ -29,7 +29,7 @@
         <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarNav">
             <ul class="navbar-nav d-flex align-items-center">
                 @if(Auth::check())
-                    <li class="nav-item mx-2 d-flex align-items-center">
+                    <li class="nav-item mx-2 d-flex align-items-center d-lg-flex mb-lg-0 mb-2">
                         <form action="{{ route('administrador.logout') }}" method="POST" class="m-0 d-flex align-items-center">
                             @csrf
                             <button type="submit" class="btn btn-danger btn-destacado" id="botonCerrarSesion">
