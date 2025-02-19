@@ -5,33 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const notification = document.getElementById("notification");
     const form = document.getElementById("loginForm");
 
-    /* TODO : Hacer la validación de datos antes de comprobar en BD.
-
-    // Validar form
-    loginForm.addEventListener("submit", (e) => {
-        e.preventDefault()
-        const usuario = document.getElementById("usuario").value
-        const password = document.getElementById("password").value
-
-        if (!isValidUsuario(usuario)) {
-            alert("El usuario debe ser válido.")
-        }
-
-        if (password.length < 8) {
-            alert("La contraseña debe tener como mínimo 8 caracteres.")
-        }
-
-        console.log("Login exitoso.")
-    })
-
-    // Validar usuario
-    function isValidUsuario(usuario) {
-        // Cualquier carácter alfanumérico.
-        const usuarioRegex = /^[\w]+$/
-        return usuarioRegex.test(usuario);
-    }
-     */
-
     // Función para aplicar el modo oscuro
     function applyDarkMode(isDarkMode) {
         if (isDarkMode) {
@@ -64,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 3000);
     }
 
-    // TODO : Bloquear el envío del formulario si hay notificaciones de error (para que no se reseteen las casillas y no se borren los datos introducidos)
     if (notification) {
         form.addEventListener("submit", function (event) {
             if (notification.classList.contains("show")) {
