@@ -1,4 +1,7 @@
 @extends('layouts.public')
+
+@section('title', 'Lista de Actividades')
+
 @section('content')
 
     <div class="row mx-3 my-4">
@@ -16,8 +19,10 @@
 
                 <div class="row mb-5 g-2 d-flex flex-wrap align-items-center gap-4">
 
+                    <!-- TODO : Estilizar las columnas. -->
+
                     <!-- Columna para Centro Civico -->
-                    <div class="col-xl-2 col-md-4 col-sm-6">
+                    <div class="col-xl col-md-4 col-sm-6">
                         <div class="form-group d-flex flex-direction-row align-items-center gap-3">
                             <label for="centro_civico">Centros:</label>
                             <select class="form-select" id="centro_civico" name="centro_civico">
@@ -34,7 +39,7 @@
                     </div>
 
                     <!-- Columna para Edad -->
-                    <div class="col-xl-2 col-md-4 col-sm-6">
+                    <div class="col-xl col-md-4 col-sm-6">
                         <div class="form-group d-flex flex-direction-row align-items-center gap-3">
                             <label for="edad">Edad:</label>
                             <input type="text" class="form-control" id="edad" name="edad" value="{{ request('edad') }}">
@@ -42,7 +47,7 @@
                     </div>
 
                     <!-- Columna para Idioma -->
-                    <div class="col-xl-2 col-md-4 col-sm-6">
+                    <div class="col-xl col-md-4 col-sm-6">
                         <div class="form-group d-flex flex-direction-row align-items-center gap-3">
                             <label for="idioma">Idioma:</label>
                             <select class="form-select" id="idioma" name="idioma">
@@ -55,24 +60,28 @@
                     </div>
 
                     <!-- Columna para Horario -->
-                    <div class="col-xl-2 col-md-4 col-sm-6">
+                    <div class="col-xl col-md-4 col-sm-6">
                         <div class="form-group d-flex flex-direction-row align-items-center gap-3">
-                            <label for="horario">Horario:</label>
+                            <label for="horario">Hora:</label>
                             <input type="text" class="form-control" id="horario" name="horario" value="{{ request('horario') }}">
                         </div>
                     </div>
 
                     <!-- Buscador de palabras concretas (en títulos y descripciones de actividades) y botón de aplicar todos los filtros -->
 
-                    <div class="col-xl-2 col-md-5 col-sm-7">
+                    <div class="col-xl col-md-5 col-sm-7">
                         <div class="form-group d-flex align-items-center gap-3">
                             <label for="textoBusqueda">Búsqueda:</label>
                             <input type="text" class="form-control" id="textoBusqueda" name="textoBusqueda" value="{{ request('textoBusqueda') }}"placeholder="Título o descripción">
                         </div>
                     </div>
 
-                    <div class="col-xl-auto col-md-3 col-sm-5">
+                    <div class="col-auto">
                         <button type="submit" class="btn btn-secundario btn-success w-100" id="aplicarFiltrosBtn">Aplicar filtros</button>
+                    </div>
+
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-secundario btn-success w-100" id="resetearFiltrosBtn">Resetear filtros</button>
                     </div>
 
                 </div>
@@ -226,98 +235,6 @@
                     </div>
                 </div>
             </div>
-
-            <script>
-
-                document.addEventListener('DOMContentLoaded', function() {
-                    const apuntarseButtons = document.querySelectorAll('[data-bs-toggle="modal"]');
-
-                    apuntarseButtons.forEach(button => {
-                        button.addEventListener('click', function(event) {
-
-                            event.preventDefault();
-
-                            const actividadData = JSON.parse(this.dataset.actividad);
-
-                            // Actualizar el contenido del modal con los datos de la actividad
-                            document.getElementById('modal-actividad-id').textContent = actividadData.id;
-                            document.getElementById('modal-actividad-titulo').textContent = actividadData.titulo;
-                            document.getElementById('modal-actividad-descripcion').textContent = actividadData.descripcion;
-                            document.getElementById('modal-actividad-idioma').textContent = actividadData.idioma;
-                            document.getElementById('modal-actividad-horario').textContent = `${actividadData.hora_inicio} - ${actividadData.hora_fin}`;
-                            document.getElementById('modal-actividad-plazas').textContent = `${actividadData.plazas_disponibles}/${actividadData.plazas_totales}`;
-                            const edadMinima = actividadData.edad_minima === null ? "∞" : actividadData.edad_minima;
-                            const edadMaxima = actividadData.edad_maxima === null ? "∞" : actividadData.edad_maxima;
-                            document.getElementById('modal-actividad-edades').textContent = `${edadMinima} - ${edadMaxima}`;
-
-                            // Actualizar la imagen del modal con la de la actividad seleccionada
-                            const modalImagen = document.getElementById('modal-actividad-imagen');
-                            modalImagen.src = actividadData.imagen ? `/storage/${actividadData.imagen}` : `/storage/actividades/pintura.png`;
-                            modalImagen.alt = `Imagen de ${actividadData.titulo}`;
-
-                            // Evento del botón "Inscribirse" en el primer modal
-                            const confirmarApuntarseBtn = document.querySelector('#confirmarApuntarse');
-                            confirmarApuntarseBtn.addEventListener('click', () => {
-                                // Mostrar el segundo modal (de la inscripción)
-                                var inscripcionModal = new bootstrap.Modal(document.getElementById('inscripcionFormModal'));
-                                inscripcionModal.show();
-                            });
-
-                            var contenedorDni = document.getElementById('contenedorDni');
-                            var casillaDni = document.getElementById('casillaDni');
-
-                            // Evento del botón de confirmar la inscripción en el primer modal
-                            const confirmarConfirmacionBtn = document.querySelector('#confirmarConfirmacion');
-                            confirmarConfirmacionBtn.addEventListener('click', async () => {
-
-                                // Solamente si el DNI está visible lo validará y permitirá realizar la inscripción. Si no, mostrará su casilla.
-
-                                if (contenedorDni.style.visibility === 'hidden') {
-                                    // Mostrar casilla del DNI a rellenar
-                                    contenedorDni.style.visibility = 'visible';
-                                }
-                                else {
-                                    // Validar el DNI y realizar inscripción
-
-                                    const dni = casillaDni.value;
-                                    const dniRegex = /^[0-9]{8}[A-Z]$/;
-
-                                    if (dni.length !== 9 || !dniRegex.test(dni)) {
-                                        // todo : Ponerlo como mensaje lateral (mirar login en modo claro)
-                                        alert("El DNI debe tener 8 números seguidos de una letra mayúscula.");
-                                        casillaDni.focus();
-                                    }
-                                    else {
-                                        // Se establecerán los datos de "casillaDni" y de "id_actividad" del formulario, y se creará una fila en 'inscripciones'.
-                                        document.querySelector('#inscripcionFormModal form input[name="id_actividad"]').value = document.getElementById('modal-actividad-id').textContent;
-                                        // Enviar el formulario
-                                        document.querySelector('#inscripcionFormModal form').submit();
-                                        // Si vuelve aquí es que la inserción ha salido bien y se puede continuar.
-                                        casillaDni.value = "";
-                                        contenedorDni.style.visibility = 'hidden';
-                                    }
-                                }
-
-                            });
-
-                        });
-                    });
-
-                });
-
-                // TODO : REUBICAR ESTOS
-
-                // Temporizadores para los mensajes (de 5 segundos)
-                setTimeout(function() {
-                    document.getElementById('success-message').style.display = 'none';
-                }, 5000);
-                setTimeout(function() {
-                    document.getElementById('danger-message').style.display = 'none';
-                }, 5000);
-
-                // TODO : HACER QUE LO DE LOS FILTROS SE GUARDE CUANDO SE RECARGUE LA PÁGINA (LOS VALORES QUE SE ESCRIBIERON)
-
-            </script>
 
         </div>
     </div>

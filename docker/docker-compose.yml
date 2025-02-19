@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
 
   https-portal:
@@ -31,7 +33,9 @@ services:
     volumes:
       - mariadb_data:/var/lib/mysql
     expose:
-      - 3306
+      - "3307"  # Exponer el puerto 3307 dentro del contenedor (sin necesidad de publicar el puerto al host)
+    ports:
+      - "3307:3307"  # Mapear el puerto 3307 del contenedor al puerto 3307 del host
 
   nginx:
     build:
@@ -42,7 +46,7 @@ services:
       - ./nginx/:/etc/nginx/conf.d/:ro
       - ../laravel:/var/www/html/laravel
     expose:
-      - 80
+      - "80"
     depends_on:
       - php
 
@@ -65,11 +69,11 @@ services:
   phpmyadmin:
     image: phpmyadmin:${PHPMYADMIN_VERSION}
     environment:
-      - PMA_HOST=mariadb
-      - PMA_PORT=3306
-      - UPLOAD_LIMIT=1g
+      PMA_HOST: mariadb
+      PMA_PORT: "3306"
+      UPLOAD_LIMIT: "1g"
     expose:
-      - 80
+      - "80"
     depends_on:
       - mariadb
 
@@ -78,7 +82,7 @@ services:
     volumes:
       - redis_data:/data
     expose:
-      - 6379
+      - "6379"
 
 volumes:
   https-portal_certs:
