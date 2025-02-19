@@ -18,7 +18,7 @@
             </div>
 
             <!--Filtros-->
-            <div class="row py-4" id="filtrosInscripciones">
+            <div class="row py-4" id="centradoInscripciones">
                 <div class="col">
                     <form action="{{ route('inscripcion.show') }}" method="GET" class="row gy-3 gx-3 align-items-center">
                         <div class="col-sm-auto">
@@ -56,15 +56,15 @@
                 </div>
             </div>
 
-{{--            <div class="row">--}}
-{{--                <div class="col">--}}
-{{--                    @if($inscripcionesTotales == 1)--}}
-{{--                        <p>Se ha encontrado <b>1</b> inscripción con los criterios anteriores.</p>--}}
-{{--                    @else--}}
-{{--                        <p>Se han encontrado <b>{{ $inscripcionesTotales }}</b> inscripciones con los criterios anteriores.</p>--}}
-{{--                    @endif--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            <div class="row py-4" id="centradoInscripciones">
+                <div class="col">
+                    @if($inscripcionesTotales == 1)
+                        <p>Se ha encontrado <b>1</b> inscripción con los criterios anteriores.</p>
+                    @else
+                        <p>Se han encontrado <b>{{ $inscripcionesTotales }}</b> inscripciones con los criterios anteriores.</p>
+                    @endif
+                </div>
+            </div>
 
             <!--Lista de inscripciones-->
             <div class="row mt-2 w-75 mx-auto border rounded px-2 pb-2">

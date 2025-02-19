@@ -9,12 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class AdministradorController extends Controller
 {
-    //public function login(){
     public function login(){
         return view('login');
     }
 
-    //public function login_admin(Request $request){
     public function login_admin(Request $request){
         $request->validate([
             'usuario' => 'required|string',

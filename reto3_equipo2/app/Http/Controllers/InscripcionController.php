@@ -96,8 +96,7 @@ class InscripcionController extends Controller
 
     }
 
-    public function show(Request $request)
-    {
+    public function show(Request $request){
         $query = Inscripcion::with('actividad', 'ciudadano');
 
         if ($request->filled('centro_civico')) {
@@ -110,15 +109,19 @@ class InscripcionController extends Controller
             $query->where('id_actividad', $request->actividad);
         }
 
+        $inscripciones = $query;
+
+        // Contar el total de inscripciones encontradas
+        $inscripcionesTotales = $inscripciones->count();
+
         $inscripciones = $query->paginate(10);
 
         $centroCivicos = CentroCivico::all();
         $actividades = Actividad::all();
 
-        return view('Inscripcion.listInscripciones', compact('inscripciones', 'centroCivicos', 'actividades'));
+        return view('Inscripcion.listInscripciones', compact('inscripciones', 'centroCivicos', 'actividades', 'inscripcionesTotales'));
     }
 
-    //public function destroy(Request $request)
     public function destroy(Request $request){
         $request->validate([
             'id_actividad' => 'required|exists:inscripciones,id_actividad',

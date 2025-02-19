@@ -114,8 +114,11 @@ class ActividadController extends Controller
             $query->where('centro_civico_id', $request->query('centro_civico'));
         }
         if ($request->has('edad') && $request->query('edad') !== null) {
-            $query->where('edad_minima', '<=', $request->query('edad'))
-                ->where('edad_maxima', '>=', $request->query('edad'));
+            $edad = intval($request->query('edad'));
+            $query->where('edad_minima', '<=', $edad)
+                ->where('edad_maxima', '>=', $edad)
+                ->whereNotNull('edad_minima')
+                ->whereNotNull('edad_maxima');
         }
         if ($request->has('idioma') && $request->query('idioma') !== null
             && $request->query('idioma') !== 'todos') {
@@ -142,8 +145,7 @@ class ActividadController extends Controller
         $actividadesTotales = $actividades->count();
 
         // Código para mostrar por pantalla los valores de los filtros como logs de depuración
-        // TODO : QUITAR LUEGO
-        dump($request->all());
+        //dump($request->all());
 
         return compact('actividades', 'actividadesTotales');
     }
