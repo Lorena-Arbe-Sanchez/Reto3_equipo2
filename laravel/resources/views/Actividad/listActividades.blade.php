@@ -211,7 +211,7 @@
                                     <label for="casillaDni" class="form-label">
                                         <i>Escribe tu código de la TMC para poder completar la inscripción</i>
                                     </label>
-                                    <input type="text" class="form-control" id="casillaDni" name="casillaDni" placeholder="DNI" value="{{ old('casillaDni') }}">
+                                    <input type="text" class="form-control" id="casillaDni" name="casillaDni" placeholder="Código de TMC" value="{{ old('casillaDni') }}">
                                 </div>
 
                                 <!-- Poner como valor el id de la actividad, obtenido del "modal-actividad-id" anterior. -->

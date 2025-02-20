@@ -350,6 +350,28 @@ class ActividadesSeeder extends Seeder
                 'created_at' => Carbon::create('2024-01-10 10:00:00'),
                 'updated_at' => Carbon::create('2024-01-10 10:00:00'),
             ],
+            // Crear una nueva actividad (solo de prueba) con todas las plazas completas
+            [
+                'titulo' => 'Taller de Cerámica Creativa',
+                'descripcion' => 'Aprende las técnicas básicas de modelado y decoración en cerámica. Diseña tus propias tazas, platos y figuras.',
+                'fecha_inicio' => Carbon::create('2025-04-05'),
+                'fecha_fin' => Carbon::create('2025-06-05'),
+                'dia_1' => 'L',
+                'dia_2' => 'V',
+                'hora_inicio' => '17:00',
+                'hora_fin' => '19:00',
+                'idioma' => 'Euskera',
+                'plazas_totales' => 10,
+                'plazas_disponibles' => 0,
+                'plazas_minimas' => 5,
+                'edad_minima' => null,
+                'edad_maxima' => null,
+                'imagen' => null,
+                'administrador_id' => null,
+                'centro_civico_id' => 3,
+                'created_at' => Carbon::create('2024-01-10 10:00:00'),
+                'updated_at' => Carbon::create('2024-01-10 10:00:00'),
+            ],
         ]);
     }
 }
