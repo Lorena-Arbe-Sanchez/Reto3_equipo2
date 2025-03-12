@@ -1,0 +1,4 @@
+document.addEventListener("DOMContentLoaded",function(){document.getElementById("formCiudadano").addEventListener("submit",function(n){let e=[];const i=document.getElementById("nombre").value.trim(),s=document.getElementById("apellidos").value.trim(),o=document.getElementById("dni").value.trim(),l=document.getElementById("direccion").value.trim(),t=document.getElementById("codigo_postal").value.trim(),d=document.getElementById("juego_barcos").value.trim();i||e.push("El nombre es obligatorio."),s||e.push("Los apellidos son obligatorios."),o?/^[0-9]{8}[A-Z]$/.test(o)||e.push("El DNI debe tener 8 números seguidos de una letra mayúscula."):e.push("El DNI es obligatorio."),l||e.push("La dirección es obligatoria."),t?/^[0-9]{5}$/.test(t)||e.push("El código postal debe tener 5 dígitos."):e.push("El código postal es obligatorio."),d||e.push("El juego de barcos es obligatorio."),e.length>0&&(n.preventDefault(),alert(`Errores encontrados:
+
+`+e.join(`
+`)))})});
