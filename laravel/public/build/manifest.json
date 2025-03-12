@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-B-HcPC2R.css",
+    "file": "assets/app-DWj51wIZ.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -8,6 +8,48 @@
     "file": "assets/app-CqflisoM.js",
     "name": "app",
     "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/js/listActividades.js": {
+    "file": "assets/listActividades-DS6xyLNX.js",
+    "name": "listActividades",
+    "src": "resources/js/listActividades.js",
+    "isEntry": true
+  },
+  "resources/js/listCentros.js": {
+    "file": "assets/listCentros-DKVx8u2E.js",
+    "name": "listCentros",
+    "src": "resources/js/listCentros.js",
+    "isEntry": true
+  },
+  "resources/js/listInscripciones.js": {
+    "file": "assets/listInscripciones-CJD2ffy7.js",
+    "name": "listInscripciones",
+    "src": "resources/js/listInscripciones.js",
+    "isEntry": true
+  },
+  "resources/js/login.js": {
+    "file": "assets/login-BF8-wB8k.js",
+    "name": "login",
+    "src": "resources/js/login.js",
+    "isEntry": true
+  },
+  "resources/js/validar.js": {
+    "file": "assets/validar-GaLbxABx.js",
+    "name": "validar",
+    "src": "resources/js/validar.js",
+    "isEntry": true
+  },
+  "resources/js/validarCiudadano.js": {
+    "file": "assets/validarCiudadano-DhpGm_mU.js",
+    "name": "validarCiudadano",
+    "src": "resources/js/validarCiudadano.js",
+    "isEntry": true
+  },
+  "resources/js/validarUsuario.js": {
+    "file": "assets/validarUsuario-DubCFFCw.js",
+    "name": "validarUsuario",
+    "src": "resources/js/validarUsuario.js",
     "isEntry": true
   }
 }

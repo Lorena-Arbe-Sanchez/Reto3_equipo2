@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",function(){document.getElementById("loginForm").addEventListener("submit",function(t){const e=document.getElementById("usuario").value.trim(),o=document.getElementById("password").value.trim();(e===""||o==="")&&(t.preventDefault(),alert("Por favor, completa todos los campos."))})});

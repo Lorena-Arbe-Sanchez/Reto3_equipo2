@@ -7,7 +7,7 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
-                'resources/js/listAtividades.js',
+                'resources/js/listActividades.js',
                 'resources/js/listCentros.js',
                 'resources/js/listInscripciones.js',
                 'resources/js/login.js',
