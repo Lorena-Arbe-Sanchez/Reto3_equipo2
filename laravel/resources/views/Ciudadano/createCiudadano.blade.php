@@ -83,4 +83,6 @@
 
     </div>
     </body>
+        @vite(['resources/js/validarCiudadano.js'])
+
     </html>

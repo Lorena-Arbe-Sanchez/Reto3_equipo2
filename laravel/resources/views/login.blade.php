@@ -25,11 +25,11 @@
 
                 <div class="mb-3">
                     <label for="usuario" class="form-label">Usuario</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario" value="{{ old('usuario') }}" autocomplete="username" required>
+                    <input type="text" class="form-control" id="usuario" name="usuario" value="{{ old('usuario') }}" autocomplete="username" >
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="password" name="password" autocomplete="current-password" required>
+                    <input type="password" class="form-control" id="password" name="password" autocomplete="current-password" >
                 </div>
                 <button type="submit" class="btn btn-success w-100">Acceder</button>
 
@@ -51,6 +51,7 @@
 @endif
 
 </body>
+@vite(['resources/js/validarUsuario.js'])
 
 @vite(['resources/js/login.js'])
 

@@ -20,7 +20,7 @@
             <!--Lista de actividades-->
             <div class="row mt-2">
                 <div class="col d-flex justify-content-center">
-                    <form class="border rounded p-4 w-75" action="{{route ("actividad.update", $datos->id)}}" method="POST" enctype="multipart/form-data">
+                    <form class="border rounded p-4 w-75" id="formulario" action="{{route ("actividad.update", $datos->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -39,7 +39,7 @@
 
                             <div class="col-3 d-flex flex-column">
                                 <label for="idioma" class="form-label">Idioma *</label>
-                                <input type="text" id="idioma" name="idioma" class="form-control" value="{{ $datos->idioma }}" required>
+                                <input type="text" id="idioma" name="idioma" class="form-control" value="{{ $datos->idioma }}" >
                             </div>
                         </div>
 
@@ -124,4 +124,6 @@
 
     </div>
     </body>
+    @vite(['resources/js/validar.js'])
+
     </html>

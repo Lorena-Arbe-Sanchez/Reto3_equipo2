@@ -29,7 +29,7 @@
 
             <div class="row mt-2">
                 <div class="col d-flex justify-content-center">
-                    <form action="{{route("actividad.store")}}" method="post" class="border rounded p-4 w-75" enctype="multipart/form-data">
+                    <form id="formulario" action="{{route("actividad.store")}}" method="post" class="border rounded p-4 w-75" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row justify-content-center gap-3">
@@ -85,13 +85,13 @@
 
                         <div class="row justify-content-center gap-3 mt-2">
                             <div class="col-3 d-flex flex-column">
-                                <label for="dia1" class="form-label">Día semanal 1 *</label>
-                                <input type="text" id="dia1" name="dia_1" class="form-control border border-dark" value="{{ old('dia_1') }}">
+                                <label for="dia_1" class="form-label">Día semanal 1 *</label>
+                                <input type="text" id="dia_1" name="dia_1" class="form-control border border-dark" value="{{ old('dia_1') }}">
                             </div>
 
                             <div class="col-3 d-flex flex-column">
-                                <label for="dia2" class="form-label">Día semanal 2</label>
-                                <input type="text" id="dia2" name="dia_2" class="form-control" value="{{ old('dia_2') }}">
+                                <label for="dia_2" class="form-label">Día semanal 2</label>
+                                <input type="text" id="dia_2" name="dia_2" class="form-control" value="{{ old('dia_2') }}">
                             </div>
 
                             <div class="col-3 d-flex flex-column">
@@ -138,4 +138,6 @@
 
     </div>
     </body>
+    @vite(['resources/js/validar.js'])
+
     </html>
