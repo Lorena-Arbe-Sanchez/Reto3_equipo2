@@ -10,7 +10,7 @@ class CiudadanoController extends Controller
 {
     public function create(){
         $ciudadanos = Ciudadano::all();
-        return view('ciudadano.createCiudadano', compact('ciudadanos'));
+        return view('Ciudadano.createCiudadano', compact('ciudadanos'));
     }
 
     public function store(Request $request){
@@ -43,7 +43,7 @@ class CiudadanoController extends Controller
             return redirect()->back()->withErrors(['error' => $exception->getMessage()])->withInput();
         }
 
-        return view('ciudadano.createCiudadano', compact('ciudadano'));
+        return view('Ciudadano.createCiudadano', compact('ciudadano'));
 
     }
 }

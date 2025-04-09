@@ -184,7 +184,7 @@ class ActividadController extends Controller
 
     public function edit($id){
         $datos = Actividad::findOrFail($id);
-        return view('actividad.editActividad', compact('datos'));
+        return view('Actividad.editActividad', compact('datos'));
     }
 
     public function update(Request $request, $id){
@@ -222,7 +222,7 @@ class ActividadController extends Controller
 
         $actividad->save();
 
-        return redirect()->route('actividad.showActividades')->with('success', 'Actividad actualizada correctamente');
+        return redirect()->route('Actividad.showActividades')->with('success', 'Actividad actualizada correctamente');
     }
 
 }
