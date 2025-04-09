@@ -77,7 +77,7 @@ class ActividadController extends Controller
             return redirect()->back()->withErrors(['error' => $exception->getMessage()])->withInput();
         }
 
-        return view('actividad.createActividad', compact('centroCivicos'));
+        return view('Actividad.createActividad', compact('centroCivicos'));
     }
 
     public function index(Request $request){
