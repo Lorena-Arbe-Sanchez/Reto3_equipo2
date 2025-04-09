@@ -33,8 +33,8 @@ class ActividadController extends Controller
                 'idioma' => 'required|string|max:15',
                 'plazas_totales' => 'required',
                 'plazas_minimas' => 'required',
-                'edad_minima' => 'nullable|integer|min:0|max:edad_maxima',
-                'edad_maxima' => 'nullable|integer|min:0',
+                'edad_minima' /*=> 'nullable|integer|min:0|max:edad_maxima'*/,
+                'edad_maxima' /*=> 'nullable|integer|min:0'*/,
                 'centro_civico_id' => 'required|exists:centros_civicos,id',
                 'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
