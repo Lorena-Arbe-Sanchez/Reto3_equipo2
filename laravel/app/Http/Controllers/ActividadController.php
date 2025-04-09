@@ -222,7 +222,7 @@ class ActividadController extends Controller
 
         $actividad->save();
 
-        return redirect()->route('Actividad.showActividades')->with('success', 'Actividad actualizada correctamente');
+        return redirect()->route('actividad.showActividades')->with('success', 'Actividad actualizada correctamente');
     }
 
 }
