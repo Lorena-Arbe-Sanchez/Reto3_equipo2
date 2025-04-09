@@ -34,6 +34,7 @@ class CiudadanoController extends Controller
             $ciudadano->nombre = $request->nombre;
             $ciudadano->apellidos = $request->apellidos;
             $ciudadano->dni = $request->dni;
+            $ciudadano->fecha_nacimiento = $request->fecha_nacimiento;
             $ciudadano->direccion = $request->direccion;
             $ciudadano->codigo_postal = $request->codigo_postal;
             $ciudadano->juego_barcos = $request->juego_barcos;

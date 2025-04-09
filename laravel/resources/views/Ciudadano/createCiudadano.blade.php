@@ -47,6 +47,11 @@
                                 <label for="dni" class="form-label">DNI</label>
                                 <input type="text" id="dni" name="dni" class="form-control border border-dark" value="{{ old('dni') }}">
                             </div>
+
+                            <div class="col-3 d-flex flex-column">
+                                <label for="dni" class="form-label">Fecha nacimiento</label>
+                                <input type="text" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control border border-dark" value="{{ old('fecha_nacimiento') }}" placeholder="YYYY-MM-DD">
+                            </div>
                         </div>
 
                         <div class="row justify-content-center gap-3 mt-2">
